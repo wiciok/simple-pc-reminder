@@ -1,3 +1,8 @@
+/**
+ * podstawowa klasa od GUI - na razie nie ruszamy
+ */
+
+
 package application;
 	
 import javafx.application.Application;
