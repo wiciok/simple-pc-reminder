@@ -7,8 +7,8 @@ import data.Database;
 import logic.event.Event;
 
 /**
- * Created by Witek on 2016-05-22.
- * tutaj bedzie tymczasowy tekstowy interfejs do testowania logiki programu
+ * Implemented by Pawel
+ * Opis : TODO
  */
 public class TestUserInterface
 {
