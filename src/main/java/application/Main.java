@@ -5,8 +5,12 @@
 
 package application;
 	
+import java.io.IOException;
+
+import data.Database;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import logic.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
@@ -25,7 +29,36 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		launch(args);
+		
+		Database testDatabase = new Database();
+		testDatabase.addToList(new Event());
+		testDatabase.addToList(new Event());
+		testDatabase.addToList(new Event());
+		testDatabase.addToList(new Event());
+		
+		System.out.println("List size after adding events:"+testDatabase.returnSize());
+		
+		try
+		{
+			testDatabase.writeToFile();
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error writing to file: IOException (try/catch block in main)");
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			testDatabase.readFromFile();
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error reading from file: IOException (try/catch block in main)");
+			e.printStackTrace();
+		}
 	}
 }

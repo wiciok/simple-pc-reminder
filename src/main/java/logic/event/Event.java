@@ -1,5 +1,7 @@
 package logic.event;
 
+import java.io.Serializable;
+
 /**
  * Created by Witek on 2016-05-22.
  * podstawowa klasa każdego wydarzenia. to jej obiekty będą tworzone w trakcie działania programu
@@ -28,7 +30,7 @@ package logic.event;
  +uzupełniać komentarz do generowania dokumnetacji o funkcjonalności, jakie zapewnia klasa
  * */
 
-public class Event
+public class Event implements Serializable
 {
-
+	public String pole = "zmienna testowa";
 }
