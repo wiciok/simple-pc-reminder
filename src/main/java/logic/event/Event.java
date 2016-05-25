@@ -1,6 +1,9 @@
 package logic.event;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 /**
  * Created by Witek on 2016-05-22.
@@ -32,5 +35,105 @@ import java.io.Serializable;
 
 public class Event implements Serializable
 {
-	public String pole = "zmienna testowa";
+	private LocalDateTime eventDateNow = LocalDateTime.now();	// data utworzenia wydarzenia
+	private LocalDateTime eventDateStart = null;	//data rozpoczêcia
+	private LocalDateTime eventDateEnd = null;	//data zakoñczenia
+	private String name = "";					// nazwa
+	private String describe = "";				// opis
+	private Integer alertFrequency = 1;
+	private boolean isActive = false;
+	private String cathegory = "";
+	private Integer priority = 0;
+	
+	public Event()
+	{		
+	}
+	
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public String getDescribe()
+	{
+		return this.describe;
+	}
+	
+	public String getCathegory()
+	{
+		return this.cathegory;
+	}
+	
+	public Integer getAlertFrequency()
+	{
+		int copy = alertFrequency;
+		return copy;
+	}
+	
+	public boolean getIsActive()
+	{
+		boolean copy = isActive;
+		return copy;
+		
+	}
+	
+	public Integer getPriority()
+	{
+		int copy = priority;
+		return copy;
+	}
+	
+	public LocalDateTime getEventDateNow()
+	{
+		return this.eventDateNow;
+	}
+	
+	public LocalDateTime getEventDateStart()
+	{
+		return this.eventDateStart;
+	}
+	
+	public LocalDateTime getEventDateEnd()
+	{
+		return this.eventDateEnd;
+	}
+	
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	
+	public void setDescribe(String describe)
+	{
+		this.describe = describe;
+	}
+	
+	public void setCathegory(String cathegory)
+	{
+		this.cathegory = cathegory;
+	}
+	
+	public void setAlertFrequency(Integer alertFrequency)
+	{
+		this.alertFrequency = alertFrequency;
+	}
+	
+	public void setIsActive(boolean isActive)
+	{
+		this.isActive = isActive;
+	}
+	
+	public Object clone()
+	{
+		try
+		{
+			Event copy = (Event)super.clone(); 
+			return copy;
+		}
+		catch(CloneNotSupportedException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
