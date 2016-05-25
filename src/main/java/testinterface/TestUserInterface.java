@@ -2,7 +2,6 @@ package testinterface;
 
 import java.io.IOException;
 import java.util.Scanner;
-
 import data.Database;
 import logic.event.Event;
 

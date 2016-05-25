@@ -3,7 +3,6 @@ package data;
 import logic.event.*;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -27,9 +26,6 @@ import java.io.ObjectOutputStream;
  *		ZEBY TEJ TABLICY NIE MUSIEC CIAGLE SZTYWNO ZMIENIAC W KODZIE (readFromFile)
  * 
  * 		WYSWIETLANIE LISTY - MUSI BYC COS W KLASIE EVENT
- *
- *
- *
  *
  */
 
@@ -76,7 +72,7 @@ public class Database
 	/**
 	*returnSize - zwraca ilosc wydarzen, taka funkcja zawsze sie przydaje w mainie - lista jest private
 	**/
-	public int returnSize() //przydaje sie
+	public int returnSize()
 	{
 		return databaseList.size();
 	}
