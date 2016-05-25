@@ -96,7 +96,7 @@ public class Database
 	
 	public void writeToFile() throws IOException
 	{
-		String filePath = "D:\\JavaProject\\binaryFile.dat";
+		String filePath = "binaryFile.dat";
 		ObjectOutputStream oos = null;
 		try
 		{
@@ -118,7 +118,7 @@ public class Database
 	public void readFromFile() throws IOException
 	{
 		Event obj = null;
-		String filePath = "D:\\JavaProject\\binaryFile.dat";
+		String filePath = "binaryFile.dat";
 		ObjectInputStream ois = null;
 		try
 		{
