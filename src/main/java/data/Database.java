@@ -19,64 +19,49 @@ import java.io.ObjectOutputStream;
  *zapisu i odczytu binarnego do/z pliku i nie wiem jak to robic bez tego (i czy sie da bez tego)
  *wiec nie usuwajcie tego jak mozecie :D
  *
- *Klasa narazie ma 5 metody: addToList, displayEventList, writeToFile, readFromFile, returnSize 
- *i liste z wydarzeniami: databaseList
+ *Klasa oktora jest warstwa logiczna. Jej zadaniem jest obsluga bazy wydarzen.
+ *Narazie ma 5 metod: addToList, displayEventList, writeToFile, readFromFile, returnSize 
+ *i liste z wydarzeniami: databaseList. Opisy poszczegolnych funkcji przy deklaracji.
  *
- *addToList - metoda pozwalajaca do dodawania elementow do listy wydarzen (databaseList)
- *uzytkownik moze dodac na koniec listy lub wybrac sobie miejsce na ktore chce wstawic(zalezy co wybierze)
+ *TODO: OGARNAC JAK SPRAWDZAC W PLIKU ILE JEST ZAPISANYCH OBIEKTOW
+ *		ZEBY TEJ TABLICY NIE MUSIEC CIAGLE SZTYWNO ZMIENIAC W KODZIE (readFromFile)
+ * 
+ * 		WYSWIETLANIE LISTY - MUSI BYC COS W KLASIE EVENT
  *
- *displayEventList - metoda wyswietlajaca wydarzenia - widze to tak ze tez uzytkownik moze sobie wyswietlic 1 wydarzenie, wszystkie, lub jakies konkretne
- *ale do tego w klasie Event musi juz cos byc(przede wszystkim jakas funkcja wyswietlajaca wydarzenie ktora tu wywolam)
  *
- *writeToFile - zapis do pliku binarnego (jesli komus sciezka nie odpowiada to moze sobie zmienic - skoro i tak bedzie kazdy na swoim branchu pisal)
  *
- *readFromFile - odczyt z pliku binarnego. Tu jest problem. Ogolnie metoda dziala ale odczytuje tylko jeden obiekt.
- *Nie wiem jak odczytac wiecej - na necie nic narazie nie znalazlem, bedzie trzeba nad tym przysiasc jeszcze
  *
- *returnSize - zwraca ilosc wydarzen, taka funkcja zawsze sie przydaje, aktualnie dla sprawdzenia czy sie poprawnie wydarzenia dodaly
- *wywoluje ja w mainie po dodaniu wydarzen
  */
 
 public class Database
 {
 	private ArrayList<Event> databaseList = new ArrayList<Event> ();
 	
-	public void addToList(Event newEvent)
+/**
+ *addToList - metoda pozwalajaca do dodawania elementow do listy wydarzen (databaseList)
+ *uzytkownik moze dodac na koniec listy lub wybrac sobie miejsce na ktore chce wstawic
+ *Zalezy co zostale wybrane w menu - jesli 1 to event jest dodany na koniec,
+ *jesli 2 to wevent jest dodany na miejsce wskazane przez uzytkownika (o ile zostanie zachowana ciaglosc listy)
+ **/
+	public void addToList(Event newEvent, Integer addOption, Integer index)
 	{
-		boolean inputStatus = false;
-		int var;
-		Scanner input = new Scanner(System.in);
+		if(index == null)
+			index = databaseList.size();
 		
-		System.out.println("Press 1 to input new event on the end of the databaseList");
-		System.out.println("Press 2 to select the place in databaseList for new event");
-		while(inputStatus == false)
+		switch(addOption)
 		{
-			var = input.nextInt();
-			switch(var)
-			{
-				case 1:	databaseList.add(newEvent);
-						System.out.println("New event has been added to the end of the list!");
-						inputStatus = true;
-						break;
+			case 1:	databaseList.add(newEvent);
+					break;
 						
-				case 2: System.out.println("Input where to insert new event in the list.");
-						while((var = input.nextInt()) > databaseList.size())
-						{
-							System.out.println("You cannot insert new event there");
-							System.out.println("Choose from 0-"+databaseList.size()+"");
-						}
-						databaseList.add(var, newEvent);
-						System.out.println("New event has been added to the end of the list!");
-						inputStatus = true;
-						break;
-						
-				default: System.out.println("Wrong number (input 1 or 2)!");
-						 inputStatus = false;
-			}
+			case 2: databaseList.add(index, newEvent);
+					break;
 		}
-		input.close();
 	}
 	
+	/**
+	*displayEventList - metoda wyswietlajaca wydarzenia - widze to tak ze tez uzytkownik moze sobie wyswietlic 1 wydarzenie, wszystkie, lub jakies konkretne
+	*ale do tego w klasie Event musi juz cos byc(przede wszystkim jakas funkcja wyswietlajaca wydarzenie ktora tu wywolam)
+	**/
 	public void displayEventList()
 	{
 		for(int i =0; i<databaseList.size(); i++)
@@ -88,12 +73,19 @@ public class Database
 			//i tu ja bedziemy wywolywac. Narazie jej nie ma wiec to zostawiam.
 		}
 	}
-	
+	/**
+	*returnSize - zwraca ilosc wydarzen, taka funkcja zawsze sie przydaje w mainie - lista jest private
+	**/
 	public int returnSize() //przydaje sie
 	{
 		return databaseList.size();
 	}
 	
+	/**
+	*writeToFile - zapis do pliku binarnego
+	* @throws IOException
+	* sciezka wzgledna - tworzy plik binaryFile.dat w folderze projektu
+	**/
 	public void writeToFile() throws IOException
 	{
 		String filePath = "binaryFile.dat";
@@ -115,9 +107,14 @@ public class Database
 		oos.close();
 	}
 	
+	/**
+	* readFromFile - odczyt z pliku binarnego.
+	* TODO jest opisane w funckji
+	* @throws IOException
+	**/
 	public void readFromFile() throws IOException
 	{
-		Event obj = null;
+		int i;
 		String filePath = "binaryFile.dat";
 		ObjectInputStream ois = null;
 		try
@@ -129,30 +126,23 @@ public class Database
 			System.out.println("Error File not found (readFromFile)");
 			e.printStackTrace();
 		}
-		//Event[] tmp = null;
-
-		/*Wczytywanie z pliku do dopracowania - zczytuje tylko 1 obiekt
-		  i nie wiem jak to naprawic*/
+		//TODO: OGARNAC JAK SPRAWDZAC W PLIKU ILE JEST ZAPISANYCH OBIEKTOW
+		//ZEBY TEJ TABLICY NIE MUSIEC CIAGLE SZTYWNO ZMIENIAC W KODZIE
+		Event[] tmp = new Event[databaseList.size()];
 		
-		try
+		for(i = 0; i<tmp.length; i++) 
 		{
-			obj = (Event) ois.readObject();
-		}
-		catch (ClassNotFoundException e) {
-			System.out.println("Error Class not found (readFromFile)");
-			e.printStackTrace();
-		}
-		System.out.println(obj.pole);
-		
-		/*for(i=0; i<3; i++) 
-		{
-			tmp[i] = (Event) ois.readObject();
-		}
-		
-		for(i = 0; i<tmp.length; i++)
-		{
+			try
+			{
+				tmp[i] = (Event) ois.readObject();
+			}
+			catch (ClassNotFoundException e)
+			{
+				System.out.println("Error Class not found (readFromFile)");
+				e.printStackTrace();
+			}
 			System.out.println(tmp[i].pole);
-		}*/
+		}
 		ois.close();
 	}
 }
