@@ -8,7 +8,10 @@ import logic.event.Event;
 
 /**
  * Implemented by Pawel
- * Opis : TODO
+ *  
+ * TODO:
+ * -sortowanie po dacie rozpoczecia
+ * -dodawanie tylko na koniec
  */
 public class TestUserInterface
 {
@@ -31,6 +34,7 @@ public class TestUserInterface
     	TestUserInterface testObj = new TestUserInterface();
     	Database testDatabase = new Database();
     	Scanner input = new Scanner(System.in);
+    	
     	while(true)
     	{
     		testObj.interfaceMenu();
