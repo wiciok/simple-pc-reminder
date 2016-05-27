@@ -1,6 +1,9 @@
 package testinterface;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 import data.Database;
@@ -25,6 +28,22 @@ public class TestUserInterface
 	
 	public static void main(String[] args)
     {
+		/*************************MatiM test***************************************/
+		Event prototype = new Event();
+		Event wydarzenie1 = (Event)prototype.clone();
+		prototype.print();
+		wydarzenie1.setEventDateStart(LocalDate.parse("2016-06-11"));
+		wydarzenie1.setEventTimeStart(LocalTime.parse("14:23"));
+		wydarzenie1.setDescribe("OPISIK JAKIS");
+		wydarzenie1.setPriority(3);
+		System.out.println(wydarzenie1.getEventDateNow());
+		System.out.println("\n");
+		System.out.println(wydarzenie1.getIsActive());
+		System.out.println("\n");
+		System.out.println(wydarzenie1);
+		System.out.println("\n");
+		wydarzenie1.print();
+		/************************MatiM koniec testu********************************/
     	int var;
     	Integer addOption, index;
     	boolean inputStatus = false;
