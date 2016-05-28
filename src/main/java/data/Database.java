@@ -137,7 +137,6 @@ public class Database
 				System.out.println("Error Class not found (readFromFile)");
 				e.printStackTrace();
 			}
-			System.out.println(tmp[i].pole);
 		}
 		ois.close();
 	}
