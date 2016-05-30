@@ -9,66 +9,51 @@ import java.time.LocalDateTime;
  * Created by Witek on 2016-05-22.
  * podstawowa klasa kaÅ¼dego wydarzenia. to jej obiekty bÄ™dÄ… tworzone w trakcie dziaÅ‚ania programu
  *
- * umieÅ›ciÄ‡ tutaj info jakie funkcjonalnoÅ›ci sÄ… zapewnione - przyda siÄ™ przy generowaniu dokumentacji
+ *
+ * 	Klasa Event:
+ * 	Implementuje interfejs Cloneable na potrzeby wykorzystania wzorca prototyp.
+ * 	Klasa zawiera do wszystkich zmiennych settery i gettery (oprÃ³cz eventDataNow ktÃ³ra pobiera aktualny czas za kaÅ¼dym razem).
+ * 	PostanowiÅ‚em jednak rozdzieliÄ‡ datÄ™ wydarzenia na oddzielnie datÄ™ i czas.
+ * 	CzÄ™sto chcemy przenieÅ›Ä‡ wydarzenie np o tydzieÅ„ lub tylko przesunÄ…Ä‡ godzinÄ™ myÅ›lÄ™ Å¼e tak bÄ™dzie wygodniej
+ * 	ZwÅ‚aszcza jak pÃ³niej bÄ™dziemy uÅ¼ywaÄ‡ tego graficznego kalendarza a tam chyba datÄ™ i godzinÄ™ wybiera siÄ™ oddzielnie.
+ * 	ZaimplementowaÅ‚em kontruktory: domyÅ›lny, sparametryzowany i kopiujÄ…cy (moÅ¼e siÄ™ przyda).
+ * 	Metoda toString() zwraca wszystkie dane tak by moÅ¼na byÅ‚o Å‚atwo je wyÅ›wietliÄ‡.
+ * 	Metoda print() wyÅ›wietla wszystkie dane w podobny sposÃ³b do toString() jednak jest voidem.
+ * 	Metoda clone() sÅ‚uÅ¼y do klonowania przesyÅ‚anych obiektÃ³w.
+ * 	Nie dodawaÅ‚em zczytywania z klawiatury. MyÅ›lÄ™ Å¼e to nie jest potrzebne w klasie Event.
+ * 	PostanowiÅ‚em domyÅ›lnie ustawiaÄ‡ obacnÄ… datÄ™ i czas w zmiennych zamiast zostawiaÄ‡ pustych.
+ *
+ * 	LocalDate.parse("2015-12-23")/LocalTime.parse("17:15") - przykÅ‚adowe nadanie daty do zmiennych ze stringa (pÃ³Åºniej raczej to nie bÄ™dzie juÅ¼ wykorzystywane)
+ * 	Event prototype = new Event();
+ * 	Event wydarzenia = (Event)prototype.clone() - Klonowanie obiektÃ³w przykÅ‚ad
+ *
+ * 	Czekam na sugestie.
+ * 	Pozdrawiam Mateusz Maciejak
+ *
+ * 	---------------------------
+ * 	zmiany sÄ… ogÃ³Å‚em ok, ale spowodujÄ… problem przy prÃ³bie posortowania po dacie rozpoczÄ™cia - cieÅ¼ko bedzie posortowac
+ * 	wydarzenia, ktÃ³re dziejÄ… siÄ™ tego samego dnia
+ *
+ * 	sugerujÄ™:
+ * 	ToDO: dorobiÄ‡ metody zwracajÄ…ce jednoczeÅ›nie czas i datÄ™ 9startu i zakoÅ„czenia) na podstawie pÃ³l data i czas
+ *
  *
  */
 
-/*
- * toDo - MatiM:
-+dorobiÄ‡ pola:
-     -data wydarzenia
-     -nazwa
-     -opis
-     -czÄ™stotliwoÅ›Ä‡ przypomnieÅ„
-     -czy aktywne
-     -kategoria
-     -priorytet
 
- +dorobiÄ‡ metody:
-     -zwracanie wszystkich danych (toString)
-     -zwracanie kaÅ¼dej danej, np. getName, getFreqency, getCategory, itd. waÅ¼ne Å¼eby byÅ‚o zwracanie kopii jeÅ›li dany obiekt jest zmienialny
-     -konstruktory
-     -cloneable (musi byÄ‡ bo obiekty bÄ™dÄ… tworzone na  zasadzie prototypu)
-
- +uzupeÅ‚niaÄ‡ komentarz do generowania dokumnetacji o funkcjonalnoÅ›ci, jakie zapewnia klasa
- * */
-
-/*
- * 	Klasa Event:
- * 	Implementujê interfejs Cloneable na potrzeby wykorzystania wzorca prototyp.
- * 	Klasa zawiera do wszystkich zmiennych settery i gettery (oprócz eventDataNow która pobiera aktualny czas za ka¿dym razem).
- * 	Postanowi³em jednak rozdzieliæ datê wydarzenia na oddzielnie datê i czas.
- * 	Czêsto chcemy przenieœæ wydarzenie np o tydzieñ lub tylko przesun¹æ godzinê myœlê ¿e tak bêdziewygodniej
- * 	Zw³aszcza jak pó¿niej bêdziemy u¿ywaæ tego graficznego kalendarza a tam chyba datê i godzinê wybiera siê oddzielnie.
- * 	Zaimplementowa³em kontruktory: domyœlny, sparametryzowany i kopiuj¹cy (mo¿e siê przyda).
- * 	Metoda toString() zwraca wszystkie dane tak by mo¿na by³o ³atwo je wyœwietliæ.
- * 	Metoda print() wyœwietla wszystkie dane w podobny sposób do toString() jednak jest voidem.
- * 	Metoda clone() s³u¿y do klonowania przesy³anych obiektów.
- * 	Nie dodawa³em zczytywania z klawiatury. Myœlê ¿e to nie jest potrzebne w klasie Event.
- * 	Postanowi³em domyœlnie ustawiaæ obacn¹ datê i czas w zmiennych zamiast zostawiaæ pustych.
- * 
- * 	LocalDate.parse("2015-12-23")/LocalTime.parse("17:15") - przyk³adowe nadanie daty do zmiennych ze stringa (póŸniej raczej to nie bêdzie ju¿ wykorzystywane)
- * 	Event prototype = new Event();
- * 	Event wydarzenia = (Event)prototype.clone() - Klonowanie obiektów przyk³ad
- * 
- * 	Czekam na sugestie.
- * 	Pozdrawiam Mateusz Maciejak
- * 
- * 
- */
 public class Event implements Serializable, Cloneable
 {
-	private LocalDateTime eventDateNow = LocalDateTime.now();	// data utworzenia wydarzenia
-	private LocalDate eventDateStart = LocalDate.now();
-	private LocalTime eventTimeStart = LocalTime.now();
-	private LocalDate eventDateEnd = LocalDate.now();
-	private LocalTime eventTimeEnd = LocalTime.now();
-	private String name = new String("");
-	private String describe = new String("");
-	private Integer alertFrequency = new Integer(1);
-	private boolean isActive = false;
-	private String cathegory = new String("");
-	private Integer priority = new Integer(1);
+	private LocalDateTime eventDateNow;	// data utworzenia wydarzenia
+	private LocalDate eventDateStart;
+	private LocalTime eventTimeStart;
+	private LocalDate eventDateEnd;
+	private LocalTime eventTimeEnd;
+	private String title;
+	private String description;
+	private int alertFrequency;
+	private boolean isActive;
+	private String category;
+	private int priority;
 	
 	public Event()
 	{		
@@ -77,27 +62,28 @@ public class Event implements Serializable, Cloneable
 		this.eventTimeStart = LocalTime.now();
 		this.eventDateEnd = LocalDate.now();
 		this.eventTimeEnd = LocalTime.now();
-		this.name = new String("");
-		this.describe = new String("");
-		this.alertFrequency = new Integer(1);
+		this.title = new String("");
+		this.description = new String("");
+		this.alertFrequency = 1;
 		this.isActive = false;
-		this.cathegory = new String("");
-		this.priority = new Integer(1);
+		this.category = new String("");
+		this.priority = 1;
 	}
 	
-	public Event(LocalDate eventDateStart, LocalTime eventTimeStart, LocalDate eventDateEnd, LocalTime eventTimeEnd, String name, String describe, Integer alertFrequency, boolean isActive, String cathegory, Integer priority)
+	public Event(LocalDate eventDateStart, LocalTime eventTimeStart, LocalDate eventDateEnd, LocalTime eventTimeEnd,
+				 String name, String describe, int alertFrequency, boolean isActive, String category, int priority)
 	{		
 		this.eventDateNow = LocalDateTime.now();
 		this.eventDateStart = eventDateStart;
 		this.eventTimeStart = eventTimeStart;
 		this.eventDateEnd = eventDateEnd;
 		this.eventTimeEnd = eventTimeEnd;
-		this.name = new String(name);
-		this.describe = new String(describe);
-		this.alertFrequency = new Integer(alertFrequency);
+		this.title = new String(name);
+		this.description = new String(describe);
+		this.alertFrequency = alertFrequency;
 		this.isActive = isActive;
-		this.cathegory = new String(cathegory);
-		this.priority = new Integer(priority);
+		this.category = new String(category);
+		this.priority = priority;
 	}
 	
 	public Event(Event copy)
@@ -107,159 +93,100 @@ public class Event implements Serializable, Cloneable
 		this.eventTimeStart = copy.eventTimeStart;
 		this.eventDateEnd = copy.eventDateEnd;
 		this.eventTimeEnd = copy.eventTimeEnd;
-		this.name = new String(copy.name);
-		this.describe = new String(copy.describe);
-		this.alertFrequency = new Integer(copy.alertFrequency);
+		this.title = new String(copy.title);
+		this.description = new String(copy.description);
+		this.alertFrequency = copy.alertFrequency;
 		this.isActive = copy.isActive;
-		this.cathegory = new String(copy.cathegory);
-		this.priority = new Integer(copy.priority);
+		this.category = new String(copy.category);
+		this.priority = copy.priority;
 	}
-	
-	public String getName()
-	{
-		return this.name;
-	}
-	
-	public String getDescribe()
-	{
-		return this.describe;
-	}
-	
-	public String getCathegory()
-	{
-		return this.cathegory;
-	}
-	
-	public Integer getAlertFrequency()
-	{
-		int copy = alertFrequency;
-		return copy;
-	}
-	
-	public boolean getIsActive()
-	{
-		boolean copy = isActive;
-		return copy;
-		
-	}
-	
-	public Integer getPriority()
-	{
-		int copy = priority;
-		return copy;
-	}
-	
+
+
+
 	public LocalDateTime getEventDateNow()
 	{
 		return this.eventDateNow;
 	}
-	
-	public LocalDate getEventDateStart()
+	public LocalDate getEventDateStart() {return this.eventDateStart;}
+	public LocalTime getEventTimeStart() {return this.eventTimeStart;}
+	public LocalDate getEventDateEnd() {return this.eventDateEnd;}
+	public LocalTime getEventTimeEnd() {return this.eventTimeEnd;}
+	public String getTitle()
 	{
-		return this.eventDateStart;
+		return this.title;
 	}
-	
-	public LocalTime getEventTimeStart()
+	public String getDescription()
 	{
-		return this.eventTimeStart;
+		return this.description;
 	}
-	
-	public LocalDate getEventDateEnd()
+	public String getCategory()
 	{
-		return this.eventDateEnd;
+		return this.category;
 	}
-	
-	public LocalTime getEventTimeEnd()
-	{
-		return this.eventTimeEnd;
-	}
-	
-	public void setName(String name)
-	{
-		this.name = new String(name);
-	}
-	
-	public void setDescribe(String describe)
-	{
-		this.describe = new String(describe);
-	}
-	
-	public void setCathegory(String cathegory)
-	{
-		this.cathegory = new String(cathegory);
-	}
-	
-	public void setAlertFrequency(Integer alertFrequency)
-	{
-		this.alertFrequency = new Integer(alertFrequency);
-	}
-	
-	public void setIsActive(boolean isActive)
-	{
-		this.isActive = isActive;
-	}
-	
-	public void setPriority(Integer priority)
-	{
-		this.priority = new Integer(priority);
-	}
-	
+	public Integer getAlertFrequency() {return new Integer(alertFrequency);}
+	public Boolean getIsActive() {return new Boolean(isActive);}
+	public Integer getPriority() {return new Integer(priority);}
+
+
 	public void setEventDateStart(LocalDate eventDateStart)
 	{
 		this.eventDateStart = eventDateStart;
 	}
-	
 	public void setEventTimeStart(LocalTime eventTimeStart)
 	{
 		this.eventTimeStart = eventTimeStart;
 	}
-	
 	public void setEventDateEnd(LocalDate eventDateEnd)
 	{
 		this.eventDateEnd = eventDateEnd;
 	}
-	
 	public void setEventTimeEnd(LocalTime eventTimeEnd)
 	{
 		this.eventTimeEnd = eventTimeEnd;
 	}
-	
+	public void setTitle(String title)
+	{
+		this.title = new String(title);
+	}
+	public void setDescription(String description)
+	{
+		this.description = new String(description);
+	}
+	public void setCategory(String category)
+	{
+		this.category = new String(category);
+	}
+	public void setAlertFrequency(int alertFrequency) {this.alertFrequency = alertFrequency;}
+	public void setIsActive(boolean isActive)
+	{
+		this.isActive = isActive;
+	}
+	public void setPriority(int priority) {this.priority = priority;}
+
+
 	public String toString()
 	{		
 		return "Data utworzenia wydarzenia: "+eventDateNow+
-				"\nData rozpoczêcia wydarzenia: "+eventDateStart+
-				"\nCzas rozpoczêcia wydarzenia: "+eventTimeStart+
-				"\nData zakoñczenia wydarzenia: "+eventDateEnd+
-				"\nCzas zakoñczenia wydarzenia: "+eventTimeEnd+
-				"\nNazwa wydarzenia: "+name+
-				"\nOpis wydarzenia: "+describe+
-				"\nCzêstotliwoœæ przypomnieñ: "+alertFrequency+
+				"\nData rozpoczÄ™cia wydarzenia: "+eventDateStart+
+				"\nCzas rozpoczÄ™cia wydarzenia: "+eventTimeStart+
+				"\nData zakoÅ„czenia wydarzenia: "+eventDateEnd+
+				"\nCzas zakoÅ„czenia wydarzenia: "+eventTimeEnd+
+				"\nNazwa wydarzenia: "+ title +
+				"\nOpis wydarzenia: "+ description +
+				"\nCzÄ™stotliwoÅ›Ä‡ przypomnieÅ„: "+alertFrequency+
 				"\nCzy aktywne: "+isActive+
-				"\nKategoria wydarzenia: "+cathegory+
+				"\nKategoria wydarzenia: "+ category +
 				"\nPriorytet: "+priority;
 	}
-	
-	public void print()
-	{
-		System.out.println("Data utworzenia wydarzenia: "+eventDateNow+
-							"\nData rozpoczêcia wydarzenia: "+eventDateStart+
-							"\nCzas rozpoczêcia wydarzenia: "+eventTimeStart+
-							"\nData zakoñczenia wydarzenia: "+eventDateEnd+
-							"\nCzas zakoñczenia wydarzenia: "+eventTimeEnd+
-							"\nNazwa wydarzenia: "+name+
-							"\nOpis wydarzenia: "+describe+
-							"\nCzêstotliwoœæ przypomnieñ: "+alertFrequency+
-							"\nCzy aktywne: "+isActive+
-							"\nKategoria wydarzenia: "+cathegory+
-							"\nPriorytet: "+priority);
-	}
-	
+
+	/*
+	ToDo: koniecznie przerobiÄ‡ na kopiowanie gÅ‚Ä™bokie! Obecnie jest kopiowanie pÅ‚ytkie, tj. nie kopiuje skÅ‚adowych obiektÃ³w
+	ToDo: tylko ich referencje! Sytuacja analogiczna do dynamicznych tablic w c++ i konstruktora kopiujÄ…cego
+	ToDo: trzeba wiec dorobic kopiowanie kazdego OBIEKTU skÅ‚adowego
+	 */
 	public Object clone()
 	{
-		try
-		{
-			return super.clone();
-		}
+		try {return super.clone();}
 		catch(CloneNotSupportedException e)
 		{
 			e.printStackTrace();

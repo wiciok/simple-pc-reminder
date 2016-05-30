@@ -1,7 +1,6 @@
 package testinterface;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -10,7 +9,6 @@ import logic.event.Event;
 
 /**
  * Implemented by Pawel
- * Opis : TODO
  */
 public class TestUserInterface
 {
@@ -28,20 +26,17 @@ public class TestUserInterface
 	public static void main(String[] args)
     {
 		/*************************MatiM test***************************************/
-		Event prototype = new Event();
+		/*Event prototype = new Event();
 		Event wydarzenie1 = (Event)prototype.clone();
 		prototype.print();
 		wydarzenie1.setEventDateStart(LocalDate.parse("2016-06-11"));
 		wydarzenie1.setEventTimeStart(LocalTime.parse("14:23"));
-		wydarzenie1.setDescribe("OPISIK JAKIS");
+		wydarzenie1.setDescription("OPISIK JAKIS");
 		wydarzenie1.setPriority(3);
 		System.out.println(wydarzenie1.getEventDateNow());
-		System.out.println("\n");
 		System.out.println(wydarzenie1.getIsActive());
-		System.out.println("\n");
 		System.out.println(wydarzenie1);
-		System.out.println("\n");
-		wydarzenie1.print();
+		wydarzenie1.print();*/
 		/************************MatiM koniec testu********************************/
     	int var;
     	Integer addOption, index;
@@ -62,18 +57,18 @@ public class TestUserInterface
 							addOption = input.nextInt();
 							if(addOption == 1)
 							{
-									testDatabase.addToList(new Event(), addOption, null);
+									testDatabase.add(new Event());
 									inputStatus = true;
 							}
 							else if(addOption == 2)
 							{
 								System.out.println("Input where to insert new event in the list.");
-								while((index = input.nextInt()) > testDatabase.returnSize())
+								while((index = input.nextInt()) > testDatabase.size())
 								{
 									System.out.println("You cannot insert new event there");
-									System.out.println("Choose from 0-"+testDatabase.returnSize());
+									System.out.println("Choose from 0-"+testDatabase.size());
 								}
-								testDatabase.addToList(new Event(), addOption, index);
+								testDatabase.add(index, new Event());
 								inputStatus = true;
 							}
 							else
@@ -86,10 +81,11 @@ public class TestUserInterface
 						System.out.println("New event has been added to the end of the list!");
 						inputStatus = false;
 						break;
-						
-						
-				case 2: testDatabase.displayEventList();
+
+				case 2:	for (int i=0;i<testDatabase.size();i++)
+							System.out.println(testDatabase.get(i).toString());
 						break;
+
 				case 3: try 
 						{
 							testDatabase.writeToFile();
@@ -112,7 +108,7 @@ public class TestUserInterface
 						}
 						break;
 						
-				case 5: System.out.println("List size:"+testDatabase.returnSize());
+				case 5: System.out.println("List size:"+testDatabase.size());
 						break;
 				case 6: System.out.println("KONIEC");
 						input.close();
