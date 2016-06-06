@@ -25,7 +25,7 @@ public class TestUserInterface
 	
 	public static void main(String[] args)
     {
-		/*************************MatiM test***************************************/
+		/*************************MatiM test***************************************
 		/*Event prototype = new Event();
 		Event wydarzenie1 = (Event)prototype.clone();
 		prototype.print();
