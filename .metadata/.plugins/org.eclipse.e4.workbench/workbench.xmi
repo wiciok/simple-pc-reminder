@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_cFpJwSJnEeaW2rCQOtAnUA" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_cFpJwiJnEeaW2rCQOtAnUA" bindingContexts="_cFpJxCJnEeaW2rCQOtAnUA">
+<presentation:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/presentation/ui/advanced" xmlns:presentation="http://www.eclipse.org/ui/2010/UIModel/presentation" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/presentation/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/presentation/ui/menu" xmi:id="_cFpJwSJnEeaW2rCQOtAnUA" elementId="org.eclipse.e4.legacy.ide.presentation" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_cFpJwiJnEeaW2rCQOtAnUA" bindingContexts="_cFpJxCJnEeaW2rCQOtAnUA">
   <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList/>&#xD;&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
@@ -1136,18 +1136,18 @@
     <tags>View</tags>
     <tags>categoryTag:XML</tags>
   </descriptors>
-  <trimContributions xmi:id="_2r10UF9tEeO-yojH_y4TJA" elementId="org.eclipse.ui.ide.application.trimcontribution.QuickAccess" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" toBeRendered="false" parentId="org.eclipse.ui.main.toolbar" positionInParent="last">
-    <children xsi:type="menu:ToolControl" xmi:id="_76uUAF9tEeO-yojH_y4TJA" elementId="Spacer Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
+  <trimContributions xmi:id="_2r10UF9tEeO-yojH_y4TJA" elementId="org.eclipse.ui.ide.presentation.trimcontribution.QuickAccess" contributorURI="platform:/plugin/org.eclipse.ui.ide.presentation" toBeRendered="false" parentId="org.eclipse.ui.main.toolbar" positionInParent="last">
+    <children xsi:type="menu:ToolControl" xmi:id="_76uUAF9tEeO-yojH_y4TJA" elementId="Spacer Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.presentation" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
       <tags>glue</tags>
       <tags>move_after:PerspectiveSpacer</tags>
       <tags>SHOW_RESTORE_MENU</tags>
     </children>
-    <children xsi:type="menu:ToolControl" xmi:id="_8tJPcF9tEeO-yojH_y4TJA" elementId="SearchField" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.quickaccess.SearchField">
+    <children xsi:type="menu:ToolControl" xmi:id="_8tJPcF9tEeO-yojH_y4TJA" elementId="SearchField" contributorURI="platform:/plugin/org.eclipse.ui.ide.presentation" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.quickaccess.SearchField">
       <tags>move_after:Spacer Glue</tags>
       <tags>HIDEABLE</tags>
       <tags>SHOW_RESTORE_MENU</tags>
     </children>
-    <children xsi:type="menu:ToolControl" xmi:id="_9LgmcF9tEeO-yojH_y4TJA" elementId="Search-PS Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
+    <children xsi:type="menu:ToolControl" xmi:id="_9LgmcF9tEeO-yojH_y4TJA" elementId="Search-PS Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.presentation" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
       <tags>glue</tags>
       <tags>move_after:SearchField</tags>
       <tags>SHOW_RESTORE_MENU</tags>
@@ -1528,7 +1528,7 @@
   <commands xmi:id="_cGZYdiJnEeaW2rCQOtAnUA" elementId="org.eclipse.wst.jsdt.ui.edit.text.java.quick.format" commandName="Format Element" description="Format enclosing text element" category="_cGPmtyJnEeaW2rCQOtAnUA"/>
   <commands xmi:id="_cGZYdyJnEeaW2rCQOtAnUA" elementId="org.eclipse.debug.ui.commands.StepOver" commandName="Step Over" description="Step over" category="_cGPmwyJnEeaW2rCQOtAnUA"/>
   <commands xmi:id="_cGZYeCJnEeaW2rCQOtAnUA" elementId="org.eclipse.compare.selectPreviousChange" commandName="Select Previous Change" description="Select Previous Change" category="_cGPmvSJnEeaW2rCQOtAnUA"/>
-  <commands xmi:id="_cGZYeSJnEeaW2rCQOtAnUA" elementId="org.eclipse.ui.file.exit" commandName="Exit" description="Exit the application" category="_cGPmvCJnEeaW2rCQOtAnUA">
+  <commands xmi:id="_cGZYeSJnEeaW2rCQOtAnUA" elementId="org.eclipse.ui.file.exit" commandName="Exit" description="Exit the presentation" category="_cGPmvCJnEeaW2rCQOtAnUA">
     <parameters xmi:id="_cGZYeiJnEeaW2rCQOtAnUA" elementId="mayPrompt" title="may prompt"/>
   </commands>
   <commands xmi:id="_cGZYeyJnEeaW2rCQOtAnUA" elementId="org.eclipse.egit.ui.team.CompareWithHead" commandName="Compare with HEAD Revision" category="_cGPmxiJnEeaW2rCQOtAnUA"/>
@@ -2246,7 +2246,7 @@
   <addons xmi:id="_cFpJ0CJnEeaW2rCQOtAnUA" elementId="MinMax Addon" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon"/>
   <addons xmi:id="_cFpJ0SJnEeaW2rCQOtAnUA" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_cFy6wCJnEeaW2rCQOtAnUA" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
-  <addons xmi:id="_dz0JgGOlEeSMMaPQU2nlzw" elementId="org.eclipse.ui.ide.application.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.ide.application/org.eclipse.ui.internal.ide.application.addons.ModelCleanupAddon"/>
+  <addons xmi:id="_dz0JgGOlEeSMMaPQU2nlzw" elementId="org.eclipse.ui.ide.presentation.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.presentation" contributionURI="bundleclass://org.eclipse.ui.ide.presentation/org.eclipse.ui.internal.ide.presentation.addons.ModelCleanupAddon"/>
   <categories xmi:id="_cGPmsCJnEeaW2rCQOtAnUA" elementId="org.eclipse.team.ui.category.team" title="Team" description="Actions that apply when working with a Team"/>
   <categories xmi:id="_cGPmsSJnEeaW2rCQOtAnUA" elementId="org.eclipse.ui.category.views" title="Views" description="Commands for opening views"/>
   <categories xmi:id="_cGPmsiJnEeaW2rCQOtAnUA" elementId="org.eclipse.ui.category.edit" title="Edit"/>
@@ -2279,4 +2279,4 @@
   <categories xmi:id="_cGPmzSJnEeaW2rCQOtAnUA" elementId="org.eclipse.pde.ui.category.source" title="Manifest Editor Source" description="PDE Source Page actions"/>
   <categories xmi:id="_cGPmziJnEeaW2rCQOtAnUA" elementId="org.eclipse.core.commands.categories.autogenerated" title="Uncategorized" description="Commands that were either auto-generated or have no category"/>
   <categories xmi:id="_cGPmzyJnEeaW2rCQOtAnUA" elementId="org.eclipse.wst.jsdt.ui.category.refactoring" title="Refactor - JavaScript" description="JavaScript Refactoring Actions"/>
-</application:Application>
+</presentation:Application>
