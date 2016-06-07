@@ -102,6 +102,7 @@ public class Event implements Serializable, Cloneable
 	}
 
 
+	public LocalDateTime getEventFullDateStart() { return LocalDateTime.of(getEventDateStart(), getEventTimeStart());}
 
 	public LocalDateTime getEventDateNow()
 	{
