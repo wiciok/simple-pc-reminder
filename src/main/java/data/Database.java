@@ -9,19 +9,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.IndexOutOfBoundsException;
 
 
 /**
  * Implemented by Pawel
  *Klasa ktora jest warstwa danych. Jej zadaniem jest obsluga bazy wydarzen.
  *
- * ToDo: dorobić sortowanie po dacie rozpoczęcia wydarzenia (najpierw musi istnieć w klasie Event metoda zwracająca jednocześnie date i czas
- */
+ *
+ * */
 
 public class Database
 {
 	private ArrayList<Event> databaseList = new ArrayList<Event> ();
-	
+
 	/*Singleton*/
 	private static Database mainObject = new Database();
 	private Database(){} //prywatny konstruktor
@@ -117,7 +118,6 @@ public class Database
 		}
 
 
-		//TODO: dorobić tutaj przechwytywanie wyjątku, gdyby wczytywanie inta zakończyło się niepowodzeniem
 		final int size = file.readInt();
 		ArrayList<Event> tmp = new ArrayList<Event> ();
 
@@ -131,6 +131,7 @@ public class Database
 			{
 				System.out.println("Error Class not found (readFromFile)");
 				e.printStackTrace();
+				throw new IOException(e.getCause());
 			}
 		}
 
@@ -138,13 +139,19 @@ public class Database
 		databaseList=tmp;
 		file.close();
 	}
-	
-	public void listQuicksort(int low, int high)
+
+	public void listQuicksort()
+	{
+		listQuicksort(0,databaseList.size()-1);
+	}
+
+	private void listQuicksort(int low, int high) throws IndexOutOfBoundsException
 	{
 		if(databaseList.size() <= 1)
 		{
-			System.out.println("Not enough events to sort.");
-			return;
+			//System.out.println("Not enough events to sort."); //od tego są wyjątki...
+			throw new IndexOutOfBoundsException();
+			//return;
 		}
 		
 		int i = low;
@@ -153,10 +160,10 @@ public class Database
 		
 		while(i<=j)
 		{
-			while(databaseList.get(i).getEventDateStart().isBefore(pivot.getEventDateStart()))
+			while(databaseList.get(i).getEventFullDateStart().isBefore(pivot.getEventFullDateStart()))
 				i++;
 			
-			while(databaseList.get(j).getEventDateStart().isAfter(pivot.getEventDateStart()))
+			while(databaseList.get(j).getEventFullDateStart().isAfter(pivot.getEventFullDateStart()))
 				j--;
 			
 			if(i<=j)

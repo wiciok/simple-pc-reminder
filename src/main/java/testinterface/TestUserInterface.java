@@ -112,7 +112,8 @@ public class TestUserInterface
 						
 				case 5: System.out.println("List size:"+testDatabase.size());
 						break;
-				case 6: testDatabase.listQuicksort(0, testDatabase.size() - 1);
+				case 6: //testDatabase.listQuicksort(0, testDatabase.size() - 1); //dodalem odpowiednie przeciazenie bezposrednio w Database
+						testDatabase.listQuicksort();
 						break;
 				case 7: System.out.println("KONIEC");
 						input.close();
