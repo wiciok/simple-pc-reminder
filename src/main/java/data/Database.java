@@ -21,6 +21,14 @@ import java.io.ObjectOutputStream;
 public class Database
 {
 	private ArrayList<Event> databaseList = new ArrayList<Event> ();
+	
+	/*Singleton*/
+	private static Database mainObject = new Database();
+	private Database(){} //prywatny konstruktor
+	public static Database getInstance()
+	{
+		return mainObject;
+	}
 
 	/**
 	 *add - metoda pozwalajaca do dodawania elementow do listy wydarzen (databaseList)
@@ -129,5 +137,41 @@ public class Database
 		databaseList.clear();
 		databaseList=tmp;
 		file.close();
+	}
+	
+	public void listQuicksort(int low, int high)
+	{
+		if(databaseList.size() <= 1)
+		{
+			System.out.println("Not enough events to sort.");
+			return;
+		}
+		
+		int i = low;
+		int j = high;
+		Event pivot = databaseList.get(high/2);
+		
+		while(i<=j)
+		{
+			while(databaseList.get(i).getEventDateStart().isBefore(pivot.getEventDateStart()))
+				i++;
+			
+			while(databaseList.get(j).getEventDateStart().isAfter(pivot.getEventDateStart()))
+				j--;
+			
+			if(i<=j)
+			{
+				Event tmp = databaseList.get(i);
+				databaseList.set(i, databaseList.get(j));
+				databaseList.set(j, tmp);
+				i++;
+				j--;
+			}
+		}
+		if (low < j)
+			listQuicksort(low, j);
+		
+		if(high>i)
+			listQuicksort(i, high);
 	}
 }

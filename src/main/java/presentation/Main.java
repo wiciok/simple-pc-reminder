@@ -24,7 +24,8 @@ public class Main extends Application
 
 	public void init()
 	{
-		Database database = new Database();
+		/*ZMIANA WYNIKIAJACA Z SINGLETON - WYWALONY KONSTRUKTOR*/
+		Database database = Database.getInstance();
 
 
 		Event test1 = new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test1", "test1 opis", "kat test", 5, true, 5);
