@@ -5,12 +5,11 @@
 package presentation;
 
 import data.Database;
-import javafx.application.Application;
+import javafx.application.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import logic.event.Event;
+import logic.event.*;
 import javafx.scene.layout.*;
 
 import java.time.LocalDate;
@@ -20,7 +19,9 @@ import java.time.LocalTime;
 public class Main extends Application
 {
 	Stage primaryStage;
-	Stage b;
+	private BorderPane root;
+	Stage addEventStage;
+
 
 	public void init()
 	{
@@ -42,21 +43,19 @@ public class Main extends Application
 		try
 		{
 			this.primaryStage=primaryStage;
-			Parent root = FXMLLoader.load(getClass().getResource("primaryStage.fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			//Parent root = loader.load(getClass().getResource("primaryStage.fxml"));
+			loader.setLocation(Main.class.getResource("primaryStage.fxml"));
+			root = loader.load();
+
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Simple PC Reminder");
 			primaryStage.show();
 
+			primaryStageController controller = loader.getController();
+			controller.setMainApp(this);
 
-
-			GridPane r2=new GridPane();
-			Scene scene2 = new Scene(r2, 400, 400);
-			b=new Stage();
-			b.setScene(scene2);
-
-
-			b.show();
 		}
 		catch(Exception e)
 		{

@@ -145,46 +145,17 @@ public class Database
 	{
 		if(databaseList.size() <= 1)
 		{
-			//System.out.println("Not enough events to sort."); //od tego są wyjątki...
 			throw new IndexOutOfBoundsException();
 			//return;
 		}
 		
 		
 		databaseList.sort(new Comparator<Event>()
-				{
-					public int compare(Event event1, Event event2)
-					{
-						return event1.getEventFullDateStart().compareTo(event2.getEventFullDateStart());
-					}
-				});
-		
-		/*int i = low;
-		int j = high;
-		Event pivot = databaseList.get(high/2);
-		
-		while(i<=j)
 		{
-			while(databaseList.get(i).getEventFullDateStart().isBefore(pivot.getEventFullDateStart()))
-				i++;
-			
-			while(databaseList.get(j).getEventFullDateStart().isAfter(pivot.getEventFullDateStart()))
-				j--;
-			
-			if(i<=j)
+			public int compare(Event event1, Event event2)
 			{
-				Event tmp = databaseList.get(i);
-				databaseList.set(i, databaseList.get(j));
-				databaseList.set(j, tmp);
-				i++;
-				j--;
+				return event1.getEventFullDateStart().compareTo(event2.getEventFullDateStart());
 			}
-		}
-		if (low < j)
-			listQuicksort(low, j);
-		
-		if(high>i)
-			listQuicksort(i, high);
-	}*/
+		});
 	}
 }
