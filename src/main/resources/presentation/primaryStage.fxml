@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.primaryStageController">
    <center>
       <Accordion BorderPane.alignment="CENTER">
@@ -35,8 +34,8 @@
         <buttons>
           <Button mnemonicParsing="false" text="Button" />
             <Button mnemonicParsing="false" text="Button" />
-            <Button mnemonicParsing="false" text="Button" />
-            <Button mnemonicParsing="false" text="Button" />
+            <Button fx:id="buttonAdd" mnemonicParsing="false" />
+            <Button fx:id="buttonClose" mnemonicParsing="false" />
         </buttons>
       </ButtonBar>
    </bottom>
