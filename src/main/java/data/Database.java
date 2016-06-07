@@ -3,6 +3,7 @@ package data;
 import logic.event.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -140,12 +141,7 @@ public class Database
 		file.close();
 	}
 
-	public void listQuicksort()
-	{
-		listQuicksort(0,databaseList.size()-1);
-	}
-
-	private void listQuicksort(int low, int high) throws IndexOutOfBoundsException
+	public void listQuicksort() throws IndexOutOfBoundsException
 	{
 		if(databaseList.size() <= 1)
 		{
@@ -154,7 +150,16 @@ public class Database
 			//return;
 		}
 		
-		int i = low;
+		
+		databaseList.sort(new Comparator<Event>()
+				{
+					public int compare(Event event1, Event event2)
+					{
+						return event1.getEventFullDateStart().compareTo(event2.getEventFullDateStart());
+					}
+				});
+		
+		/*int i = low;
 		int j = high;
 		Event pivot = databaseList.get(high/2);
 		
@@ -180,5 +185,6 @@ public class Database
 		
 		if(high>i)
 			listQuicksort(i, high);
+	}*/
 	}
 }
