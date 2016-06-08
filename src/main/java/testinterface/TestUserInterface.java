@@ -28,9 +28,8 @@ public class TestUserInterface
 	public static void main(String[] args)
     {
 		/*************************MatiM test***************************************
-		/*Event prototype = new Event();
+		Event prototype = new Event();
 		Event wydarzenie1 = (Event)prototype.clone();
-		prototype.print();
 		wydarzenie1.setEventDateStart(LocalDate.parse("2016-06-11"));
 		wydarzenie1.setEventTimeStart(LocalTime.parse("14:23"));
 		wydarzenie1.setDescription("OPISIK JAKIS");
@@ -38,7 +37,8 @@ public class TestUserInterface
 		System.out.println(wydarzenie1.getEventDateNow());
 		System.out.println(wydarzenie1.getIsActive());
 		System.out.println(wydarzenie1);
-		wydarzenie1.print();*/
+		System.out.println(wydarzenie1.getEventDateTimeStart());
+		System.out.println(wydarzenie1.getEventDateTimeEnd());
 		/************************MatiM koniec testu********************************/
     	int var;
     	Integer addOption, index;
