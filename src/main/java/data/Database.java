@@ -3,24 +3,34 @@ package data;
 import logic.event.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.IndexOutOfBoundsException;
 
 
 /**
  * Implemented by Pawel
  *Klasa ktora jest warstwa danych. Jej zadaniem jest obsluga bazy wydarzen.
  *
- * ToDo: dorobić sortowanie po dacie rozpoczęcia wydarzenia (najpierw musi istnieć w klasie Event metoda zwracająca jednocześnie date i czas
- */
+ *
+ * */
 
 public class Database
 {
 	private ArrayList<Event> databaseList = new ArrayList<Event> ();
+
+	/*Singleton*/
+	private static Database mainObject = new Database();
+	private Database(){} //prywatny konstruktor
+	public static Database getInstance()
+	{
+		return mainObject;
+	}
 
 	/**
 	 *add - metoda pozwalajaca do dodawania elementow do listy wydarzen (databaseList)
@@ -109,7 +119,6 @@ public class Database
 		}
 
 
-		//TODO: dorobić tutaj przechwytywanie wyjątku, gdyby wczytywanie inta zakończyło się niepowodzeniem
 		final int size = file.readInt();
 		ArrayList<Event> tmp = new ArrayList<Event> ();
 
@@ -123,11 +132,30 @@ public class Database
 			{
 				System.out.println("Error Class not found (readFromFile)");
 				e.printStackTrace();
+				throw new IOException(e.getCause());
 			}
 		}
 
 		databaseList.clear();
 		databaseList=tmp;
 		file.close();
+	}
+
+	public void listQuicksort() throws IndexOutOfBoundsException
+	{
+		if(databaseList.size() <= 1)
+		{
+			throw new IndexOutOfBoundsException();
+			//return;
+		}
+		
+		
+		databaseList.sort(new Comparator<Event>()
+		{
+			public int compare(Event event1, Event event2)
+			{
+				return event1.getEventFullDateStart().compareTo(event2.getEventFullDateStart());
+			}
+		});
 	}
 }
