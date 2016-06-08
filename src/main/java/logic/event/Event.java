@@ -40,20 +40,20 @@ import java.time.LocalDateTime;
  *
  */
 
-
+//ToDo: moze uda sie uzyc czegos innego niz niepewne protected
 public class Event implements Serializable, Cloneable
 {
-	private LocalDateTime eventDateNow;	// data utworzenia wydarzenia
-	private LocalDate eventDateStart;
-	private LocalTime eventTimeStart;
-	private LocalDate eventDateEnd;
-	private LocalTime eventTimeEnd;
-	private String title;
-	private String description;
-	private String category;
-	private int alertFrequency;
-	private boolean isActive;
-	private int priority;
+	protected LocalDateTime eventDateNow;	// data utworzenia wydarzenia
+	protected LocalDate eventDateStart;
+	protected LocalTime eventTimeStart;
+	protected LocalDate eventDateEnd;
+	protected LocalTime eventTimeEnd;
+	protected String title;
+	protected String description;
+	protected String category;
+	protected int alertFrequency;
+	protected boolean isActive;
+	protected int priority;
 	
 	public Event()
 	{		
@@ -129,6 +129,15 @@ public class Event implements Serializable, Cloneable
 	public Integer getPriority() {return new Integer(priority);}
 
 
+	public String getEventDateStartString() {return this.eventDateStart.toString();}
+	public String getEventTimeStartString() {return this.eventTimeStart.toString();}
+	public String getEventDateEndString() {return this.eventDateEnd.toString();}
+	public String getEventTimeEndString() {return this.eventTimeEnd.toString();}
+	public String getAlertFrequencyString() {return new Integer(alertFrequency).toString();}
+	public String getIsActiveString() {return new Boolean(isActive).toString();}
+	public String getPriorityString() {return new Integer(priority).toString();}
+
+
 	public void setEventDateStart(LocalDate eventDateStart)
 	{
 		this.eventDateStart = eventDateStart;
@@ -163,6 +172,7 @@ public class Event implements Serializable, Cloneable
 		this.isActive = isActive;
 	}
 	public void setPriority(int priority) {this.priority = priority;}
+
 
 
 	public String toString()

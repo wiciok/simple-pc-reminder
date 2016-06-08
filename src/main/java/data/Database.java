@@ -63,7 +63,7 @@ public class Database
 		return databaseList.get(0);
 	}
 
-	public Event get(int index)
+	public Event get(int index) throws IndexOutOfBoundsException
 	{
 		return databaseList.get(index);
 	}
