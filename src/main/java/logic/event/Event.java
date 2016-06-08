@@ -103,8 +103,6 @@ public class Event implements Serializable, Cloneable
 	}
 
 
-	public LocalDateTime getEventFullDateStart() { return LocalDateTime.of(getEventDateStart(), getEventTimeStart());}
-
 	public LocalDateTime getEventDateNow()
 	{
 		return this.eventDateNow;
@@ -166,15 +164,9 @@ public class Event implements Serializable, Cloneable
 	public void setPriority(int priority) {this.priority = priority;}
 
 
-	public LocalDateTime getEventDateTimeStart()
-	{
-		return LocalDateTime.of(this.eventDateStart, this.eventTimeStart);
-	}
+	public LocalDateTime getEventFullDateStart(){ return LocalDateTime.of(this.eventDateStart, this.eventTimeStart);}
 	
-	public LocalDateTime getEventDateTimeEnd()
-	{
-		return LocalDateTime.of(this.eventDateEnd, this.eventTimeEnd);
-	}
+	public LocalDateTime getEventFullDateEnd(){ return LocalDateTime.of(this.eventDateEnd, this.eventTimeEnd);}
 	
 	public String toString()
 	{		
