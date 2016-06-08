@@ -1,5 +1,6 @@
 /**
  * podstawowa klasa od GUI
+ * Stage głównego okna programu
  */
 
 package presentation;
@@ -9,6 +10,7 @@ import javafx.application.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import logic.event.Scheduler;
 import logic.event.*;
 import javafx.scene.layout.*;
 
@@ -21,20 +23,22 @@ public class Main extends Application
 	Stage primaryStage;
 	private BorderPane root;
 	Stage addEventStage;
+	Database database; //toDo: zrobic cos z tym modyfikatorem
 
 
 	public void init()
 	{
 		/*ZMIANA WYNIKIAJACA Z SINGLETON - WYWALONY KONSTRUKTOR*/
-		Database database = Database.getInstance();
-
+		database = Database.getInstance();
 
 		Event test1 = new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test1", "test1 opis", "kat test", 5, true, 5);
 		Event test2=new Event(test1);
+		Event test3=new Event(test1);
 
 		database.add(test1);
 		database.add(test2);
-
+		//database.add(test3);
+		Scheduler.update();
 	}
 
 	@Override
