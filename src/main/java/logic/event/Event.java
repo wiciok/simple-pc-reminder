@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Witek on 2016-05-22.
@@ -165,6 +166,16 @@ public class Event implements Serializable, Cloneable
 	public void setPriority(int priority) {this.priority = priority;}
 
 
+	public LocalDateTime getEventDateTimeStart()
+	{
+		return LocalDateTime.of(this.eventDateStart, this.eventTimeStart);
+	}
+	
+	public LocalDateTime getEventDateTimeEnd()
+	{
+		return LocalDateTime.of(this.eventDateEnd, this.eventTimeEnd);
+	}
+	
 	public String toString()
 	{		
 		return "Data utworzenia wydarzenia: "+eventDateNow+
