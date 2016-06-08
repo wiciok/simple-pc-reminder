@@ -35,7 +35,7 @@ import java.time.LocalDateTime;
  * 	wydarzenia, które dzieją się tego samego dnia
  *
  * 	sugeruję:
- * 	ToDO: dorobić metody zwracające jednocześnie czas i datę 9startu i zakończenia) na podstawie pól data i czas
+ * 	ToDO: dorobić metody zwracające jednocześnie czas i datę (startu i zakończenia) na podstawie pól data i czas
  *
  *
  */
@@ -50,9 +50,9 @@ public class Event implements Serializable, Cloneable
 	private LocalTime eventTimeEnd;
 	private String title;
 	private String description;
+	private String category;
 	private int alertFrequency;
 	private boolean isActive;
-	private String category;
 	private int priority;
 	
 	public Event()
@@ -64,14 +64,14 @@ public class Event implements Serializable, Cloneable
 		this.eventTimeEnd = LocalTime.now();
 		this.title = new String("");
 		this.description = new String("");
+		this.category = new String("");
 		this.alertFrequency = 1;
 		this.isActive = false;
-		this.category = new String("");
 		this.priority = 1;
 	}
 	
 	public Event(LocalDate eventDateStart, LocalTime eventTimeStart, LocalDate eventDateEnd, LocalTime eventTimeEnd,
-				 String name, String describe, int alertFrequency, boolean isActive, String category, int priority)
+				 String name, String description, String category, int alertFrequency, boolean isActive, int priority)
 	{		
 		this.eventDateNow = LocalDateTime.now();
 		this.eventDateStart = eventDateStart;
@@ -79,10 +79,10 @@ public class Event implements Serializable, Cloneable
 		this.eventDateEnd = eventDateEnd;
 		this.eventTimeEnd = eventTimeEnd;
 		this.title = new String(name);
-		this.description = new String(describe);
+		this.description = new String(description);
+		this.category = new String(category);
 		this.alertFrequency = alertFrequency;
 		this.isActive = isActive;
-		this.category = new String(category);
 		this.priority = priority;
 	}
 	
@@ -95,13 +95,14 @@ public class Event implements Serializable, Cloneable
 		this.eventTimeEnd = copy.eventTimeEnd;
 		this.title = new String(copy.title);
 		this.description = new String(copy.description);
+		this.category = new String(copy.category);
 		this.alertFrequency = copy.alertFrequency;
 		this.isActive = copy.isActive;
-		this.category = new String(copy.category);
 		this.priority = copy.priority;
 	}
 
 
+	public LocalDateTime getEventFullDateStart() { return LocalDateTime.of(getEventDateStart(), getEventTimeStart());}
 
 	public LocalDateTime getEventDateNow()
 	{
@@ -179,11 +180,6 @@ public class Event implements Serializable, Cloneable
 				"\nPriorytet: "+priority;
 	}
 
-	/*
-	ToDo: koniecznie przerobić na kopiowanie głębokie! Obecnie jest kopiowanie płytkie, tj. nie kopiuje składowych obiektów
-	ToDo: tylko ich referencje! Sytuacja analogiczna do dynamicznych tablic w c++ i konstruktora kopiującego
-	ToDo: trzeba wiec dorobic kopiowanie kazdego OBIEKTU składowego
-	 */
 	public Object clone()
 	{
 		try {return super.clone();}

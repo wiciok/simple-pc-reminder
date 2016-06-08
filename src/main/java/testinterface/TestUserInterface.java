@@ -3,8 +3,8 @@ package testinterface;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Scanner;
-
 import data.Database;
 import logic.event.Event;
 
@@ -21,12 +21,13 @@ public class TestUserInterface
 		System.out.println("3 - Save events into binary file.");
 		System.out.println("4 - Read events from binary file.");
 		System.out.println("5 - Show number of current events.");
-		System.out.println("6 - Close the program.");				
+		System.out.println("6 - Sort database (based on event start time)");
+		System.out.println("7 - Close the program.");				
 	}
 	
 	public static void main(String[] args)
     {
-		/*************************MatiM test***************************************/
+		/*************************MatiM test***************************************
 		/*Event prototype = new Event();
 		Event wydarzenie1 = (Event)prototype.clone();
 		prototype.print();
@@ -43,7 +44,7 @@ public class TestUserInterface
     	Integer addOption, index;
     	boolean inputStatus = false;
     	TestUserInterface testObj = new TestUserInterface();
-    	Database testDatabase = new Database();
+    	Database testDatabase = Database.getInstance();
     	Scanner input = new Scanner(System.in);
     	while(true)
     	{
@@ -111,7 +112,10 @@ public class TestUserInterface
 						
 				case 5: System.out.println("List size:"+testDatabase.size());
 						break;
-				case 6: System.out.println("KONIEC");
+				case 6: //testDatabase.listQuicksort(0, testDatabase.size() - 1); //dodalem odpowiednie przeciazenie bezposrednio w Database
+						testDatabase.listQuicksort();
+						break;
+				case 7: System.out.println("KONIEC");
 						input.close();
 						System.exit(0);
 						break;
