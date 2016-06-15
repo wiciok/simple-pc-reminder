@@ -19,7 +19,9 @@ import java.util.ResourceBundle;
 public class primaryStageController implements Initializable
 {
     private presentation.Main mainApp;
+    //presentation.Main mainApp;
     public primaryStageController(){};
+    AddEventStage addEventStage;
 
 
     //robię to tutaj, żeby była dekompozycja zależności i dało się to łatwo zmienić
@@ -73,11 +75,7 @@ public class primaryStageController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                GridPane r2=new GridPane();
-                Scene scene2 = new Scene(r2, 400, 400);
-                mainApp.addEventStage =new Stage();
-                mainApp.addEventStage.setScene(scene2);
-                mainApp.addEventStage.show();
+                addEventStage = new AddEventStage(mainApp);
             }
         });
 
