@@ -22,7 +22,6 @@ public class Main extends Application
 {
 	Stage primaryStage;
 	private BorderPane root;
-	Stage addEventStage;
 	Database database; //toDo: zrobic cos z tym modyfikatorem
 
 
