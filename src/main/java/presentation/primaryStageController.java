@@ -61,7 +61,6 @@ public class primaryStageController implements Initializable
     {
         buttonClose.setOnAction(new EventHandler<ActionEvent>()
         {
-            @Override
             public void handle(ActionEvent event)
             {
                 mainApp.primaryStage.close();
@@ -70,7 +69,6 @@ public class primaryStageController implements Initializable
         
         buttonAdd.setOnAction(new EventHandler<ActionEvent>()
         {
-            @Override
             public void handle(ActionEvent event)
             {
                 GridPane r2=new GridPane();
@@ -82,7 +80,6 @@ public class primaryStageController implements Initializable
         });
 
         buttonNextEvents.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
             public void handle(ActionEvent event)
             {
                 mainApp.primaryStage.close();
