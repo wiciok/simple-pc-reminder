@@ -7,6 +7,8 @@ package presentation;
 
 import data.Database;
 import javafx.application.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -25,30 +27,38 @@ public class Main extends Application
 	private BorderPane root;
 	private Database database;
 
-
 	public void init()
 	{
 		/*ZMIANA WYNIKIAJACA Z SINGLETON - WYWALONY KONSTRUKTOR*/
 		database = Database.getInstance();
 
-		try
+		/*try
 		{
 			database.readFromFile();
 		}
 
 		catch(IOException e)
 		{
+			//ToDo: sensowniej to zrobić...
+			e.printStackTrace();
+			System.out.print("_______nie otworzono pliku!");
+		}*/
 
-		}
-		/*Event test1 = new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test1", "test1 opis", "kat test", 5, true, 5);
-		Event test2=new Event(test1);
-		Event test3=new Event(test1);*/
+		//todo: usunac potem (jest dla testow narazie):
+		//Event test1 = new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test1", "test1 opis", "kat test", 5, true, 5);
+		//Event test2=new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test2", "test2 opis", "kat test2", 2, true, 10);
+		//Event test3=new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test3", "test3 opis", "kat test3", 2, true, 10);
 
-		/*database.add(test1);
-		database.add(test2);*/
+
 		//database.add(test3);
-		Scheduler.update();
+		//database.add(test2);
+		//database.add(test1);
+
+		//Scheduler.update();
+		Scheduler.init();
 	}
+
+
 
 	@Override
 	public void start(Stage primaryStage)
@@ -57,7 +67,6 @@ public class Main extends Application
 		{
 			this.primaryStage=primaryStage;
 			FXMLLoader loader = new FXMLLoader();
-			//Parent root = loader.load(getClass().getResource("primaryStage.fxml"));
 			loader.setLocation(Main.class.getResource("primaryStage.fxml"));
 			root = loader.load();
 
@@ -68,6 +77,15 @@ public class Main extends Application
 
 			primaryStageController controller = loader.getController();
 			controller.setMainApp(this);
+
+			//toDo: usunac po tescie
+			//Scheduler.update();
+			Scheduler.taskDisplayList.get(0).titleProperty().addListener((observable, oldValue, newValue) -> controller.update1(newValue));
+			Scheduler.taskDisplayList.get(1).titleProperty().addListener((observable, oldValue, newValue) -> controller.update2(newValue));
+			Scheduler.taskDisplayList.get(2).titleProperty().addListener((observable, oldValue, newValue) -> controller.update3(newValue));
+			//Scheduler.taskDisplayList.get(2).setTitle("fsdgasdg"); //tak nie zadziala
+			//Scheduler.taskDisplayList.get(2).titleProperty().set("sfgvfadgw");
+			//controller.test();
 
 		}
 		catch(Exception e)
@@ -83,20 +101,22 @@ public class Main extends Application
 	}
 
 
-	@Override
+	/*@Override
 	public void stop()
 	{
 		try
 		{
 			Database.getInstance().writeToFile();
 			//todo: usunac potem:
-			System.out.println("zapisano");
+			System.out.println("__________zapisano");
 		}
 		catch (IOException e)
 		{
 			//ToDo: dorobic obsluge wyjatku!
+			e.printStackTrace();
+			System.out.println("__________ nie zapisano!!!!!!!");
 		}
-	}
+	}*/
 
 }
 

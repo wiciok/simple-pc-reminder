@@ -22,12 +22,6 @@ public class AddEventStage
     {
         this.mainApp=mainApp;
 
-        /*GridPane r2=new GridPane();
-        Scene scene2 = new Scene(r2, 400, 400);
-        addEventStage =new Stage();
-        addEventStage.setScene(scene2);
-        addEventStage.show();*/
-
         //---------------------------------
         try
         {
