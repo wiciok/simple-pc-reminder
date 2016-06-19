@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -69,6 +70,22 @@ public class AddEventStageController implements Initializable
     @FXML
     private ComboBox<String> eventIsActive;
     ObservableList<String> activeOptions = FXCollections.observableArrayList("True", "False");
+    @FXML
+    private Label l1;
+    @FXML
+    private Label l2;
+    @FXML
+    private Label l3;
+    @FXML
+    private Label l4;
+    @FXML
+    private GridPane pane1;
+    @FXML
+    private GridPane pane2;
+    @FXML
+    private GridPane pane3;
+    @FXML
+    private GridPane pane4;
 
     public void setMainApp(AddEventStage AddEventStage)
     {
