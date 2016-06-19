@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import logic.event.Scheduler;
 import logic.event.*;
 import javafx.scene.layout.*;
+import java.io.IOException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -22,7 +23,7 @@ public class Main extends Application
 {
 	Stage primaryStage;
 	private BorderPane root;
-	Database database; //toDo: zrobic cos z tym modyfikatorem
+	private Database database;
 
 
 	public void init()
@@ -30,12 +31,21 @@ public class Main extends Application
 		/*ZMIANA WYNIKIAJACA Z SINGLETON - WYWALONY KONSTRUKTOR*/
 		database = Database.getInstance();
 
-		Event test1 = new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test1", "test1 opis", "kat test", 5, true, 5);
-		Event test2=new Event(test1);
-		Event test3=new Event(test1);
+		try
+		{
+			database.readFromFile();
+		}
 
-		database.add(test1);
-		database.add(test2);
+		catch(IOException e)
+		{
+
+		}
+		/*Event test1 = new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test1", "test1 opis", "kat test", 5, true, 5);
+		Event test2=new Event(test1);
+		Event test3=new Event(test1);*/
+
+		/*database.add(test1);
+		database.add(test2);*/
 		//database.add(test3);
 		Scheduler.update();
 	}
@@ -64,10 +74,30 @@ public class Main extends Application
 		{
 			e.printStackTrace();
 		}
+
 	}
 
 	public static void main(String[] args)
 	{
 		launch(args);
 	}
+
+
+	@Override
+	public void stop()
+	{
+		try
+		{
+			Database.getInstance().writeToFile();
+			//todo: usunac potem:
+			System.out.println("zapisano");
+		}
+		catch (IOException e)
+		{
+			//ToDo: dorobic obsluge wyjatku!
+		}
+	}
+
 }
+
+
