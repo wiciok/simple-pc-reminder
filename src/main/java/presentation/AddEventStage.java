@@ -49,11 +49,5 @@ public class AddEventStage
         {
             e.printStackTrace();
         }
-
-
-
     }
-
-
-
 }

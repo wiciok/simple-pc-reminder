@@ -69,14 +69,6 @@ public class AddEventStageController implements Initializable
     @FXML
     private ComboBox<String> eventIsActive;
     ObservableList<String> activeOptions = FXCollections.observableArrayList("True", "False");
-    @FXML
-    private GridPane pane = new GridPane();
-    @FXML
-    private GridPane pane2 = new GridPane();
-    @FXML
-    private GridPane pane3 = new GridPane();
-    @FXML
-    private GridPane pane4 = new GridPane();
 
     public void setMainApp(AddEventStage AddEventStage)
     {
