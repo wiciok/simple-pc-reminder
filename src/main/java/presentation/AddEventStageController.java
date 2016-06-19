@@ -175,9 +175,10 @@ public class AddEventStageController implements Initializable
         		
         		/*dodanie eventu do bazy*/
                 Database.getInstance().add(newEvent);
-                
+
+                //ToDo: do wywalenia potem
                 /*wyswietlam wszystko dla sprawdzenia czy sie dodalo i czy nie ma smieci*/
-                System.out.println(Integer.toString(Database.getInstance().size()));
+                /*System.out.println(Integer.toString(Database.getInstance().size()));
                 System.out.println(Database.getInstance().get(2).getTitle());
                 System.out.println(Database.getInstance().get(2).getDescription());
                 System.out.println(Database.getInstance().get(2).getCategory());
@@ -187,7 +188,7 @@ public class AddEventStageController implements Initializable
                 System.out.println(Database.getInstance().get(2).getEventTimeEndString());
                 System.out.println(Database.getInstance().get(2).getPriorityString());
                 System.out.println(Database.getInstance().get(2).getAlertFrequencyString());
-                System.out.println(Database.getInstance().get(2).getIsActiveString());
+                System.out.println(Database.getInstance().get(2).getIsActiveString());*/
                 
                 /*update i zamykam*/
                 Scheduler.update();
