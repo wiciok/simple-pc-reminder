@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.primaryStageController">
    <children>
-      <GridPane layoutX="14.0" layoutY="14.0" prefHeight="379.0" prefWidth="200.0">
+      <GridPane fx:id="pane1" layoutX="14.0" layoutY="14.0" prefHeight="379.0" prefWidth="200.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -28,7 +28,7 @@
             <TextArea fx:id="eventDescriptionField" prefHeight="300.0" prefWidth="200.0" promptText="Input Event Description" wrapText="true" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <GridPane layoutX="233.0" layoutY="14.0" prefHeight="219.0" prefWidth="175.0">
+      <GridPane fx:id="pane2" layoutX="233.0" layoutY="14.0" prefHeight="219.0" prefWidth="175.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
         </columnConstraints>
@@ -44,10 +44,10 @@
             <TextField fx:id="eventStartTime" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="126.0" promptText="Input Start Time" GridPane.rowIndex="3" />
             <TextField fx:id="eventEndTime" promptText="Input End Time" GridPane.rowIndex="4" />
             <DatePicker fx:id="pickEndDate" editable="false" promptText="Choose End Date" GridPane.rowIndex="1" />
-            <Label text="Format: HH:MM:SS or HH:MM" GridPane.rowIndex="2" />
+            <Label fx:id="l4" text="Format: HH:MM:SS or HH:MM" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <GridPane layoutX="416.0" layoutY="18.0" prefHeight="219.0" prefWidth="167.0">
+      <GridPane fx:id="pane3" layoutX="416.0" layoutY="18.0" prefHeight="219.0" prefWidth="167.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -60,15 +60,15 @@
             <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" text="Choose Event Priority" />
+            <Label fx:id="l1" alignment="CENTER" text="Choose Event Priority" />
             <ComboBox fx:id="eventPriority" prefWidth="150.0" visibleRowCount="11" GridPane.rowIndex="1" />
-            <Label text="Choose Alert Frequency" GridPane.rowIndex="2" />
+            <Label fx:id="l2" text="Choose Alert Frequency" GridPane.rowIndex="2" />
             <ComboBox fx:id="alertFrequency" prefWidth="150.0" GridPane.rowIndex="3" />
-            <Label text="Make Event Active?" GridPane.rowIndex="4" />
+            <Label fx:id="l3" text="Make Event Active?" GridPane.rowIndex="4" />
             <ComboBox fx:id="eventIsActive" prefHeight="25.0" prefWidth="150.0" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <GridPane layoutX="383.0" layoutY="356.0">
+      <GridPane fx:id="pane4" layoutX="383.0" layoutY="356.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
