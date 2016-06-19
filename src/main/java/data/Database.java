@@ -141,7 +141,7 @@ public class Database
 		file.close();
 	}
 
-	public void listQuicksort() throws IndexOutOfBoundsException
+	public void sort() throws IndexOutOfBoundsException
 	{
 		if(databaseList.size() <= 1)
 		{

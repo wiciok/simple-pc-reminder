@@ -58,7 +58,21 @@ public class primaryStageController implements Initializable
     private Label labelEvent3Category;
 
 
-
+    public void update1(String s)
+    {
+        paneEvent1.setText(s);
+        System.out.println("!!!!!!!!!!!!!!!!!!ZADZIALALO controller.UPDATE1!!!!!!!!!!!!!!!");
+    }
+    public void update2(String s)
+    {
+        paneEvent2.setText(s);
+        System.out.println("!!!!!!!!!!!!!!!!!!ZADZIALALO controller.UPDATE2!!!!!!!!!!!!!!!");
+    }
+    public void update3(String s)
+    {
+        paneEvent3.setText(s);
+        System.out.println("!!!!!!!!!!!!!!!!!!ZADZIALALO controller.UPDATE3!!!!!!!!!!!!!!!");
+    }
 
 
     public void initialize(URL url, ResourceBundle rb)
@@ -88,7 +102,6 @@ public class primaryStageController implements Initializable
         });
 
 
-
         buttonClose.setText(buttonCloseText);
         buttonAdd.setText(buttonAddText);
         buttonPrevEvents.setText(buttonNextEventsText);
@@ -101,6 +114,23 @@ public class primaryStageController implements Initializable
         labelEvent1Category.setText(Scheduler.taskDisplayList.get(0).getCategory());
         labelEvent2Category.setText(Scheduler.taskDisplayList.get(1).getCategory());
         labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());
+
+
+        //Scheduler.taskDisplayList.get(0).titleProperty().addListener((observable, oldValue, newValue) -> update(newValue));
+        //Scheduler.taskDisplayList.get(1).titleProperty().addListener((observable, oldValue, newValue) -> update(newValue));
+        //Scheduler.taskDisplayList.get(2).titleProperty().addListener((observable, oldValue, newValue) -> update(newValue));
+
+        //TODO: USUNAC PO TESCIE
+        //Scheduler.taskDisplayList.get(2).titleProperty().set("sfgvfadgw");
+        //mainApp.testProp.set("zmiana");
+        //Main.testProp.set("zmiana");
+        //Scheduler.taskDisplayList.get(0).titleProperty().set("zmiana");
+
+    }
+
+    public void test()
+    {
+        Scheduler.taskDisplayList.get(2).titleProperty().set("sfgvfadgw");
     }
 
     public void setMainApp(Main mainApp)

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
+import javafx.beans.property.*;
 
 /**
  * Created by Witek on 2016-05-22.
@@ -48,12 +49,16 @@ public class Event implements Serializable, Cloneable
 	protected LocalTime eventTimeStart;
 	protected LocalDate eventDateEnd;
 	protected LocalTime eventTimeEnd;
-	protected String title;
+	//protected String title;
 	protected String description;
 	protected String category;
 	protected int alertFrequency;
 	protected boolean isActive;
 	protected int priority;
+
+	protected StringProperty title;
+
+
 	
 	public Event()
 	{		
@@ -62,12 +67,14 @@ public class Event implements Serializable, Cloneable
 		this.eventTimeStart = LocalTime.now();
 		this.eventDateEnd = LocalDate.now();
 		this.eventTimeEnd = LocalTime.now();
-		this.title = new String("");
+		//this.title = new String("");
 		this.description = new String("");
 		this.category = new String("");
 		this.alertFrequency = 1;
 		this.isActive = false;
 		this.priority = 1;
+
+		this.title = new SimpleStringProperty("");
 	}
 	
 	public Event(LocalDate eventDateStart, LocalTime eventTimeStart, LocalDate eventDateEnd, LocalTime eventTimeEnd,
@@ -78,12 +85,14 @@ public class Event implements Serializable, Cloneable
 		this.eventTimeStart = eventTimeStart;
 		this.eventDateEnd = eventDateEnd;
 		this.eventTimeEnd = eventTimeEnd;
-		this.title = new String(name);
+		//this.title = new String(name);
 		this.description = new String(description);
 		this.category = new String(category);
 		this.alertFrequency = alertFrequency;
 		this.isActive = isActive;
 		this.priority = priority;
+
+		this.title = new SimpleStringProperty(name);
 	}
 	
 	public Event(Event copy)
@@ -93,12 +102,14 @@ public class Event implements Serializable, Cloneable
 		this.eventTimeStart = copy.eventTimeStart;
 		this.eventDateEnd = copy.eventDateEnd;
 		this.eventTimeEnd = copy.eventTimeEnd;
-		this.title = new String(copy.title);
+		//this.title = new String(copy.title);
 		this.description = new String(copy.description);
 		this.category = new String(copy.category);
 		this.alertFrequency = copy.alertFrequency;
 		this.isActive = copy.isActive;
 		this.priority = copy.priority;
+
+		this.title = new SimpleStringProperty(copy.title.get());
 	}
 
 
@@ -112,10 +123,10 @@ public class Event implements Serializable, Cloneable
 	public LocalTime getEventTimeStart() {return this.eventTimeStart;}
 	public LocalDate getEventDateEnd() {return this.eventDateEnd;}
 	public LocalTime getEventTimeEnd() {return this.eventTimeEnd;}
-	public String getTitle()
+	/*public String getTitle()
 	{
 		return this.title;
-	}
+	}*/
 	public String getDescription()
 	{
 		return this.description;
@@ -127,6 +138,17 @@ public class Event implements Serializable, Cloneable
 	public Integer getAlertFrequency() {return new Integer(alertFrequency);}
 	public Boolean getIsActive() {return new Boolean(isActive);}
 	public Integer getPriority() {return new Integer(priority);}
+
+
+	public String getTitle()
+	{
+		return this.title.get();
+	}
+
+	public StringProperty titleProperty()
+	{
+		return this.title;
+	}
 
 
 	public String getEventDateStartString() {return this.eventDateStart.toString();}
@@ -154,10 +176,10 @@ public class Event implements Serializable, Cloneable
 	{
 		this.eventTimeEnd = eventTimeEnd;
 	}
-	public void setTitle(String title)
+	/*public void setTitle(String title)
 	{
 		this.title = new String(title);
-	}
+	}*/
 	public void setDescription(String description)
 	{
 		this.description = new String(description);
@@ -173,6 +195,11 @@ public class Event implements Serializable, Cloneable
 	}
 	public void setPriority(int priority) {this.priority = priority;}
 
+
+	public void setTitle(String title)
+	{
+		this.title = new SimpleStringProperty(title);
+	}
 
 
 	public String toString()

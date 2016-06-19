@@ -123,13 +123,15 @@ public class AddEventStageController implements Initializable
         		/* tworzenie prototypu Eventu - w konstruktorze sa ustawiane domyslne wartosci
         		 * ktore obowiazuja gdy uzytkownik tu czegos nie wprowadzi*/
         		
-        		Event prototype = new Event();
+        		Event prototype = new Event(); //ToDo: ten prototyp powinien miec jakies sensowne wartosci, anie to co ma konstruktor domyslnie
         		Event newEvent = (Event)prototype.clone();
         		
         		/*Pobieranie wpisanych przez uzytkownika wartosci*/
         		/*nazwa, opis, kategoria - sprawdzane czy po prostu cos zostalo wpisane*/
         		if(eventNameField.getText() != null && !(eventNameField.getText().trim().isEmpty()))
-        			newEvent.setTitle(eventNameField.getText());
+                    //ToDo: test! usunac jesli bedzie zle
+        			//newEvent.setTitle(eventNameField.getText());
+                    newEvent.titleProperty().set(eventNameField.getText());
         		
         		if(eventDescriptionField.getText() != null && !(eventNameField.getText().trim().isEmpty()))
         			newEvent.setDescription(eventDescriptionField.getText());
@@ -175,6 +177,8 @@ public class AddEventStageController implements Initializable
         		
         		/*dodanie eventu do bazy*/
                 Database.getInstance().add(newEvent);
+                //ToDo: w celach testowych
+                //Database.getInstance().add(0,newEvent);
 
                 //ToDo: do wywalenia potem
                 /*wyswietlam wszystko dla sprawdzenia czy sie dodalo i czy nie ma smieci*/
@@ -191,6 +195,7 @@ public class AddEventStageController implements Initializable
                 System.out.println(Database.getInstance().get(2).getIsActiveString());*/
                 
                 /*update i zamykam*/
+
                 Scheduler.update();
                 addEventStage.addEventStage.close();
             }
