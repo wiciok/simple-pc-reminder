@@ -21,36 +21,45 @@ public class Scheduler
 
     public static void update()
     {
-        if(Database.getInstance().size()>1)
+        try
+        {
             Database.getInstance().sort();
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            //ToDo: jesl bedzie jakis logger, to dac info ze sortowanie nieudane bo pusta baza
+        }
+
+
+        //ToDo: zrobic cos z rozrastajaca sie lista (gdzies w dobrym miejscu clear wywołać)
         //taskDisplayList.clear();
         for (int i=0;i<3;i++)
         {
             try
             {
-                //taskDisplayList.add(Database.getInstance().get(i));
                 taskDisplayList.get(i).titleProperty().set(Database.getInstance().get(i).getTitle());
-                //if(i==2)
-                    //taskDisplayList.get(2).titleProperty().set(Database.getInstance().get(1).getTitle());
-                    //taskDisplayList.get(2).titleProperty().set("gfdgdfgsfdgsdf");
                 taskDisplayList.add(Database.getInstance().get(i));
             }
             catch(IndexOutOfBoundsException e)
             {
                 taskDisplayList.add(new EventNull());
-                //if(i==2)
-                //    taskDisplayList.get(2).titleProperty().set("gfdgdfgsfdgsdf");
             }
         }
-       // taskDisplayList.get(2).titleProperty().set(Database.getInstance().get(1).getTitle());
-        //taskDisplayList.get(2).titleProperty().set("gfdgdfgsfdgsdf");
+
 
     }
 
     public static void init()
     {
-        if(Database.getInstance().size()>1)
+        try
+        {
             Database.getInstance().sort();
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            //ToDo: jesl bedzie jakis logger, to dac info ze sortowanie nieudane bo pusta baza
+        }
+
         taskDisplayList.clear();
         for (int i=0;i<3;i++)
         {
