@@ -1,5 +1,6 @@
 package presentation;
 
+import data.Database;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import logic.event.Scheduler;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -65,7 +67,7 @@ public class primaryStageController implements Initializable
         {
             public void handle(ActionEvent event)
             {
-                mainApp.primaryStage.close();
+               mainApp.primaryStage.close();
             }
         });
         
@@ -80,6 +82,7 @@ public class primaryStageController implements Initializable
         buttonNextEvents.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event)
             {
+                //todo: wyswietlanie kolejnych eventow
                 mainApp.primaryStage.close();
             }
         });
@@ -98,17 +101,6 @@ public class primaryStageController implements Initializable
         labelEvent1Category.setText(Scheduler.taskDisplayList.get(0).getCategory());
         labelEvent2Category.setText(Scheduler.taskDisplayList.get(1).getCategory());
         labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());
-    }
-
-
-    @FXML
-    /**
-     * funkcja testowa
-     * ToDo: do kasacji w przyszłości
-     */
-    private void exampleHandleButtonAction(ActionEvent event)
-    {
-        System.out.println("You clicked me!");
     }
 
     public void setMainApp(Main mainApp)
