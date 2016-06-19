@@ -32,10 +32,8 @@ public class Main extends Application
 		/*ZMIANA WYNIKIAJACA Z SINGLETON - WYWALONY KONSTRUKTOR*/
 		database = Database.getInstance();
 
-		/*try
-		{
-			database.readFromFile();
-		}
+
+		/*try {database.readFromFile();}
 
 		catch(IOException e)
 		{
@@ -44,17 +42,16 @@ public class Main extends Application
 			System.out.print("_______nie otworzono pliku!");
 		}*/
 
+
 		//todo: usunac potem (jest dla testow narazie):
 		//Event test1 = new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test1", "test1 opis", "kat test", 5, true, 5);
 		//Event test2=new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test2", "test2 opis", "kat test2", 2, true, 10);
 		//Event test3=new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test3", "test3 opis", "kat test3", 2, true, 10);
 
-
 		//database.add(test3);
 		//database.add(test2);
 		//database.add(test1);
 
-		//Scheduler.update();
 		Scheduler.init();
 	}
 
@@ -77,21 +74,8 @@ public class Main extends Application
 
 			primaryStageController controller = loader.getController();
 			controller.setMainApp(this);
-
-			//toDo: usunac po tescie
-			//Scheduler.update();
-			Scheduler.taskDisplayList.get(0).titleProperty().addListener((observable, oldValue, newValue) -> controller.update1(newValue));
-			Scheduler.taskDisplayList.get(1).titleProperty().addListener((observable, oldValue, newValue) -> controller.update2(newValue));
-			Scheduler.taskDisplayList.get(2).titleProperty().addListener((observable, oldValue, newValue) -> controller.update3(newValue));
-			//Scheduler.taskDisplayList.get(2).setTitle("fsdgasdg"); //tak nie zadziala
-			//Scheduler.taskDisplayList.get(2).titleProperty().set("sfgvfadgw");
-			//controller.test();
-
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		catch(Exception e) {e.printStackTrace();}
 
 	}
 

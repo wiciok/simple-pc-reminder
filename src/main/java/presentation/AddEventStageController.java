@@ -195,8 +195,6 @@ public class AddEventStageController implements Initializable
         		
         		/*dodanie eventu do bazy*/
                 Database.getInstance().add(newEvent);
-                //ToDo: w celach testowych
-                //Database.getInstance().add(0,newEvent);
 
                 //ToDo: do wywalenia potem
                 /*wyswietlam wszystko dla sprawdzenia czy sie dodalo i czy nie ma smieci*/
