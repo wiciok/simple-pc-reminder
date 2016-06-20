@@ -125,9 +125,7 @@ public class AddEventStageController implements Initializable
         		/*Pobieranie wpisanych przez uzytkownika wartosci*/
         		/*nazwa, opis, kategoria - sprawdzane czy po prostu cos zostalo wpisane*/
         		if(eventNameField.getText() != null && !(eventNameField.getText().trim().isEmpty()))
-                    //ToDo: test! usunac jesli bedzie zle
-        			//newEvent.setTitle(eventNameField.getText());
-                    newEvent.titleProperty().set(eventNameField.getText());
+        			newEvent.setTitle(eventNameField.getText());
         		
         		if(eventDescriptionField.getText() != null && !(eventNameField.getText().trim().isEmpty()))
         			newEvent.setDescription(eventDescriptionField.getText());

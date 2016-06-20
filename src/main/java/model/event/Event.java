@@ -132,7 +132,7 @@ public class Event implements Serializable, Cloneable
 	public String getPriorityString() {return new Integer(this.priority.get()).toString();}
 
 
-	public void setEventDateStart(LocalDate eventDateStart) {this.eventDateStart = new SimpleObjectProperty<>(eventDateStart);}
+	/*public void setEventDateStart(LocalDate eventDateStart) {this.eventDateStart = new SimpleObjectProperty<>(eventDateStart);}
 	public void setEventTimeStart(LocalTime eventTimeStart) {this.eventTimeStart = new SimpleObjectProperty<>(eventTimeStart);}
 	public void setEventDateEnd(LocalDate eventDateEnd) {this.eventDateEnd = new SimpleObjectProperty<>(eventDateEnd);}
 	public void setEventTimeEnd(LocalTime eventTimeEnd) {this.eventTimeEnd = new SimpleObjectProperty<>(eventTimeEnd);}
@@ -141,7 +141,18 @@ public class Event implements Serializable, Cloneable
 	public void setCategory(String category) {this.category = new SimpleStringProperty(category);}
 	public void setAlertFrequency(int alertFrequency) {this.alertFrequency = new SimpleIntegerProperty(alertFrequency);}
 	public void setIsActive(boolean isActive) {this.isActive=new SimpleBooleanProperty(isActive);}
-	public void setPriority(int priority) {this.priority = new SimpleIntegerProperty(priority);}
+	public void setPriority(int priority) {this.priority = new SimpleIntegerProperty(priority);}*/
+
+	public void setEventDateStart(LocalDate eventDateStart) {this.eventDateStart.set(eventDateStart);}
+	public void setEventTimeStart(LocalTime eventTimeStart) {this.eventTimeStart.set(eventTimeStart);}
+	public void setEventDateEnd(LocalDate eventDateEnd) {this.eventDateEnd.set(eventDateEnd);}
+	public void setEventTimeEnd(LocalTime eventTimeEnd) {this.eventTimeEnd.set(eventTimeEnd);}
+	public void setTitle(String title) {this.title.set(title);}
+	public void setDescription(String description) {this.description.set(description);}
+	public void setCategory(String category) {this.category.set(category);}
+	public void setAlertFrequency(int alertFrequency) {this.alertFrequency.set(alertFrequency);}
+	public void setIsActive(boolean isActive) {this.isActive.set(isActive);}
+	public void setPriority(int priority) {this.priority.set(priority);}
 
 
 	public Object clone()
