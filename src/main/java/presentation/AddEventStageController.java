@@ -113,6 +113,24 @@ public class AddEventStageController implements Initializable
         eventIsActive.setItems(activeOptions);
         eventIsActive.getSelectionModel().selectFirst();
         
+        l1.setText("Choose Event Priority");
+        l2.setText("Choose Alert Frequency");
+        l3.setText("Make Event Active?");
+        l4.setText("Format HH:MM:SS or HH:MM");
+        
+        pickStartDate.setEditable(false);
+        pickStartDate.setPromptText("Choose Start Date");
+        pickEndDate.setEditable(false);
+        pickEndDate.setPromptText("Choose End Date");
+
+        eventStartTime.setPromptText("Input Start Time");
+        eventEndTime.setPromptText("Input End Time");
+        
+        eventDescriptionField.setWrapText(true);
+        eventDescriptionField.setPromptText("Input Event Description");
+        eventNameField.setPromptText("Input Event Name");
+        eventCategory.setPromptText("Input Event Category");
+        
         /*Konfiguracja Create Event button*/
         String createEventText = new String("Create Event");
         createEventButton.setText(createEventText);
@@ -149,7 +167,7 @@ public class AddEventStageController implements Initializable
         		 */
         		if(eventStartTime.getText() != null && !(eventStartTime.getText().trim().isEmpty()))
         		{
-        			if(eventStartTime.getText().matches("[1-24]:[0-59]:[0-59]") || eventStartTime.getText().matches("[1-24]:[0-59]"))
+        			if(eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
         				newEvent.setEventTimeStart(LocalTime.parse(eventStartTime.getText()));
         		}
         		
@@ -164,7 +182,7 @@ public class AddEventStageController implements Initializable
         		/*znow walidacja czasu tym razem zakonczenia*/
         		if(eventEndTime.getText() != null && !(eventEndTime.getText().trim().isEmpty()))
         		{
-        			if(eventEndTime.getText().matches("[1-24]:[0-59]:[0-59]") || eventEndTime.getText().matches("[1-24]:[0-59]"))
+        			if(eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
         				newEvent.setEventTimeEnd(LocalTime.parse(eventEndTime.getText()));
         		}
         		
