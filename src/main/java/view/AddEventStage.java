@@ -14,12 +14,12 @@ import controller.AddEventStageController;
  */
 public class AddEventStage
 {
-    public Main mainApp;
+    public MainStage mainApp;
     public Stage addEventStage;
     private AnchorPane root;
 
 
-    public AddEventStage(Main mainApp)
+    public AddEventStage(MainStage mainApp)
     {
         this.mainApp=mainApp;
 

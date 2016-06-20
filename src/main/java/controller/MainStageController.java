@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.Scheduler;
 import view.AddEventStage;
-import view.Main;
+import view.MainStage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,11 +17,15 @@ import java.util.ResourceBundle;
  *
  * ToDo: refaktoryzacja, dekompozycja zależności
  */
-public class PrimaryStageController implements Initializable
+public class MainStageController implements Initializable
 {
-    private Main mainApp;
-    public PrimaryStageController(){};
-    AddEventStage addEventStage;
+    private MainStage mainApp;
+    public MainStageController(){}
+    //ToDo: modyfikatory dostępu
+    public AddEventStage addEventStage;
+    public Scheduler scheduler;
+
+    public UpdateAdapter update = new UpdateAdapter();
 
 
     //robię to tutaj, żeby była dekompozycja zależności i dało się to łatwo zmienić
@@ -58,11 +62,15 @@ public class PrimaryStageController implements Initializable
 
     public void initialize(URL url, ResourceBundle rb)
     {
+        //konstruktor Schedulera - ważne! połączenie pomiędzy schedulerem a controllerem
+        scheduler=new Scheduler(this);
+
+
         buttonClose.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent event)
             {
-               mainApp.primaryStage.close();
+               mainApp.mainStage.close();
             }
         });
         
@@ -78,7 +86,7 @@ public class PrimaryStageController implements Initializable
             public void handle(ActionEvent event)
             {
                 //todo: wyswietlanie kolejnych eventow
-                mainApp.primaryStage.close();
+                mainApp.mainStage.close();
             }
         });
 
@@ -95,31 +103,55 @@ public class PrimaryStageController implements Initializable
         labelEvent2Category.setText(Scheduler.taskDisplayList.get(1).getCategory());
         labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());
 
-
-        Scheduler.taskDisplayList.get(0).getTitleProperty().addListener((observable, oldValue, newValue) -> update1(newValue));
-        Scheduler.taskDisplayList.get(1).getTitleProperty().addListener((observable, oldValue, newValue) -> update2(newValue));
-        Scheduler.taskDisplayList.get(2).getTitleProperty().addListener((observable, oldValue, newValue) -> update3(newValue));
     }
 
-    public void setMainApp(Main mainApp)
+    public void setMainApp(MainStage mainApp)
     {
         this.mainApp = mainApp;
     }
 
-    public void update1(String s)
-    {
-        paneEvent1.setText(s);
-        System.out.println("controller.update1");
-    }
-    public void update2(String s)
-    {
-        paneEvent2.setText(s);
-        System.out.println("controller.update2");
-    }
-    public void update3(String s)
-    {
-        paneEvent3.setText(s);
-        System.out.println("controller.update3");
-    }
 
+    /**
+     * Klasa wewętrzna stanowiąca adapter do wywoływania metod
+     * Wzorzec projektowy Adapter.
+     */
+
+    public class UpdateAdapter
+    {
+        public void update1(String s)
+        {
+            paneEvent1.setText(s);
+            System.out.println("controller.update1");
+            System.out.println(s);
+        }
+        public void update2(String s)
+        {
+            paneEvent2.setText(s);
+            System.out.println("controller.update2");
+            System.out.println(s);
+        }
+        public void update3(String s)
+        {
+            paneEvent3.setText(s);
+            System.out.println("controller.update3");
+            System.out.println(s);
+        }
+
+        public abstract class Update
+        {
+            public abstract void updateIndex(int index, String s);
+        }
+
+        private Update[] updateArr = new UpdateAdapter.Update[]
+        {
+            new UpdateAdapter.Update() { public void updateIndex(int index, String s) { update1(s); } },
+            new UpdateAdapter.Update() { public void updateIndex(int index, String s) { update2(s); } },
+            new UpdateAdapter.Update() { public void updateIndex(int index, String s) { update3(s); } }
+        };
+
+        public void updateIndex(int index, String s)
+        {
+            updateArr[index].updateIndex(index, s);
+        }
+    }
 }
