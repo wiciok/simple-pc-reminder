@@ -1,24 +1,22 @@
-package presentation;
+package view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
+import controller.AddEventStageController;
 
 /**
  * Created by Witek on 2016-06-15.
  */
 public class AddEventStage
 {
-    presentation.Main mainApp;
-    Stage addEventStage;
+    public Main mainApp;
+    public Stage addEventStage;
     private AnchorPane root; /*zmiana na AnchorPane*/
 
 
-    AddEventStage(presentation.Main mainApp)
+    public AddEventStage(Main mainApp)
     {
         this.mainApp=mainApp;
 

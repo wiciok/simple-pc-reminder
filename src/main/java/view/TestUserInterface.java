@@ -1,9 +1,9 @@
-package testinterface;
+package view;
 
 import java.io.IOException;
 import java.util.Scanner;
-import data.Database;
-import logic.event.Event;
+import model.Database;
+import model.event.Event;
 
 /**
  * Implemented by Pawel

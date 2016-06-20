@@ -1,6 +1,7 @@
-package data;
+package model;
 
-import logic.event.*;
+import model.event.Event;
+import model.event.EventSerializable;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,12 +13,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.IndexOutOfBoundsException;
 
-
 /**
  * Implemented by Pawel
- *Klasa ktora jest warstwa danych. Jej zadaniem jest obsluga bazy wydarzen.
- *
- *
+ *Klasa ktorej zadaniem jest obsluga bazy wydarzen.
  * */
 
 public class Database
@@ -71,8 +69,9 @@ public class Database
 	
 	/**
 	*writeToFile - zapis do pliku binarnego
-	* @throws IOException
-	* sciezka wzgledna - tworzy plik binaryFile.dat w folderze projektu
+	 * wykonuje translację pomiędzy klasami Event i EventSerializable
+	 * @throws IOException
+	 * sciezka wzgledna - tworzy plik binaryFile.dat w folderze projektu
 	**/
 	public void writeToFile() throws IOException
 	{
@@ -93,14 +92,15 @@ public class Database
 
 		for(int i = 0; i<databaseList.size(); ++i)
 		{
-			file.writeObject(databaseList.get(i));
+			file.writeObject(new EventSerializable(databaseList.get(i)));
 		}
 		file.close();
 	}
 	
 	/**
-	* readFromFile - odczyt z pliku binarnego.
-	* @throws IOException
+	 * readFromFile - odczyt z pliku binarnego.
+	 * wykonuje translację pomiędzy klasami Event i EventSerializable
+	 * @throws IOException
 	**/
 	public void readFromFile() throws IOException
 	{
@@ -126,7 +126,7 @@ public class Database
 		{
 			try
 			{
-				tmp.add( (Event)file.readObject());
+				tmp.add(new Event((EventSerializable)file.readObject()));
 			}
 			catch (ClassNotFoundException e)
 			{

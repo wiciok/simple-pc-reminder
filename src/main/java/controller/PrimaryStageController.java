@@ -1,16 +1,13 @@
-package presentation;
+package controller;
 
-import data.Database;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import logic.event.Scheduler;
+import model.Scheduler;
+import view.AddEventStage;
+import view.Main;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,11 +15,11 @@ import java.util.ResourceBundle;
  * @author Witek
  * Klasa kontrolera gównej sceny (okna)
  */
-public class primaryStageController implements Initializable
+public class PrimaryStageController implements Initializable
 {
-    private presentation.Main mainApp;
-    //presentation.Main mainApp;
-    public primaryStageController(){};
+    private Main mainApp;
+    //view.Main mainApp;
+    public PrimaryStageController(){};
     AddEventStage addEventStage;
 
 
