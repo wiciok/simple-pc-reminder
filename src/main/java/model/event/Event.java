@@ -1,6 +1,5 @@
 package model.event;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -15,7 +14,7 @@ import javafx.beans.property.*;
  *
  */
 
-public class Event implements Serializable, Cloneable
+public class Event extends EventAbstract implements Cloneable
 {
 	private ObjectProperty<LocalDateTime> eventDateNow;
 	private ObjectProperty<LocalDate> eventDateStart;
@@ -93,7 +92,6 @@ public class Event implements Serializable, Cloneable
 	}
 
 
-	public LocalDateTime getEventFullDateStart() { return LocalDateTime.of(getEventDateStart(), getEventTimeStart());}
 	public LocalDateTime getEventDateNow() {return this.eventDateNow.get();}
 	public LocalDate getEventDateStart() {return this.eventDateStart.get();}
 	public LocalTime getEventTimeStart() {return this.eventTimeStart.get();}
@@ -106,9 +104,6 @@ public class Event implements Serializable, Cloneable
 	public Boolean getIsActive() {return this.isActive.get();}
 	public Integer getPriority() {return this.priority.get();}
 
-
-
-	public StringProperty titleProperty() {return this.title;}
 
 	public ObjectProperty<LocalDateTime> getEventDateNowProperty() {return this.eventDateNow;}
 	public ObjectProperty<LocalDate> getEventDateStartProperty() {return this.eventDateStart;}
@@ -123,26 +118,6 @@ public class Event implements Serializable, Cloneable
 	public IntegerProperty getPriorityProperty() {return this.priority;}
 
 
-	public String getEventDateStartString() {return this.eventDateStart.get().toString();}
-	public String getEventTimeStartString() {return this.eventTimeStart.get().toString();}
-	public String getEventDateEndString() {return this.eventDateEnd.get().toString();}
-	public String getEventTimeEndString() {return this.eventTimeEnd.get().toString();}
-	public String getAlertFrequencyString() {return new Integer(this.alertFrequency.get()).toString();}
-	public String getIsActiveString() {return new Boolean(this.isActive.get()).toString();}
-	public String getPriorityString() {return new Integer(this.priority.get()).toString();}
-
-
-	/*public void setEventDateStart(LocalDate eventDateStart) {this.eventDateStart = new SimpleObjectProperty<>(eventDateStart);}
-	public void setEventTimeStart(LocalTime eventTimeStart) {this.eventTimeStart = new SimpleObjectProperty<>(eventTimeStart);}
-	public void setEventDateEnd(LocalDate eventDateEnd) {this.eventDateEnd = new SimpleObjectProperty<>(eventDateEnd);}
-	public void setEventTimeEnd(LocalTime eventTimeEnd) {this.eventTimeEnd = new SimpleObjectProperty<>(eventTimeEnd);}
-	public void setTitle(String title) {this.title = new SimpleStringProperty(title);}
-	public void setDescription(String description) {this.description = new SimpleStringProperty(description);}
-	public void setCategory(String category) {this.category = new SimpleStringProperty(category);}
-	public void setAlertFrequency(int alertFrequency) {this.alertFrequency = new SimpleIntegerProperty(alertFrequency);}
-	public void setIsActive(boolean isActive) {this.isActive=new SimpleBooleanProperty(isActive);}
-	public void setPriority(int priority) {this.priority = new SimpleIntegerProperty(priority);}*/
-
 	public void setEventDateStart(LocalDate eventDateStart) {this.eventDateStart.set(eventDateStart);}
 	public void setEventTimeStart(LocalTime eventTimeStart) {this.eventTimeStart.set(eventTimeStart);}
 	public void setEventDateEnd(LocalDate eventDateEnd) {this.eventDateEnd.set(eventDateEnd);}
@@ -154,14 +129,4 @@ public class Event implements Serializable, Cloneable
 	public void setIsActive(boolean isActive) {this.isActive.set(isActive);}
 	public void setPriority(int priority) {this.priority.set(priority);}
 
-
-	public Object clone()
-	{
-		try {return super.clone();}
-		catch(CloneNotSupportedException e)
-		{
-			e.printStackTrace();
-			return null;
-		}
-	}
 }

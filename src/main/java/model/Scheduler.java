@@ -9,7 +9,7 @@ import model.event.EventNull;
  * Created by Witek on 2016-05-22.
  * Klasa zajmująca się przygotowaniem danych do wyświetlenia
  *
- * ToDo: poprawic bug z update po wczytaniu z pliku
+ * ToDo: poprawic bug(?) z update po wczytaniu z pliku
  */
 public class Scheduler
 {
