@@ -1,17 +1,15 @@
-package logic.event;
+package model;
 
-import data.Database;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
-import logic.event.Event;
 import javafx.collections.*;
-import presentation.Main;
+import model.event.Event;
+import model.event.EventNull;
 
 /**
  * Created by Witek on 2016-05-22.
- * tu najpewniej będzie jakiś scheduler, ale to wyjdzie w praniu
+ * Klasa zajmująca się przygotowaniem danych do wyświetlenia
+ *
+ * ToDo: poprawic bug z update po wczytaniu z pliku
  */
 public class Scheduler
 {

@@ -1,8 +1,4 @@
-package logic.event;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+package model.event;
 
 /**
  * Created by Witek on 2016-06-08.

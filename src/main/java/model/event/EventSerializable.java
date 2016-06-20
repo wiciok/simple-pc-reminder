@@ -1,115 +1,96 @@
-package logic.event;
+package model.event;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.LocalDateTime;
-import javafx.beans.property.*;
+import java.time.LocalTime;
 
 /**
- * Created by Witek on 2016-05-22.
- * podstawowa klasa każdego wydarzenia. to jej obiekty będą tworzone w trakcie działania programu
- *
- *
- * 	Klasa Event:
- * 	Implementuje interfejs Cloneable na potrzeby wykorzystania wzorca prototyp.
- * 	Klasa zawiera do wszystkich zmiennych settery i gettery (oprócz eventDataNow która pobiera aktualny czas za każdym razem).
- * 	Postanowiłem jednak rozdzielić datę wydarzenia na oddzielnie datę i czas.
- * 	Często chcemy przenieść wydarzenie np o tydzień lub tylko przesunąć godzinę myślę że tak będzie wygodniej
- * 	Zwłaszcza jak póniej będziemy używać tego graficznego kalendarza a tam chyba datę i godzinę wybiera się oddzielnie.
- * 	Zaimplementowałem kontruktory: domyślny, sparametryzowany i kopiujący (może się przyda).
- * 	Metoda toString() zwraca wszystkie dane tak by można było łatwo je wyświetlić.
- * 	Metoda print() wyświetla wszystkie dane w podobny sposób do toString() jednak jest voidem.
- * 	Metoda clone() służy do klonowania przesyłanych obiektów.
- * 	Nie dodawałem zczytywania z klawiatury. Myślę że to nie jest potrzebne w klasie Event.
- * 	Postanowiłem domyślnie ustawiać obacną datę i czas w zmiennych zamiast zostawiać pustych.
+ *  Created by Witek on 2016-05-22.
+ *  Klasa wykorzystywana do zapisu na dysk, z racji niemożności zapisu obiektów klasy Event
  *
  * 	LocalDate.parse("2015-12-23")/LocalTime.parse("17:15") - przykładowe nadanie daty do zmiennych ze stringa (później raczej to nie będzie już wykorzystywane)
- * 	Event prototype = new Event();
- * 	Event wydarzenia = (Event)prototype.clone() - Klonowanie obiektów przykład
- *
- * 	Czekam na sugestie.
- * 	Pozdrawiam Mateusz Maciejak
- *
- * 	---------------------------
- * 	zmiany są ogółem ok, ale spowodują problem przy próbie posortowania po dacie rozpoczęcia - cieżko bedzie posortowac
- * 	wydarzenia, które dzieją się tego samego dnia
- *
- * 	sugeruję:
- * 	ToDO: dorobić metody zwracające jednocześnie czas i datę (startu i zakończenia) na podstawie pól data i czas
- *
- *
+ * 	Mateusz Maciejak.
  */
 
 //ToDo: moze uda sie uzyc czegos innego niz niepewne protected
-public class Event implements Serializable, Cloneable
+public class EventSerializable implements Serializable, Cloneable
 {
-	protected LocalDateTime eventDateNow;	// data utworzenia wydarzenia
-	protected LocalDate eventDateStart;
-	protected LocalTime eventTimeStart;
-	protected LocalDate eventDateEnd;
-	protected LocalTime eventTimeEnd;
-	//protected String title;
-	protected String description;
-	protected String category;
-	protected int alertFrequency;
-	protected boolean isActive;
-	protected int priority;
+	private LocalDateTime eventDateNow;	// data utworzenia wydarzenia
+	private LocalDate eventDateStart;
+	private LocalTime eventTimeStart;
+	private LocalDate eventDateEnd;
+	private LocalTime eventTimeEnd;
+	private String title;
+	private String description;
+	private String category;
+	private int alertFrequency;
+	private boolean isActive;
+	private int priority;
 
-	protected StringProperty title;
-
-
-	
-	public Event()
-	{		
+	public EventSerializable()
+	{
 		this.eventDateNow = LocalDateTime.now();
 		this.eventDateStart = LocalDate.now();
 		this.eventTimeStart = LocalTime.now();
 		this.eventDateEnd = LocalDate.now();
 		this.eventTimeEnd = LocalTime.now();
-		//this.title = new String("");
+		this.title = new String("");
 		this.description = new String("");
 		this.category = new String("");
 		this.alertFrequency = 1;
 		this.isActive = false;
 		this.priority = 1;
-
-		this.title = new SimpleStringProperty("");
 	}
-	
-	public Event(LocalDate eventDateStart, LocalTime eventTimeStart, LocalDate eventDateEnd, LocalTime eventTimeEnd,
-				 String name, String description, String category, int alertFrequency, boolean isActive, int priority)
-	{		
+
+	public EventSerializable(LocalDate eventDateStart, LocalTime eventTimeStart, LocalDate eventDateEnd, LocalTime eventTimeEnd,
+							 String name, String description, String category, int alertFrequency, boolean isActive, int priority)
+	{
 		this.eventDateNow = LocalDateTime.now();
 		this.eventDateStart = eventDateStart;
 		this.eventTimeStart = eventTimeStart;
 		this.eventDateEnd = eventDateEnd;
 		this.eventTimeEnd = eventTimeEnd;
-		//this.title = new String(name);
+		this.title = new String(name);
 		this.description = new String(description);
 		this.category = new String(category);
 		this.alertFrequency = alertFrequency;
 		this.isActive = isActive;
 		this.priority = priority;
-
-		this.title = new SimpleStringProperty(name);
 	}
-	
-	public Event(Event copy)
+
+	public EventSerializable(EventSerializable copy)
 	{
 		this.eventDateNow = LocalDateTime.now();
 		this.eventDateStart = copy.eventDateStart;
 		this.eventTimeStart = copy.eventTimeStart;
 		this.eventDateEnd = copy.eventDateEnd;
 		this.eventTimeEnd = copy.eventTimeEnd;
-		//this.title = new String(copy.title);
+		this.title = new String(copy.title);
 		this.description = new String(copy.description);
 		this.category = new String(copy.category);
 		this.alertFrequency = copy.alertFrequency;
 		this.isActive = copy.isActive;
 		this.priority = copy.priority;
+	}
 
-		this.title = new SimpleStringProperty(copy.title.get());
+	public EventSerializable(Event copy)
+	{
+		this.eventDateNow = LocalDateTime.now();
+		this.eventDateStart = copy.getEventDateStart();
+		this.eventTimeStart = copy.getEventTimeStart();
+		this.eventDateEnd = copy.getEventDateEnd();
+		this.eventTimeEnd = copy.getEventTimeEnd();
+		this.title = copy.getTitle();
+		this.description = copy.getDescription();
+		this.category = copy.getCategory();
+		this.alertFrequency = copy.getAlertFrequency();
+		this.isActive = copy.getIsActive();
+		this.priority = copy.getPriority();
 	}
 
 
@@ -123,10 +104,7 @@ public class Event implements Serializable, Cloneable
 	public LocalTime getEventTimeStart() {return this.eventTimeStart;}
 	public LocalDate getEventDateEnd() {return this.eventDateEnd;}
 	public LocalTime getEventTimeEnd() {return this.eventTimeEnd;}
-	/*public String getTitle()
-	{
-		return this.title;
-	}*/
+	public String getTitle() {return this.title;}
 	public String getDescription()
 	{
 		return this.description;
@@ -138,17 +116,6 @@ public class Event implements Serializable, Cloneable
 	public Integer getAlertFrequency() {return new Integer(alertFrequency);}
 	public Boolean getIsActive() {return new Boolean(isActive);}
 	public Integer getPriority() {return new Integer(priority);}
-
-
-	public String getTitle()
-	{
-		return this.title.get();
-	}
-
-	public StringProperty titleProperty()
-	{
-		return this.title;
-	}
 
 
 	public String getEventDateStartString() {return this.eventDateStart.toString();}
@@ -176,10 +143,7 @@ public class Event implements Serializable, Cloneable
 	{
 		this.eventTimeEnd = eventTimeEnd;
 	}
-	/*public void setTitle(String title)
-	{
-		this.title = new String(title);
-	}*/
+	public void setTitle(String title) {this.title = new String(title);}
 	public void setDescription(String description)
 	{
 		this.description = new String(description);
@@ -194,12 +158,6 @@ public class Event implements Serializable, Cloneable
 		this.isActive = isActive;
 	}
 	public void setPriority(int priority) {this.priority = priority;}
-
-
-	public void setTitle(String title)
-	{
-		this.title = new SimpleStringProperty(title);
-	}
 
 
 	public String toString()
@@ -217,6 +175,12 @@ public class Event implements Serializable, Cloneable
 				"\nPriorytet: "+priority;
 	}
 
+	/**
+	 *
+	 *  Przykład:
+	 *  Event prototype = new Event();
+	 * 	Event wydarzenia = (Event)prototype.clone() -
+	 * */
 	public Object clone()
 	{
 		try {return super.clone();}

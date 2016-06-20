@@ -3,27 +3,22 @@
  * Stage głównego okna programu
  */
 
-package presentation;
+package view;
 
-import data.Database;
+import model.Database;
 import javafx.application.*;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import logic.event.Scheduler;
-import logic.event.*;
+import model.Scheduler;
 import javafx.scene.layout.*;
+import controller.PrimaryStageController;
 import java.io.IOException;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 
 public class Main extends Application
 {
-	Stage primaryStage;
+	public Stage primaryStage;
 	private BorderPane root;
 	private Database database;
 
@@ -33,14 +28,13 @@ public class Main extends Application
 		database = Database.getInstance();
 
 
-		/*try {database.readFromFile();}
-
+		try {database.readFromFile();}
 		catch(IOException e)
 		{
 			//ToDo: sensowniej to zrobić...
 			e.printStackTrace();
 			System.out.print("_______nie otworzono pliku!");
-		}*/
+		}
 
 
 		//todo: usunac potem (jest dla testow narazie):
@@ -72,7 +66,7 @@ public class Main extends Application
 			primaryStage.setTitle("Simple PC Reminder");
 			primaryStage.show();
 
-			primaryStageController controller = loader.getController();
+			PrimaryStageController controller = loader.getController();
 			controller.setMainApp(this);
 		}
 		catch(Exception e) {e.printStackTrace();}
@@ -85,7 +79,7 @@ public class Main extends Application
 	}
 
 
-	/*@Override
+	@Override
 	public void stop()
 	{
 		try
@@ -100,7 +94,7 @@ public class Main extends Application
 			e.printStackTrace();
 			System.out.println("__________ nie zapisano!!!!!!!");
 		}
-	}*/
+	}
 
 }
 
