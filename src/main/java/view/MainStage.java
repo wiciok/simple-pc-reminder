@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Scheduler;
 import javafx.scene.layout.*;
-import controller.PrimaryStageController;
+import controller.MainStageController;
 import java.io.IOException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.*;
@@ -18,11 +18,13 @@ import javafx.scene.control.Alert.*;
  */
 
 
-public class Main extends Application
+public class MainStage extends Application
 {
-	public Stage primaryStage;
+	public Stage mainStage;
 	private BorderPane root;
 	private Database database;
+	//ToDo: to public to tak średnio bym powiedział
+	public MainStageController controller;
 
 	@Override
 	public void start(Stage primaryStage)
@@ -57,9 +59,9 @@ public class Main extends Application
 
 		try
 		{
-			this.primaryStage=primaryStage;
+			this.mainStage=primaryStage;
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("primaryStage.fxml"));;
+			loader.setLocation(MainStage.class.getResource("mainStage.fxml"));;
 			root = loader.load();
 
 			Scene scene = new Scene(root);
@@ -67,7 +69,7 @@ public class Main extends Application
 			primaryStage.setTitle("Simple PC Reminder");
 			primaryStage.show();
 
-			PrimaryStageController controller = loader.getController();
+			controller = loader.getController();
 			controller.setMainApp(this);
 		}
 		catch(Exception e)

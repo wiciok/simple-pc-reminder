@@ -190,7 +190,8 @@ public class AddEventStageController implements Initializable
                 
                 /*update i zamykam*/
 
-                Scheduler.update();
+                addEventStage.mainApp.controller.scheduler.update();
+                //Scheduler.update();
                 addEventStage.addEventStage.close();
             }
         });
