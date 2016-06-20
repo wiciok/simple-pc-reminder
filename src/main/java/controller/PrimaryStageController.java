@@ -14,11 +14,12 @@ import java.util.ResourceBundle;
 /**
  * @author Witek
  * Klasa kontrolera gównej sceny (okna)
+ *
+ * ToDo: refaktoryzacja, dekompozycja zależności
  */
 public class PrimaryStageController implements Initializable
 {
     private Main mainApp;
-    //view.Main mainApp;
     public PrimaryStageController(){};
     AddEventStage addEventStage;
 
@@ -95,9 +96,9 @@ public class PrimaryStageController implements Initializable
         labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());
 
 
-        Scheduler.taskDisplayList.get(0).titleProperty().addListener((observable, oldValue, newValue) -> update1(newValue));
-        Scheduler.taskDisplayList.get(1).titleProperty().addListener((observable, oldValue, newValue) -> update2(newValue));
-        Scheduler.taskDisplayList.get(2).titleProperty().addListener((observable, oldValue, newValue) -> update3(newValue));
+        Scheduler.taskDisplayList.get(0).getTitleProperty().addListener((observable, oldValue, newValue) -> update1(newValue));
+        Scheduler.taskDisplayList.get(1).getTitleProperty().addListener((observable, oldValue, newValue) -> update2(newValue));
+        Scheduler.taskDisplayList.get(2).getTitleProperty().addListener((observable, oldValue, newValue) -> update3(newValue));
     }
 
     public void setMainApp(Main mainApp)

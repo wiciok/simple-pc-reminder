@@ -32,6 +32,8 @@ import view.AddEventStage;
  * ToDo: button od dodawania: dodawanie tymczasowego Eventu (ktory bedzie mial parametry pobrane z kontrolek do bazy,
  * potem update schedulera, nastepnie zamkniecie stage'a
  *
+ * ToDo: REFAKTORYZACJA
+ *
  *Pawel Update: zaimplementowane!
  *wszystkie kombinacje ze uzytkownik cos nie wprowadzi itp sa obsluzone - event zawsze sie doda,
  *chyba ze cos przeoczyłem to macie okazje i możecie hackować jak p. Wojtas :)

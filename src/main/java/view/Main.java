@@ -27,15 +27,13 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage)
 	{
-		/*ZMIANA WYNIKIAJACA Z SINGLETON - WYWALONY KONSTRUKTOR*/
-		database = Database.getInstance();
+		database = Database.getInstance(); //użycie wzorca Singleton
 
 
 		try {database.readFromFile();}
 		catch(IOException e)
 		{
-			/*e.printStackTrace();
-			System.out.print("_______nie otworzono pliku!");*/
+			//e.printStackTrace();
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information");
