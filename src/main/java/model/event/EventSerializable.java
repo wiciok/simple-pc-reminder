@@ -32,7 +32,7 @@ public class EventSerializable implements Serializable, Cloneable
 	private boolean isActive;
 	private int priority;
 
-	public EventSerializable()
+	/*public EventSerializable()
 	{
 		this.eventDateNow = LocalDateTime.now();
 		this.eventDateStart = LocalDate.now();
@@ -76,7 +76,7 @@ public class EventSerializable implements Serializable, Cloneable
 		this.alertFrequency = copy.alertFrequency;
 		this.isActive = copy.isActive;
 		this.priority = copy.priority;
-	}
+	}*/
 
 	public EventSerializable(Event copy)
 	{

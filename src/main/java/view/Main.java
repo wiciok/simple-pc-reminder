@@ -1,8 +1,3 @@
-/**
- * podstawowa klasa od GUI
- * Stage głównego okna programu
- */
-
 package view;
 
 import model.Database;
@@ -14,6 +9,13 @@ import model.Scheduler;
 import javafx.scene.layout.*;
 import controller.PrimaryStageController;
 import java.io.IOException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.*;
+
+/**
+ * podstawowa klasa od GUI
+ * Stage głównego okna programu
+ */
 
 
 public class Main extends Application
@@ -22,7 +24,8 @@ public class Main extends Application
 	private BorderPane root;
 	private Database database;
 
-	public void init()
+	@Override
+	public void start(Stage primaryStage)
 	{
 		/*ZMIANA WYNIKIAJACA Z SINGLETON - WYWALONY KONSTRUKTOR*/
 		database = Database.getInstance();
@@ -31,9 +34,15 @@ public class Main extends Application
 		try {database.readFromFile();}
 		catch(IOException e)
 		{
-			//ToDo: sensowniej to zrobić...
-			e.printStackTrace();
-			System.out.print("_______nie otworzono pliku!");
+			/*e.printStackTrace();
+			System.out.print("_______nie otworzono pliku!");*/
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information");
+			alert.setHeaderText(null);
+			alert.setContentText("Database File hasn't been read.");
+
+			alert.showAndWait();
 		}
 
 
@@ -47,18 +56,12 @@ public class Main extends Application
 		//database.add(test1);
 
 		Scheduler.init();
-	}
 
-
-
-	@Override
-	public void start(Stage primaryStage)
-	{
 		try
 		{
 			this.primaryStage=primaryStage;
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("primaryStage.fxml"));
+			loader.setLocation(Main.class.getResource("primaryStage.fxml"));;
 			root = loader.load();
 
 			Scene scene = new Scene(root);
@@ -69,7 +72,17 @@ public class Main extends Application
 			PrimaryStageController controller = loader.getController();
 			controller.setMainApp(this);
 		}
-		catch(Exception e) {e.printStackTrace();}
+		catch(Exception e)
+		{
+			//e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Stage Error!");
+			alert.setContentText("Application will be terminated.");
+
+			alert.showAndWait();
+			primaryStage.close();
+		}
 
 	}
 
@@ -85,14 +98,15 @@ public class Main extends Application
 		try
 		{
 			Database.getInstance().writeToFile();
-			//todo: usunac potem:
-			System.out.println("__________zapisano");
 		}
 		catch (IOException e)
 		{
-			//ToDo: dorobic obsluge wyjatku!
-			e.printStackTrace();
-			System.out.println("__________ nie zapisano!!!!!!!");
+			//e.printStackTrace();
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Warning");
+			alert.setHeaderText(null);
+			alert.setContentText("File has not been written on disc!");
+			alert.showAndWait();
 		}
 	}
 
