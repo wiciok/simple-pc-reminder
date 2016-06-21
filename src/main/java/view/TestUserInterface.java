@@ -1,12 +1,9 @@
-package testinterface;
+package view;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Scanner;
-import data.Database;
-import logic.event.Event;
+import model.Database;
+import model.event.Event;
 
 /**
  * Implemented by Pawel
@@ -112,8 +109,8 @@ public class TestUserInterface
 						
 				case 5: System.out.println("List size:"+testDatabase.size());
 						break;
-				case 6: //testDatabase.listQuicksort(0, testDatabase.size() - 1); //dodalem odpowiednie przeciazenie bezposrednio w Database
-						testDatabase.listQuicksort();
+				case 6: //testDatabase.sort(0, testDatabase.size() - 1); //dodalem odpowiednie przeciazenie bezposrednio w Database
+						testDatabase.sort();
 						break;
 				case 7: System.out.println("KONIEC");
 						input.close();

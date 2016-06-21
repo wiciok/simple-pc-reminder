@@ -1,7 +1,6 @@
-package presentation;
+package controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableIntegerArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,13 +9,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
-import logic.event.Event;
-import logic.event.Scheduler;
+import model.event.Event;
+import model.Scheduler;
 import javafx.fxml.FXML;
 
 import java.net.URL;
@@ -24,68 +21,38 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
-import com.sun.javafx.scene.layout.region.Margins.Converter;
-
-import data.Database;
+import model.Database;
+import view.AddEventStage;
 
 /**
  * Created by Witek on 2016-06-15.
- *
- * ToDo: cała obsluga dodawania do bazy
- *
- * ToDo: button od dodawania: dodawanie tymczasowego Eventu (ktory bedzie mial parametry pobrane z kontrolek do bazy,
- * potem update schedulera, nastepnie zamkniecie stage'a
- *
- *Pawel Update: zaimplementowane!
- *wszystkie kombinacje ze uzytkownik cos nie wprowadzi itp sa obsluzone - event zawsze sie doda,
- *chyba ze cos przeoczyłem to macie okazje i możecie hackować jak p. Wojtas :)
+ * ToDo: REFAKTORYZACJA
  */
 public class AddEventStageController implements Initializable
 {
     private AddEventStage addEventStage;
-    @FXML
-    private Button cancelButton;
-    @FXML
-    private Button createEventButton;
-    @FXML
-    private DatePicker pickStartDate;
-    @FXML
-    private DatePicker pickEndDate;
-    @FXML
-    private TextArea eventDescriptionField;
-    @FXML
-    private TextField eventCategory;
-    @FXML
-    private TextField eventNameField;
-    @FXML
-    private TextField eventStartTime;
-    @FXML
-    private TextField eventEndTime;
-    @FXML
-    private ComboBox<Integer> eventPriority;
+    @FXML private Button cancelButton;
+    @FXML private Button createEventButton;
+    @FXML private DatePicker pickStartDate;
+    @FXML private DatePicker pickEndDate;
+    @FXML private TextArea eventDescriptionField;
+    @FXML private TextField eventCategory;
+    @FXML private TextField eventNameField;
+    @FXML private TextField eventStartTime;
+    @FXML private TextField eventEndTime;
+    @FXML private ComboBox<Integer> eventPriority;
     ObservableList<Integer> options = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
-    @FXML
-    private ComboBox<Integer> alertFrequency;
-    ObservableList<Integer> alertOptions = FXCollections.observableArrayList(1,2,3,4,5);
-    @FXML
-    private ComboBox<String> eventIsActive;
+    @FXML private ComboBox<Integer> alertFrequency;ObservableList<Integer> alertOptions = FXCollections.observableArrayList(1,2,3,4,5);
+    @FXML private ComboBox<String> eventIsActive;
     ObservableList<String> activeOptions = FXCollections.observableArrayList("True", "False");
-    @FXML
-    private Label l1;
-    @FXML
-    private Label l2;
-    @FXML
-    private Label l3;
-    @FXML
-    private Label l4;
-    @FXML
-    private GridPane pane1;
-    @FXML
-    private GridPane pane2;
-    @FXML
-    private GridPane pane3;
-    @FXML
-    private GridPane pane4;
+    @FXML private Label l1;
+    @FXML private Label l2;
+    @FXML private Label l3;
+    @FXML private Label l4;
+    @FXML private GridPane pane1;
+    @FXML private GridPane pane2;
+    @FXML private GridPane pane3;
+    @FXML private GridPane pane4;
 
     public void setMainApp(AddEventStage AddEventStage)
     {
@@ -141,7 +108,7 @@ public class AddEventStageController implements Initializable
         		/* tworzenie prototypu Eventu - w konstruktorze sa ustawiane domyslne wartosci
         		 * ktore obowiazuja gdy uzytkownik tu czegos nie wprowadzi*/
         		
-        		Event prototype = new Event();
+        		Event prototype = new Event(); //ToDo: ten prototyp powinien miec jakies sensowne wartosci, anie to co ma konstruktor domyslnie
         		Event newEvent = (Event)prototype.clone();
         		
         		/*Pobieranie wpisanych przez uzytkownika wartosci*/
@@ -209,7 +176,9 @@ public class AddEventStageController implements Initializable
                 System.out.println(Database.getInstance().get(2).getIsActiveString());*/
                 
                 /*update i zamykam*/
-                Scheduler.update();
+
+                addEventStage.mainApp.controller.scheduler.update();
+                //Scheduler.update();
                 addEventStage.addEventStage.close();
             }
         });

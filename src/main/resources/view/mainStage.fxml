@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.primaryStageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainStageController">
    <center>
       <Accordion BorderPane.alignment="CENTER">
         <panes>
@@ -85,10 +85,12 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button fx:id="buttonPrevEvents" mnemonicParsing="false" text="Button" />
-            <Button fx:id="buttonNextEvents" mnemonicParsing="false" text="Button" />
-            <Button fx:id="buttonAdd" mnemonicParsing="false" />
-            <Button fx:id="buttonClose" mnemonicParsing="false" />
+            <Label fx:id="pageLabel" text="Label" />
+            <Button fx:id="buttonRefresh" mnemonicParsing="false" text="but_refresh" />
+          <Button fx:id="buttonPrevEvents" mnemonicParsing="false" text="butt_prev" />
+            <Button fx:id="buttonNextEvents" mnemonicParsing="false" text="butt_next" />
+            <Button fx:id="buttonAdd" mnemonicParsing="false" text="but_add" />
+            <Button fx:id="buttonClose" mnemonicParsing="false" text="but_close" />
         </buttons>
       </ButtonBar>
    </bottom>
