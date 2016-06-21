@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 
 /**
  * Created by Witek on 2016-06-21.
- * Zasoby wykorzystywane w klasach controller
+ * Zdekomponowanie zasobów wykorzystywanych w klasach controller
  */
 
 @Resource

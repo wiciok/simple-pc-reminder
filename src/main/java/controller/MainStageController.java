@@ -13,9 +13,7 @@ import java.util.ResourceBundle;
 
 /**
  * @author Witek
- * Klasa kontrolera gównej sceny (okna)
- *
- * ToDo: refaktoryzacja, dekompozycja zależności
+ * Klasa kontrolera głównej sceny (okna)
  */
 public class MainStageController implements Initializable
 {
@@ -94,6 +92,7 @@ public class MainStageController implements Initializable
     /**
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
      * Wzorzec projektowy Adapter.
+     * ToDo: println do wywalenia po zakonczniu pracy nad klasą Scheduler
      */
     public class UpdateAdapter
     {
