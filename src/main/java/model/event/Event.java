@@ -28,8 +28,6 @@ public class Event extends EventAbstract implements Cloneable
 	private BooleanProperty isActive;
 	private IntegerProperty priority;
 
-
-	
 	public Event()
 	{		
 		this.eventDateNow = new SimpleObjectProperty<>(LocalDateTime.now());

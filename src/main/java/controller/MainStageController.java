@@ -13,9 +13,7 @@ import java.util.ResourceBundle;
 
 /**
  * @author Witek
- * Klasa kontrolera gównej sceny (okna)
- *
- * ToDo: refaktoryzacja, dekompozycja zależności
+ * Klasa kontrolera głównej sceny (okna)
  */
 public class MainStageController implements Initializable
 {
@@ -25,15 +23,6 @@ public class MainStageController implements Initializable
     Scheduler scheduler;
 
     public UpdateAdapter update = new UpdateAdapter();
-
-
-    //robię to tutaj, żeby była dekompozycja zależności i dało się to łatwo zmienić
-    String buttonCloseText = new String("Close");
-    String buttonAddText = new String("Add Event");
-    String buttonNextEventsText = new String("Next");
-    String buttonPrevEventsText = new String("Previous");
-    String buttonRefreshText = new String("Refresh");
-    String pageLabelText = new String("Page: ");
 
 
     /*jeśli w SceneBuilderze nadaliśmy kontrolce takie samo ID jak nazwa obiektu
@@ -67,23 +56,23 @@ public class MainStageController implements Initializable
 
         buttonNextEvents.setOnAction(event -> {
             scheduler.getNext();
-            pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
+            pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
         buttonPrevEvents.setOnAction(event -> {
             scheduler.getPrev();
-            pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
+            pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
         buttonRefresh.setOnAction(event -> {
             scheduler.update();
-            pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
+            pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
 
-        buttonClose.setText(buttonCloseText);
-        buttonAdd.setText(buttonAddText);
-        buttonPrevEvents.setText(buttonPrevEventsText);
-        buttonNextEvents.setText(buttonNextEventsText);
-        buttonRefresh.setText(buttonRefreshText);
-        pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
+        buttonClose.setText(Resources.MainStageRes.buttonCloseText);
+        buttonAdd.setText(Resources.MainStageRes.buttonAddText);
+        buttonPrevEvents.setText(Resources.MainStageRes.buttonPrevEventsText);
+        buttonNextEvents.setText(Resources.MainStageRes.buttonNextEventsText);
+        buttonRefresh.setText(Resources.MainStageRes.buttonRefreshText);
+        pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
 
         paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
         paneEvent2.setText(Scheduler.taskDisplayList.get(1).getTitle());
@@ -103,6 +92,7 @@ public class MainStageController implements Initializable
     /**
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
      * Wzorzec projektowy Adapter.
+     * ToDo: println do wywalenia po zakonczniu pracy nad klasą Scheduler
      */
     public class UpdateAdapter
     {

@@ -5,15 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import model.event.Event;
-import model.Scheduler;
 import javafx.fxml.FXML;
 
 import java.net.URL;
@@ -30,7 +29,7 @@ import view.AddEventStage;
  *
  * ToDo: dorobic rzucanie wyjatku dla wprowadzonych zlych wartosci i okno alertu z infromacja dla usera
  *
- * ToDo: dekompozycja tych stringów
+ * ToDo: sprawdzicz, czy MVC nie wymaga zeby przeniesc np nadawanie nazw do view
  */
 public class AddEventStageController implements Initializable
 {
@@ -48,7 +47,7 @@ public class AddEventStageController implements Initializable
     private ObservableList<Integer> options = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
     @FXML private ComboBox<Integer> alertFrequency;ObservableList<Integer> alertOptions = FXCollections.observableArrayList(1,2,3,4,5);
     @FXML private ComboBox<String> eventIsActive;
-    private ObservableList<String> activeOptions = FXCollections.observableArrayList("True", "False");
+    private ObservableList<String> activeOptions = FXCollections.observableArrayList(Resources.AddEventStageRes.strTrue, Resources.AddEventStageRes.strFalse);
     @FXML private Label l1;
     @FXML private Label l2;
     @FXML private Label l3;
@@ -61,9 +60,8 @@ public class AddEventStageController implements Initializable
 
     public void initialize(URL url, ResourceBundle rb)
     {
-    	/*konfiguracja Cancel Button*/
-        String cancelButtonText = new String("Cancel");
-        cancelButton.setText(cancelButtonText);
+    	/*konfiguracja Cancel Button*/;
+        cancelButton.setText(Resources.AddEventStageRes.strCancel);
         cancelButton.setOnAction(event -> addEventStage.addEventStage.close());
         
         /*konfiguracja ComboBox (te rozwijane wybory)*/
@@ -74,27 +72,27 @@ public class AddEventStageController implements Initializable
         eventIsActive.setItems(activeOptions);
         eventIsActive.getSelectionModel().selectFirst();
         
-        l1.setText("Choose Event Priority");
-        l2.setText("Choose Alert Frequency");
-        l3.setText("Make Event Active?");
-        l4.setText("Format HH:MM:SS or HH:MM");
+        l1.setText(Resources.AddEventStageRes.strL1);
+        l2.setText(Resources.AddEventStageRes.strL2);
+        l3.setText(Resources.AddEventStageRes.strL3);
+        l4.setText(Resources.AddEventStageRes.strL4);
         
         pickStartDate.setEditable(false);
-        pickStartDate.setPromptText("Choose Start Date");
+        pickStartDate.setPromptText(Resources.AddEventStageRes.strPickStartDate);
         pickEndDate.setEditable(false);
-        pickEndDate.setPromptText("Choose End Date");
+        pickEndDate.setPromptText(Resources.AddEventStageRes.strPickEndDate);
 
-        eventStartTime.setPromptText("Input Start Time");
-        eventEndTime.setPromptText("Input End Time");
+        eventStartTime.setPromptText(Resources.AddEventStageRes.strEventStartTime);
+        eventEndTime.setPromptText(Resources.AddEventStageRes.strEventEndTime);
         
         eventDescriptionField.setWrapText(true);
-        eventDescriptionField.setPromptText("Input Event Description");
-        eventNameField.setPromptText("Input Event Name");
-        eventCategory.setPromptText("Input Event Category");
+        eventDescriptionField.setPromptText(Resources.AddEventStageRes.strEventDescriptionField);
+        eventNameField.setPromptText(Resources.AddEventStageRes.strEventNameField);
+        eventCategory.setPromptText(Resources.AddEventStageRes.strEventCategory);
         
         /*Konfiguracja Create Event button*/
-        String createEventText = new String("Create Event");
-        createEventButton.setText(createEventText);
+        createEventButton.setText(Resources.AddEventStageRes.strCreateEventButton);
+
         createEventButton.setOnAction(new EventHandler<ActionEvent>()
         {
         	public void handle(ActionEvent event)
@@ -118,32 +116,83 @@ public class AddEventStageController implements Initializable
         		
         		/*data rozpoczenia - sprawdzane czy cos jest wybrane i czy data rozpoczecia jest pozniejsza od obecnej daty
         		 * (bo bez sensu dawac event w przeszlosci)*/
-        		if(pickStartDate.getValue() != null && !pickStartDate.getValue().isBefore(LocalDate.now()))
-        			newEvent.setEventDateStart(pickStartDate.getValue());
-        		
+        		try
+        		{
+        	   		if(pickStartDate.getValue() != null && !pickStartDate.getValue().isBefore(LocalDate.now()))
+            			newEvent.setEventDateStart(pickStartDate.getValue());
+        	   		else
+        	   			throw new Exception();
+        		}
+        		catch(Exception e)
+        		{
+        			Alert alert = new Alert(Alert.AlertType.WARNING);
+        			alert.setTitle("Warning");
+                    alert.setHeaderText("Event start date warning!");
+                    alert.setContentText("No date set or the date is inproper.\n\nCurrent date will be set.");
+                    alert.showAndWait();
+        		}
+     
         		/*walidacja tego czasu - najpierw jest sprawdzane czy w ogole cos zostalo wprowadzone
         		 * i potem dopiero czy to wprowadzone ma jakis sens - formaty HH:MM:SS lub HH:MM
         		 * i potem konwertowane do czasu*/
-
-        		if(eventStartTime.getText() != null && !(eventStartTime.getText().trim().isEmpty()))
+        		try
         		{
-        			if(eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
-        				newEvent.setEventTimeStart(LocalTime.parse(eventStartTime.getText()));
+        			if(eventStartTime.getText() != null && !(eventStartTime.getText().trim().isEmpty()))
+            		{
+            			if(eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
+            				newEvent.setEventTimeStart(LocalTime.parse(eventStartTime.getText()));
+            			else
+            				throw new Exception();
+            		}
+        			else throw new Exception();
         		}
+        		catch(Exception e)
+        		{
+        			Alert alert = new Alert(Alert.AlertType.WARNING);
+        			alert.setTitle("Warning");
+                    alert.setHeaderText("Event start time warning!");
+                    alert.setContentText("No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
+                    alert.showAndWait();
+        		}        		
         		
         		/*data zakonczenia - sprawdzane czy cos jest wybrane i czy data zakonczenia jest pozniejsza od obecnej daty i daty rozpoczecia
         		 * (bo bez sensu dawac event w przeszlosci)*/
-
-        		if(pickEndDate.getValue() != null && 
-        				!pickEndDate.getValue().isBefore(newEvent.getEventDateStart()) && 
-        				!pickEndDate.getValue().isBefore(LocalDate.now()))
-        			newEvent.setEventDateEnd(pickEndDate.getValue());
+        		try
+        		{
+        			if(pickEndDate.getValue() != null && 
+        					!pickEndDate.getValue().isBefore(newEvent.getEventDateStart()) && 
+        					!pickEndDate.getValue().isBefore(LocalDate.now()))
+        				newEvent.setEventDateEnd(pickEndDate.getValue());
+        			else
+        				throw new Exception();
+        		}
+        		catch(Exception e)
+        		{
+        			Alert alert = new Alert(Alert.AlertType.WARNING);
+        			alert.setTitle("Warning");
+                    alert.setHeaderText("Event end date warning!");
+                    alert.setContentText("No date set or the date is inproper.\n\nCurrent date will be set.");
+                    alert.showAndWait();
+        		}
         		
         		/*znow walidacja czasu tym razem zakonczenia*/
-        		if(eventEndTime.getText() != null && !(eventEndTime.getText().trim().isEmpty()))
+        		try
         		{
-        			if(eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
-        				newEvent.setEventTimeEnd(LocalTime.parse(eventEndTime.getText()));
+        			if(eventEndTime.getText() != null && !(eventEndTime.getText().trim().isEmpty()))
+        			{
+        				if(eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
+        					newEvent.setEventTimeEnd(LocalTime.parse(eventEndTime.getText()));
+        				else throw new Exception();
+        			}
+        			else throw new Exception();
+        		}
+        		catch(Exception e)
+        		{
+        			Alert alert = new Alert(Alert.AlertType.WARNING);
+        			alert.setTitle("Warning");
+                    alert.setHeaderText("Event end time warning!");
+                    alert.setContentText("No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
+                    alert.showAndWait();
         		}
         		
         		/* tu zawsze wybrana jest wartosc domyslna w razie jakby nic nie wybrał uzytkownik - widac w GUI*/
@@ -158,6 +207,4 @@ public class AddEventStageController implements Initializable
             }
         });
     }
-
-
 }

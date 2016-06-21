@@ -52,7 +52,6 @@ public class EventSerializable extends EventAbstract implements Serializable, Cl
 		this.priority = copy.getPriority();
 	}
 
-
 	public LocalDateTime getEventDateNow() {return this.eventDateNow;}
 	public LocalDate getEventDateStart() {return this.eventDateStart;}
 	public LocalTime getEventTimeStart() {return this.eventTimeStart;}
