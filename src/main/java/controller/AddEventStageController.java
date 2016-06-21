@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -115,32 +116,83 @@ public class AddEventStageController implements Initializable
         		
         		/*data rozpoczenia - sprawdzane czy cos jest wybrane i czy data rozpoczecia jest pozniejsza od obecnej daty
         		 * (bo bez sensu dawac event w przeszlosci)*/
-        		if(pickStartDate.getValue() != null && !pickStartDate.getValue().isBefore(LocalDate.now()))
-        			newEvent.setEventDateStart(pickStartDate.getValue());
-        		
+        		try
+        		{
+        	   		if(pickStartDate.getValue() != null && !pickStartDate.getValue().isBefore(LocalDate.now()))
+            			newEvent.setEventDateStart(pickStartDate.getValue());
+        	   		else
+        	   			throw new Exception();
+        		}
+        		catch(Exception e)
+        		{
+        			Alert alert = new Alert(Alert.AlertType.WARNING);
+        			alert.setTitle("Warning");
+                    alert.setHeaderText("Event start date warning!");
+                    alert.setContentText("No date set or the date is inproper.\n\nCurrent date will be set.");
+                    alert.showAndWait();
+        		}
+     
         		/*walidacja tego czasu - najpierw jest sprawdzane czy w ogole cos zostalo wprowadzone
         		 * i potem dopiero czy to wprowadzone ma jakis sens - formaty HH:MM:SS lub HH:MM
         		 * i potem konwertowane do czasu*/
-
-        		if(eventStartTime.getText() != null && !(eventStartTime.getText().trim().isEmpty()))
+        		try
         		{
-        			if(eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
-        				newEvent.setEventTimeStart(LocalTime.parse(eventStartTime.getText()));
+        			if(eventStartTime.getText() != null && !(eventStartTime.getText().trim().isEmpty()))
+            		{
+            			if(eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
+            				newEvent.setEventTimeStart(LocalTime.parse(eventStartTime.getText()));
+            			else
+            				throw new Exception();
+            		}
+        			else throw new Exception();
         		}
+        		catch(Exception e)
+        		{
+        			Alert alert = new Alert(Alert.AlertType.WARNING);
+        			alert.setTitle("Warning");
+                    alert.setHeaderText("Event start time warning!");
+                    alert.setContentText("No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
+                    alert.showAndWait();
+        		}        		
         		
         		/*data zakonczenia - sprawdzane czy cos jest wybrane i czy data zakonczenia jest pozniejsza od obecnej daty i daty rozpoczecia
         		 * (bo bez sensu dawac event w przeszlosci)*/
-
-        		if(pickEndDate.getValue() != null && 
-        				!pickEndDate.getValue().isBefore(newEvent.getEventDateStart()) && 
-        				!pickEndDate.getValue().isBefore(LocalDate.now()))
-        			newEvent.setEventDateEnd(pickEndDate.getValue());
+        		try
+        		{
+        			if(pickEndDate.getValue() != null && 
+        					!pickEndDate.getValue().isBefore(newEvent.getEventDateStart()) && 
+        					!pickEndDate.getValue().isBefore(LocalDate.now()))
+        				newEvent.setEventDateEnd(pickEndDate.getValue());
+        			else
+        				throw new Exception();
+        		}
+        		catch(Exception e)
+        		{
+        			Alert alert = new Alert(Alert.AlertType.WARNING);
+        			alert.setTitle("Warning");
+                    alert.setHeaderText("Event end date warning!");
+                    alert.setContentText("No date set or the date is inproper.\n\nCurrent date will be set.");
+                    alert.showAndWait();
+        		}
         		
         		/*znow walidacja czasu tym razem zakonczenia*/
-        		if(eventEndTime.getText() != null && !(eventEndTime.getText().trim().isEmpty()))
+        		try
         		{
-        			if(eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
-        				newEvent.setEventTimeEnd(LocalTime.parse(eventEndTime.getText()));
+        			if(eventEndTime.getText() != null && !(eventEndTime.getText().trim().isEmpty()))
+        			{
+        				if(eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
+        					newEvent.setEventTimeEnd(LocalTime.parse(eventEndTime.getText()));
+        				else throw new Exception();
+        			}
+        			else throw new Exception();
+        		}
+        		catch(Exception e)
+        		{
+        			Alert alert = new Alert(Alert.AlertType.WARNING);
+        			alert.setTitle("Warning");
+                    alert.setHeaderText("Event end time warning!");
+                    alert.setContentText("No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
+                    alert.showAndWait();
         		}
         		
         		/* tu zawsze wybrana jest wartosc domyslna w razie jakby nic nie wybrał uzytkownik - widac w GUI*/
@@ -155,6 +207,4 @@ public class AddEventStageController implements Initializable
             }
         });
     }
-
-
 }
