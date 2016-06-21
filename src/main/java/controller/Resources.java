@@ -41,6 +41,19 @@ class Resources
         static String buttonPrevEventsText = "Previous";
         static String buttonRefreshText = "Refresh";
         static String pageLabelText = "Page: ";
+
+        static String buttonRemoveText = "Remove";
+ 
+         /*STRINGI OD LABELI OGOLNYCH*/
+        static String descriptionLabelText = "Description:";
+        static String categoryLabelText = "Category:";
+        static String titleLabelText = "Title:";
+        static String startDateTimeText = "Start date and time:";
+        static String endDateTimeText = "End date and time:";
+        static String alertFrequencyText = "Alert frequency:";
+        static String priorityText = "Priority:";
+        static String isActiveText = "Is active?";
+        
     }
 
 }
