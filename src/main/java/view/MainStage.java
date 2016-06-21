@@ -37,10 +37,8 @@ public class MainStage extends Application
 			alert.setTitle("Information");
 			alert.setHeaderText(null);
 			alert.setContentText("Database File hasn't been read.");
-
 			alert.showAndWait();
 		}
-
 		Scheduler.init();
 
 		try
@@ -93,7 +91,6 @@ public class MainStage extends Application
 			alert.showAndWait();
 		}
 	}
-
 }
 
 
