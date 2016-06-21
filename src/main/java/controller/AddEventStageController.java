@@ -26,64 +26,33 @@ import view.AddEventStage;
 
 /**
  * Created by Witek on 2016-06-15.
- *
- * ToDo: cała obsluga dodawania do bazy
- *
- * ToDo: button od dodawania: dodawanie tymczasowego Eventu (ktory bedzie mial parametry pobrane z kontrolek do bazy,
- * potem update schedulera, nastepnie zamkniecie stage'a
- *
  * ToDo: REFAKTORYZACJA
- *
- *Pawel Update: zaimplementowane!
- *wszystkie kombinacje ze uzytkownik cos nie wprowadzi itp sa obsluzone - event zawsze sie doda,
- *chyba ze cos przeoczyłem to macie okazje i możecie hackować jak p. Wojtas :)
  */
 public class AddEventStageController implements Initializable
 {
     private AddEventStage addEventStage;
-    @FXML
-    private Button cancelButton;
-    @FXML
-    private Button createEventButton;
-    @FXML
-    private DatePicker pickStartDate;
-    @FXML
-    private DatePicker pickEndDate;
-    @FXML
-    private TextArea eventDescriptionField;
-    @FXML
-    private TextField eventCategory;
-    @FXML
-    private TextField eventNameField;
-    @FXML
-    private TextField eventStartTime;
-    @FXML
-    private TextField eventEndTime;
-    @FXML
-    private ComboBox<Integer> eventPriority;
+    @FXML private Button cancelButton;
+    @FXML private Button createEventButton;
+    @FXML private DatePicker pickStartDate;
+    @FXML private DatePicker pickEndDate;
+    @FXML private TextArea eventDescriptionField;
+    @FXML private TextField eventCategory;
+    @FXML private TextField eventNameField;
+    @FXML private TextField eventStartTime;
+    @FXML private TextField eventEndTime;
+    @FXML private ComboBox<Integer> eventPriority;
     ObservableList<Integer> options = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
-    @FXML
-    private ComboBox<Integer> alertFrequency;
-    ObservableList<Integer> alertOptions = FXCollections.observableArrayList(1,2,3,4,5);
-    @FXML
-    private ComboBox<String> eventIsActive;
+    @FXML private ComboBox<Integer> alertFrequency;ObservableList<Integer> alertOptions = FXCollections.observableArrayList(1,2,3,4,5);
+    @FXML private ComboBox<String> eventIsActive;
     ObservableList<String> activeOptions = FXCollections.observableArrayList("True", "False");
-    @FXML
-    private Label l1;
-    @FXML
-    private Label l2;
-    @FXML
-    private Label l3;
-    @FXML
-    private Label l4;
-    @FXML
-    private GridPane pane1;
-    @FXML
-    private GridPane pane2;
-    @FXML
-    private GridPane pane3;
-    @FXML
-    private GridPane pane4;
+    @FXML private Label l1;
+    @FXML private Label l2;
+    @FXML private Label l3;
+    @FXML private Label l4;
+    @FXML private GridPane pane1;
+    @FXML private GridPane pane2;
+    @FXML private GridPane pane3;
+    @FXML private GridPane pane4;
 
     public void setMainApp(AddEventStage AddEventStage)
     {
