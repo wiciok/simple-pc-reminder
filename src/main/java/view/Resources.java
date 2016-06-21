@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import javax.annotation.Resource;
 
@@ -8,7 +8,7 @@ import javax.annotation.Resource;
  */
 
 @Resource
-class Resources
+public class Resources
 {
     static class AddEventStageRes
     {
@@ -33,17 +33,17 @@ class Resources
         static String strCreateEventButton = "Create Event";
     }
 
-    static class MainStageRes
+    public static class MainStageRes
     {
         static String buttonCloseText = "Close";
         static String buttonAddText = "Add Event";
         static String buttonNextEventsText = "Next";
         static String buttonPrevEventsText = "Previous";
         static String buttonRefreshText = "Refresh";
-        static String pageLabelText = "Page: ";
+        public static String pageLabelText = "Page: ";
 
         static String buttonRemoveText = "Remove";
- 
+
          /*STRINGI OD LABELI OGOLNYCH*/
         static String descriptionLabelText = "Description:";
         static String categoryLabelText = "Category:";
