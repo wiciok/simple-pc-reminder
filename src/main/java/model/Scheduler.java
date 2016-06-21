@@ -1,5 +1,8 @@
 package model;
 
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.*;
 import model.event.Event;
@@ -26,60 +29,44 @@ public class Scheduler
     public static ObservableList<Event> taskDisplayList = FXCollections.observableArrayList();
     private static int currentPage=0;
 
-
-  /*  public static void update()
-    {
-        try
-        {
-            Database.getInstance().sort();
-        }
-        catch (IndexOutOfBoundsException e)
-        {
-            //ToDo: jesl bedzie jakis logger, to dac info ze sortowanie nieudane bo pusta baza
-        }
-
-
-        //ToDo: zrobic cos z rozrastajaca sie lista (gdzies w dobrym miejscu clear wywołać)
-        //taskDisplayList.clear();
-        for (int i=0;i<3;i++)
-        {
-            try
-            {
-                //taskDisplayList.get(i).getTitleProperty().set(Database.getInstance().get(i).getTitle());
-                taskDisplayList.add(Database.getInstance().get(i));
-            }
-            catch(IndexOutOfBoundsException e)
-            {
-                taskDisplayList.add(new EventNull());
-            }
-        }
-    }*/
-
     public void update()
     {
         try
         {
             Database.getInstance().sort();
+            System.out.println("posortowano!");
         }
         catch (IndexOutOfBoundsException e)
         {
             //ToDo: jesl bedzie jakis logger, to dac info ze sortowanie nieudane bo pusta baza
+            System.out.println("sortowanie nieudane!");
         }
 
         taskDisplayList.clear();
-        for (int i=0;i<3;i++)
+        //for (int i=currentPage; i<currentPage+3; i++)
+        for (int i=0; i<3; i++)
         {
+            System.out.print("iter: ");
+            System.out.println(i);
             try
             {
                 final int j = i;
+                final ChangeListener<String> list = new ChangeListener<String>()
+                {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+                    {
+                        mainStageController.update.updateIndex(j, newValue);
+                    }
+                };
+
                 taskDisplayList.add(Database.getInstance().get(i));
-                Scheduler.taskDisplayList.get(i).getTitleProperty().addListener((observable, oldValue, newValue) -> mainStageController.update.updateIndex(j,newValue));
+                Scheduler.taskDisplayList.get(i).getTitleProperty().addListener(list);
                 String tmp=Database.getInstance().get(i).getTitle();
                 taskDisplayList.get(i).getTitleProperty().set("__force change of value");
                 taskDisplayList.get(i).getTitleProperty().set(tmp);
 
-                //toDo: dorobic usuwanie listenera (najpewniej tzeba bedzie zastapic lambde normalna klasa)
-                // Scheduler.taskDisplayList.get(i).getTitleProperty().removeListener();
+                Scheduler.taskDisplayList.get(i).getTitleProperty().removeListener(list);
             }
             catch(IndexOutOfBoundsException e)
             {
@@ -95,11 +82,15 @@ public class Scheduler
         try
         {
             Database.getInstance().sort();
+            System.out.println("posortowano!");
         }
         catch (IndexOutOfBoundsException e)
         {
             //ToDo: jesl bedzie jakis logger, to dac info ze sortowanie nieudane bo pusta baza
+            System.out.println("sortowanie nieudane!");
         }
+
+        currentPage=0;
 
         taskDisplayList.clear();
         for (int i=0;i<3;i++)
@@ -115,18 +106,22 @@ public class Scheduler
         }
     }
 
-    public static void getNext()
+    public void getNext()
     {
-        taskDisplayList.clear();
-        for (int i=0;i<3;i++)
-            taskDisplayList.add(Database.getInstance().get(i));
+        System.out.println("getNext");
+        currentPage+=3;
+        update();
     }
 
-    /*public static void update1(String s)
+    public void getPrev()
     {
-        System.out.print("controller.update: ");
-        System.out.println(s);
-    }*/
+        System.out.println("getPrev");
+        currentPage-=3;
+        if (currentPage<0)
+            currentPage=0;
+        update();
+    }
+
 
 
 }

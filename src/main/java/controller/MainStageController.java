@@ -33,6 +33,7 @@ public class MainStageController implements Initializable
     String buttonAddText = new String("Add Event");
     String buttonNextEventsText = new String("Next");
     String buttonPrevEventsText = new String("Previous");
+    String buttonRefreshText = new String("Refresh");
 
 
     //jeśli w SceneBuilderze nadaliśmy kontrolce takie samo ID jak nazwa obiektu
@@ -52,6 +53,8 @@ public class MainStageController implements Initializable
     private Button buttonNextEvents;
     @FXML
     private Button buttonPrevEvents;
+    @FXML
+    private Button buttonRefresh;
     @FXML
     private Label labelEvent1Category;
     @FXML
@@ -82,18 +85,35 @@ public class MainStageController implements Initializable
             }
         });
 
-        buttonNextEvents.setOnAction(new EventHandler<ActionEvent>() {
+        buttonNextEvents.setOnAction(new EventHandler<ActionEvent>()
+        {
             public void handle(ActionEvent event)
             {
-                //todo: wyswietlanie kolejnych eventow
-                mainApp.mainStage.close();
+                scheduler.getNext();
+            }
+        });
+
+        buttonPrevEvents.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                scheduler.getPrev();
+            }
+        });
+
+        buttonRefresh.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scheduler.update();
             }
         });
 
         buttonClose.setText(buttonCloseText);
         buttonAdd.setText(buttonAddText);
-        buttonPrevEvents.setText(buttonNextEventsText);
-        buttonNextEvents.setText(buttonPrevEventsText);
+        buttonPrevEvents.setText(buttonPrevEventsText);
+        buttonNextEvents.setText(buttonNextEventsText);
+        buttonRefresh.setText(buttonRefreshText);
 
         paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
         paneEvent2.setText(Scheduler.taskDisplayList.get(1).getTitle());
@@ -102,7 +122,6 @@ public class MainStageController implements Initializable
         labelEvent1Category.setText(Scheduler.taskDisplayList.get(0).getCategory());
         labelEvent2Category.setText(Scheduler.taskDisplayList.get(1).getCategory());
         labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());
-
     }
 
     public void setMainApp(MainStage mainApp)
@@ -115,7 +134,6 @@ public class MainStageController implements Initializable
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
      * Wzorzec projektowy Adapter.
      */
-
     public class UpdateAdapter
     {
         public void update1(String s)

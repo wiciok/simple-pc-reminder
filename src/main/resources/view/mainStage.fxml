@@ -85,10 +85,11 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button fx:id="buttonPrevEvents" mnemonicParsing="false" text="Button" />
-            <Button fx:id="buttonNextEvents" mnemonicParsing="false" text="Button" />
-            <Button fx:id="buttonAdd" mnemonicParsing="false" />
-            <Button fx:id="buttonClose" mnemonicParsing="false" />
+            <Button fx:id="buttonRefresh" mnemonicParsing="false" text="but_refresh" />
+          <Button fx:id="buttonPrevEvents" mnemonicParsing="false" text="butt_prev" />
+            <Button fx:id="buttonNextEvents" mnemonicParsing="false" text="butt_next" />
+            <Button fx:id="buttonAdd" mnemonicParsing="false" text="but_add" />
+            <Button fx:id="buttonClose" mnemonicParsing="false" text="but_close" />
         </buttons>
       </ButtonBar>
    </bottom>
