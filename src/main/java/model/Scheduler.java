@@ -1,6 +1,5 @@
 package model;
 
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -19,15 +18,15 @@ import model.event.EventNull;
 public class Scheduler
 {
     controller.MainStageController mainStageController;
+    public static ObservableList<Event> taskDisplayList = FXCollections.observableArrayList();
+    //ToDo: modyfikator dostępu
+    public static int currentPage;
 
     public Scheduler(controller.MainStageController controller)
     {
         this.mainStageController=controller;
+        currentPage=1;
     }
-
-
-    public static ObservableList<Event> taskDisplayList = FXCollections.observableArrayList();
-    private static int currentPage=0;
 
     public void update()
     {
@@ -43,14 +42,14 @@ public class Scheduler
         }
 
         taskDisplayList.clear();
-        //for (int i=currentPage; i<currentPage+3; i++)
-        for (int i=0; i<3; i++)
+        for (int i=(currentPage-1)*3, k=0; i<(currentPage)*3; i++, k++)
+        //for (int i=0; i<3; i++)
         {
-            System.out.print("iter: ");
-            System.out.println(i);
+            //System.out.print("iter: ");
+           // System.out.println(i);
             try
             {
-                final int j = i;
+                final int j = k;
                 final ChangeListener<String> list = new ChangeListener<String>()
                 {
                     @Override
@@ -61,12 +60,12 @@ public class Scheduler
                 };
 
                 taskDisplayList.add(Database.getInstance().get(i));
-                Scheduler.taskDisplayList.get(i).getTitleProperty().addListener(list);
+                Scheduler.taskDisplayList.get(k).getTitleProperty().addListener(list);
                 String tmp=Database.getInstance().get(i).getTitle();
-                taskDisplayList.get(i).getTitleProperty().set("__force change of value");
-                taskDisplayList.get(i).getTitleProperty().set(tmp);
+                taskDisplayList.get(k).getTitleProperty().set("__force change of value");
+                taskDisplayList.get(k).getTitleProperty().set(tmp);
 
-                Scheduler.taskDisplayList.get(i).getTitleProperty().removeListener(list);
+                Scheduler.taskDisplayList.get(k).getTitleProperty().removeListener(list);
             }
             catch(IndexOutOfBoundsException e)
             {
@@ -109,16 +108,16 @@ public class Scheduler
     public void getNext()
     {
         System.out.println("getNext");
-        currentPage+=3;
+        currentPage+=1;
         update();
     }
 
     public void getPrev()
     {
         System.out.println("getPrev");
-        currentPage-=3;
-        if (currentPage<0)
-            currentPage=0;
+        currentPage-=1;
+        if (currentPage<1)
+            currentPage=1;
         update();
     }
 

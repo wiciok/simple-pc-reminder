@@ -85,6 +85,7 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
+            <Label fx:id="pageLabel" text="Label" />
             <Button fx:id="buttonRefresh" mnemonicParsing="false" text="but_refresh" />
           <Button fx:id="buttonPrevEvents" mnemonicParsing="false" text="butt_prev" />
             <Button fx:id="buttonNextEvents" mnemonicParsing="false" text="butt_next" />
