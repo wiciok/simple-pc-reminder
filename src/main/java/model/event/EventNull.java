@@ -1,14 +1,12 @@
-package logic.event;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+package model.event;
 
 /**
  * Created by Witek on 2016-06-08.
  * klasa jest używana, gdy jest potrzeba wyświetlić obiekt klasy Event, a jednocześnie powinien on być pusty
  * dziedziczy strukturę klasy Event, a jednocześnie zwraca puste stringi
  * przy okazji jest również wykorzystywany polimorfizm
+ *
+ * ToDo: doorbić konstruktor z sensownymi wartościami
  */
 public class EventNull extends Event
 {
@@ -27,7 +25,6 @@ public class EventNull extends Event
         this.priority = 1;
     }*/
 
-    @Override
     public String getEventDateStartString() {return new String("");}
     public String getEventTimeStartString() {return new String("");}
     public String getEventDateEndString() {return new String("");}
@@ -35,7 +32,5 @@ public class EventNull extends Event
     public String getAlertFrequencyString() {return new String("");}
     public String getIsActiveString() {return new String("");}
     public String getPriorityString() {return new String("");}
-
-
 
 }

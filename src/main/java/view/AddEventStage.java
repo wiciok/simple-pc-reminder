@@ -1,32 +1,27 @@
-package presentation;
+package view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
+import controller.AddEventStageController;
 
 /**
  * Created by Witek on 2016-06-15.
+ *
+ * Klasa dodatkowego okna od dodawania nowego wydarzenia.
  */
 public class AddEventStage
 {
-    presentation.Main mainApp;
-    Stage addEventStage;
-    private AnchorPane root; /*zmiana na AnchorPane*/
+    public MainStage mainApp;
+    public Stage addEventStage;
+    private AnchorPane root;
 
 
-    AddEventStage(presentation.Main mainApp)
+    public AddEventStage(MainStage mainApp)
     {
         this.mainApp=mainApp;
-
-        /*GridPane r2=new GridPane();
-        Scene scene2 = new Scene(r2, 400, 400);
-        addEventStage =new Stage();
-        addEventStage.setScene(scene2);
-        addEventStage.show();*/
 
         //---------------------------------
         try
@@ -47,7 +42,15 @@ public class AddEventStage
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
+            //e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Stage Error!");
+            alert.setContentText("Stage will be closed.");
+
+            alert.showAndWait();
+            addEventStage.close();
         }
     }
 }
