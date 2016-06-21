@@ -34,33 +34,24 @@ public class MainStageController implements Initializable
     String buttonNextEventsText = new String("Next");
     String buttonPrevEventsText = new String("Previous");
     String buttonRefreshText = new String("Refresh");
+    String pageLabelText = new String("Page: ");
 
 
     //jeśli w SceneBuilderze nadaliśmy kontrolce takie samo ID jak nazwa obiektu
     //to zostaną one automatycznie połączone - do zmiennej obiektowej zostanie przypisany obiekt
     //potrzebna jest do tego oczywiscie adnotacja @FXML
-    @FXML
-    private TitledPane paneEvent1;
-    @FXML
-    private TitledPane paneEvent2;
-    @FXML
-    private TitledPane paneEvent3;
-    @FXML
-    private Button buttonClose;
-    @FXML
-    private Button buttonAdd;
-    @FXML
-    private Button buttonNextEvents;
-    @FXML
-    private Button buttonPrevEvents;
-    @FXML
-    private Button buttonRefresh;
-    @FXML
-    private Label labelEvent1Category;
-    @FXML
-    private Label labelEvent2Category;
-    @FXML
-    private Label labelEvent3Category;
+    @FXML private TitledPane paneEvent1;
+    @FXML private TitledPane paneEvent2;
+    @FXML private TitledPane paneEvent3;
+    @FXML private Button buttonClose;
+    @FXML private Button buttonAdd;
+    @FXML private Button buttonNextEvents;
+    @FXML private Button buttonPrevEvents;
+    @FXML private Button buttonRefresh;
+    @FXML private Label pageLabel;
+    @FXML private Label labelEvent1Category;
+    @FXML private Label labelEvent2Category;
+    @FXML private Label labelEvent3Category;
 
 
     public void initialize(URL url, ResourceBundle rb)
@@ -90,7 +81,9 @@ public class MainStageController implements Initializable
             public void handle(ActionEvent event)
             {
                 scheduler.getNext();
+                pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
             }
+
         });
 
         buttonPrevEvents.setOnAction(new EventHandler<ActionEvent>()
@@ -99,13 +92,16 @@ public class MainStageController implements Initializable
             public void handle(ActionEvent event)
             {
                 scheduler.getPrev();
+                pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
             }
         });
 
         buttonRefresh.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event)
+            {
                 scheduler.update();
+                pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
             }
         });
 
@@ -114,6 +110,7 @@ public class MainStageController implements Initializable
         buttonPrevEvents.setText(buttonPrevEventsText);
         buttonNextEvents.setText(buttonNextEventsText);
         buttonRefresh.setText(buttonRefreshText);
+        pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
 
         paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
         paneEvent2.setText(Scheduler.taskDisplayList.get(1).getTitle());
