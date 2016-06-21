@@ -11,9 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import model.event.Event;
-import model.Scheduler;
 import javafx.fxml.FXML;
 
 import java.net.URL;
@@ -30,7 +28,7 @@ import view.AddEventStage;
  *
  * ToDo: dorobic rzucanie wyjatku dla wprowadzonych zlych wartosci i okno alertu z infromacja dla usera
  *
- * ToDo: dekompozycja tych stringów
+ * ToDo: sprawdzicz, czy MVC nie wymaga zeby przeniesc np nadawanie nazw do view
  */
 public class AddEventStageController implements Initializable
 {
@@ -48,7 +46,7 @@ public class AddEventStageController implements Initializable
     private ObservableList<Integer> options = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
     @FXML private ComboBox<Integer> alertFrequency;ObservableList<Integer> alertOptions = FXCollections.observableArrayList(1,2,3,4,5);
     @FXML private ComboBox<String> eventIsActive;
-    private ObservableList<String> activeOptions = FXCollections.observableArrayList("True", "False");
+    private ObservableList<String> activeOptions = FXCollections.observableArrayList(Resources.AddEventStageRes.strTrue, Resources.AddEventStageRes.strFalse);
     @FXML private Label l1;
     @FXML private Label l2;
     @FXML private Label l3;
@@ -61,9 +59,8 @@ public class AddEventStageController implements Initializable
 
     public void initialize(URL url, ResourceBundle rb)
     {
-    	/*konfiguracja Cancel Button*/
-        String cancelButtonText = new String("Cancel");
-        cancelButton.setText(cancelButtonText);
+    	/*konfiguracja Cancel Button*/;
+        cancelButton.setText(Resources.AddEventStageRes.strCancel);
         cancelButton.setOnAction(event -> addEventStage.addEventStage.close());
         
         /*konfiguracja ComboBox (te rozwijane wybory)*/
@@ -74,27 +71,27 @@ public class AddEventStageController implements Initializable
         eventIsActive.setItems(activeOptions);
         eventIsActive.getSelectionModel().selectFirst();
         
-        l1.setText("Choose Event Priority");
-        l2.setText("Choose Alert Frequency");
-        l3.setText("Make Event Active?");
-        l4.setText("Format HH:MM:SS or HH:MM");
+        l1.setText(Resources.AddEventStageRes.strL1);
+        l2.setText(Resources.AddEventStageRes.strL2);
+        l3.setText(Resources.AddEventStageRes.strL3);
+        l4.setText(Resources.AddEventStageRes.strL4);
         
         pickStartDate.setEditable(false);
-        pickStartDate.setPromptText("Choose Start Date");
+        pickStartDate.setPromptText(Resources.AddEventStageRes.strPickStartDate);
         pickEndDate.setEditable(false);
-        pickEndDate.setPromptText("Choose End Date");
+        pickEndDate.setPromptText(Resources.AddEventStageRes.strPickEndDate);
 
-        eventStartTime.setPromptText("Input Start Time");
-        eventEndTime.setPromptText("Input End Time");
+        eventStartTime.setPromptText(Resources.AddEventStageRes.strEventStartTime);
+        eventEndTime.setPromptText(Resources.AddEventStageRes.strEventEndTime);
         
         eventDescriptionField.setWrapText(true);
-        eventDescriptionField.setPromptText("Input Event Description");
-        eventNameField.setPromptText("Input Event Name");
-        eventCategory.setPromptText("Input Event Category");
+        eventDescriptionField.setPromptText(Resources.AddEventStageRes.strEventDescriptionField);
+        eventNameField.setPromptText(Resources.AddEventStageRes.strEventNameField);
+        eventCategory.setPromptText(Resources.AddEventStageRes.strEventCategory);
         
         /*Konfiguracja Create Event button*/
-        String createEventText = new String("Create Event");
-        createEventButton.setText(createEventText);
+        createEventButton.setText(Resources.AddEventStageRes.strCreateEventButton);
+
         createEventButton.setOnAction(new EventHandler<ActionEvent>()
         {
         	public void handle(ActionEvent event)
