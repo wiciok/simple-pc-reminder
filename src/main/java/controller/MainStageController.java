@@ -21,9 +21,8 @@ public class MainStageController implements Initializable
 {
     private MainStage mainApp;
     public MainStageController(){}
-    //ToDo: modyfikatory dostępu
-    public AddEventStage addEventStage;
-    public Scheduler scheduler;
+    private AddEventStage addEventStage;
+    Scheduler scheduler;
 
     public UpdateAdapter update = new UpdateAdapter();
 
@@ -37,9 +36,11 @@ public class MainStageController implements Initializable
     String pageLabelText = new String("Page: ");
 
 
-    //jeśli w SceneBuilderze nadaliśmy kontrolce takie samo ID jak nazwa obiektu
-    //to zostaną one automatycznie połączone - do zmiennej obiektowej zostanie przypisany obiekt
-    //potrzebna jest do tego oczywiscie adnotacja @FXML
+    /*jeśli w SceneBuilderze nadaliśmy kontrolce takie samo ID jak nazwa obiektu
+    to zostaną one automatycznie połączone - do zmiennej obiektowej zostanie przypisany obiekt
+    potrzebna jest do tego oczywiscie adnotacja @FXML
+    */
+
     @FXML private TitledPane paneEvent1;
     @FXML private TitledPane paneEvent2;
     @FXML private TitledPane paneEvent3;
@@ -60,49 +61,21 @@ public class MainStageController implements Initializable
         scheduler=new Scheduler(this);
 
 
-        buttonClose.setOnAction(new EventHandler<ActionEvent>()
-        {
-            public void handle(ActionEvent event)
-            {
-               mainApp.mainStage.close();
-            }
-        });
-        
-        buttonAdd.setOnAction(new EventHandler<ActionEvent>()
-        {
-            public void handle(ActionEvent event)
-            {
-                addEventStage = new AddEventStage(mainApp);
-            }
-        });
+        buttonClose.setOnAction(event -> mainApp.mainStage.close());
 
-        buttonNextEvents.setOnAction(new EventHandler<ActionEvent>()
-        {
-            public void handle(ActionEvent event)
-            {
-                scheduler.getNext();
-                pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
-            }
+        buttonAdd.setOnAction(event -> addEventStage = new AddEventStage(mainApp));
 
+        buttonNextEvents.setOnAction(event -> {
+            scheduler.getNext();
+            pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
         });
-
-        buttonPrevEvents.setOnAction(new EventHandler<ActionEvent>()
-        {
-            @Override
-            public void handle(ActionEvent event)
-            {
-                scheduler.getPrev();
-                pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
-            }
+        buttonPrevEvents.setOnAction(event -> {
+            scheduler.getPrev();
+            pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
         });
-
-        buttonRefresh.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event)
-            {
-                scheduler.update();
-                pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
-            }
+        buttonRefresh.setOnAction(event -> {
+            scheduler.update();
+            pageLabel.setText(pageLabelText+Integer.toString(Scheduler.currentPage));
         });
 
         buttonClose.setText(buttonCloseText);

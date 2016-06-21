@@ -26,7 +26,11 @@ import view.AddEventStage;
 
 /**
  * Created by Witek on 2016-06-15.
- * ToDo: REFAKTORYZACJA
+ * ToDo: sensowne wartosci dla prototypu
+ *
+ * ToDo: dorobic rzucanie wyjatku dla wprowadzonych zlych wartosci i okno alertu z infromacja dla usera
+ *
+ * ToDo: dekompozycja tych stringów
  */
 public class AddEventStageController implements Initializable
 {
@@ -41,18 +45,14 @@ public class AddEventStageController implements Initializable
     @FXML private TextField eventStartTime;
     @FXML private TextField eventEndTime;
     @FXML private ComboBox<Integer> eventPriority;
-    ObservableList<Integer> options = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
+    private ObservableList<Integer> options = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
     @FXML private ComboBox<Integer> alertFrequency;ObservableList<Integer> alertOptions = FXCollections.observableArrayList(1,2,3,4,5);
     @FXML private ComboBox<String> eventIsActive;
-    ObservableList<String> activeOptions = FXCollections.observableArrayList("True", "False");
+    private ObservableList<String> activeOptions = FXCollections.observableArrayList("True", "False");
     @FXML private Label l1;
     @FXML private Label l2;
     @FXML private Label l3;
     @FXML private Label l4;
-    @FXML private GridPane pane1;
-    @FXML private GridPane pane2;
-    @FXML private GridPane pane3;
-    @FXML private GridPane pane4;
 
     public void setMainApp(AddEventStage AddEventStage)
     {
@@ -64,13 +64,7 @@ public class AddEventStageController implements Initializable
     	/*konfiguracja Cancel Button*/
         String cancelButtonText = new String("Cancel");
         cancelButton.setText(cancelButtonText);
-        cancelButton.setOnAction(new EventHandler<ActionEvent>()
-        {
-            public void handle(ActionEvent event)
-            {
-                addEventStage.addEventStage.close();
-            }
-        });
+        cancelButton.setOnAction(event -> addEventStage.addEventStage.close());
         
         /*konfiguracja ComboBox (te rozwijane wybory)*/
         eventPriority.setItems(options);
@@ -108,7 +102,7 @@ public class AddEventStageController implements Initializable
         		/* tworzenie prototypu Eventu - w konstruktorze sa ustawiane domyslne wartosci
         		 * ktore obowiazuja gdy uzytkownik tu czegos nie wprowadzi*/
         		
-        		Event prototype = new Event(); //ToDo: ten prototyp powinien miec jakies sensowne wartosci, anie to co ma konstruktor domyslnie
+        		Event prototype = new Event(); //ToDo: ten prototyp powinien miec jakies sensowne wartosci, a nie to co ma konstruktor domyslnie
         		Event newEvent = (Event)prototype.clone();
         		
         		/*Pobieranie wpisanych przez uzytkownika wartosci*/
@@ -123,15 +117,14 @@ public class AddEventStageController implements Initializable
         			newEvent.setCategory(eventCategory.getText());
         		
         		/*data rozpoczenia - sprawdzane czy cos jest wybrane i czy data rozpoczecia jest pozniejsza od obecnej daty
-        		 * (bo bez sensu dawac event w przeszlosci)
-        		 */
+        		 * (bo bez sensu dawac event w przeszlosci)*/
         		if(pickStartDate.getValue() != null && !pickStartDate.getValue().isBefore(LocalDate.now()))
         			newEvent.setEventDateStart(pickStartDate.getValue());
         		
         		/*walidacja tego czasu - najpierw jest sprawdzane czy w ogole cos zostalo wprowadzone
         		 * i potem dopiero czy to wprowadzone ma jakis sens - formaty HH:MM:SS lub HH:MM
-        		 * i potem konwertowane do czasu
-        		 */
+        		 * i potem konwertowane do czasu*/
+
         		if(eventStartTime.getText() != null && !(eventStartTime.getText().trim().isEmpty()))
         		{
         			if(eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventStartTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
@@ -139,8 +132,8 @@ public class AddEventStageController implements Initializable
         		}
         		
         		/*data zakonczenia - sprawdzane czy cos jest wybrane i czy data zakonczenia jest pozniejsza od obecnej daty i daty rozpoczecia
-        		 * (bo bez sensu dawac event w przeszlosci)
-        		 */
+        		 * (bo bez sensu dawac event w przeszlosci)*/
+
         		if(pickEndDate.getValue() != null && 
         				!pickEndDate.getValue().isBefore(newEvent.getEventDateStart()) && 
         				!pickEndDate.getValue().isBefore(LocalDate.now()))
@@ -158,27 +151,9 @@ public class AddEventStageController implements Initializable
         		newEvent.setAlertFrequency(alertFrequency.getSelectionModel().getSelectedItem());
         		newEvent.setIsActive(Boolean.parseBoolean(eventIsActive.getSelectionModel().getSelectedItem()));
         		
-        		/*dodanie eventu do bazy*/
+        		/*dodanie eventu do bazy, refresh glownego okna i zamkniecie stage'a*/
                 Database.getInstance().add(newEvent);
-
-                //ToDo: do wywalenia potem
-                /*wyswietlam wszystko dla sprawdzenia czy sie dodalo i czy nie ma smieci*/
-                /*System.out.println(Integer.toString(Database.getInstance().size()));
-                System.out.println(Database.getInstance().get(2).getTitle());
-                System.out.println(Database.getInstance().get(2).getDescription());
-                System.out.println(Database.getInstance().get(2).getCategory());
-                System.out.println(Database.getInstance().get(2).getEventDateStartString());
-                System.out.println(Database.getInstance().get(2).getEventTimeStartString());
-                System.out.println(Database.getInstance().get(2).getEventDateEndString());
-                System.out.println(Database.getInstance().get(2).getEventTimeEndString());
-                System.out.println(Database.getInstance().get(2).getPriorityString());
-                System.out.println(Database.getInstance().get(2).getAlertFrequencyString());
-                System.out.println(Database.getInstance().get(2).getIsActiveString());*/
-                
-                /*update i zamykam*/
-
                 addEventStage.mainApp.controller.scheduler.update();
-                //Scheduler.update();
                 addEventStage.addEventStage.close();
             }
         });
