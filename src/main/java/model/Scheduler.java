@@ -19,8 +19,8 @@ public class Scheduler
 {
     controller.MainStageController mainStageController;
     public static ObservableList<Event> taskDisplayList = FXCollections.observableArrayList();
-    //ToDo: modyfikator dostępu
     public static int currentPage;
+
 
     public Scheduler(controller.MainStageController controller)
     {
@@ -45,18 +45,11 @@ public class Scheduler
         for (int i=(currentPage-1)*3, k=0; i<(currentPage)*3; i++, k++)
         {
             //System.out.print("iter: ");
-           // System.out.println(i);
+            //System.out.println(i);
             try
             {
                 final int j = k;
-                final ChangeListener<String> list = new ChangeListener<String>()
-                {
-                    @Override
-                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
-                    {
-                        mainStageController.update.updateIndex(j, newValue);
-                    }
-                };
+                final ChangeListener<String> list = (observable, oldValue, newValue) -> mainStageController.update.updateIndex(j, newValue);
 
                 taskDisplayList.add(Database.getInstance().get(i));
                 Scheduler.taskDisplayList.get(k).getTitleProperty().addListener(list);

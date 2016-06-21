@@ -15,7 +15,7 @@ import java.lang.IndexOutOfBoundsException;
 
 /**
  * Implemented by Pawel
- *Klasa ktorej zadaniem jest obsluga bazy wydarzen.
+ *Klasa ktorej zadaniem jest obsluga bazy wydarzeń.
  * */
 
 public class Database
@@ -24,11 +24,12 @@ public class Database
 
 	/*Singleton*/
 	private static Database mainObject = new Database();
-	private Database(){} //prywatny konstruktor
+	private Database(){}
 	public static Database getInstance()
 	{
 		return mainObject;
 	}
+
 
 	/**
 	 *add - metoda pozwalajaca do dodawania elementow do listy wydarzen (databaseList)
@@ -38,14 +39,14 @@ public class Database
 	{
 		databaseList.add(index, newEvent);
 	}
-
 	public void add(Event newEvent)
 	{
 		databaseList.add(newEvent);
 	}
 
+
 	/**
-	*size - zwraca ilosc wydarzen, taka funkcja zawsze sie przydaje w mainie - lista jest private
+	*size - zwraca ilosc wydarzen
 	**/
 	public int size()
 	{
@@ -54,19 +55,14 @@ public class Database
 
 	/**
 	 * get - zwraca obiekt Event z bazy - pierwszy, lub o podanym indeksie
-	 */
-
+	 **/
 	public Event get()
 	{
 		return databaseList.get(0);
 	}
+	public Event get(int index) throws IndexOutOfBoundsException {return databaseList.get(index);}
 
-	public Event get(int index) throws IndexOutOfBoundsException
-	{
-		return databaseList.get(index);
-	}
 
-	
 	/**
 	*writeToFile - zapis do pliku binarnego
 	 * wykonuje translację pomiędzy klasami Event i EventSerializable
@@ -77,10 +73,7 @@ public class Database
 	{
 		String filePath = "binaryFile.dat";
 		ObjectOutputStream file = null;
-		try
-		{
-			file = new ObjectOutputStream(new FileOutputStream(filePath));
-		}
+		try {file = new ObjectOutputStream(new FileOutputStream(filePath));}
 		catch (FileNotFoundException e)
 		{
 			//System.out.println("Error File not found (writeToFile)");
@@ -91,9 +84,7 @@ public class Database
 		file.writeInt(databaseList.size()); //zapis ilości rekordów
 
 		for(int i = 0; i<databaseList.size(); ++i)
-		{
 			file.writeObject(new EventSerializable(databaseList.get(i)));
-		}
 		file.close();
 	}
 	
@@ -104,33 +95,24 @@ public class Database
 	**/
 	public void readFromFile() throws IOException
 	{
-		int i;
 		String filePath = "binaryFile.dat";
 		ObjectInputStream file = null;
-		try
-		{
-			file = new ObjectInputStream(new FileInputStream(filePath));
-		}
+
+		try {file = new ObjectInputStream(new FileInputStream(filePath));}
 		catch (FileNotFoundException e)
 		{
-			//System.out.println("Error File not found (readFromFile)");
 			//e.printStackTrace();
 			throw new IOException(e.getCause()); //przekazywanie wyjatku wyżej, do interfejsu użytkownika
 		}
 
-
 		final int size = file.readInt();
-		ArrayList<Event> tmp = new ArrayList<Event> ();
+		ArrayList<Event> tmp = new ArrayList<Event>();
 
-		for(i = 0; i<size; i++)
+		for(int i = 0; i<size; i++)
 		{
-			try
-			{
-				tmp.add(new Event((EventSerializable)file.readObject()));
-			}
+			try {tmp.add(new Event((EventSerializable)file.readObject()));}
 			catch (ClassNotFoundException e)
 			{
-				System.out.println("Error Class not found (readFromFile)");
 				e.printStackTrace();
 				throw new IOException(e.getCause());
 			}
@@ -144,18 +126,7 @@ public class Database
 	public void sort() throws IndexOutOfBoundsException
 	{
 		if(databaseList.size() <= 1)
-		{
 			throw new IndexOutOfBoundsException();
-			//return;
-		}
-		
-		
-		databaseList.sort(new Comparator<Event>()
-		{
-			public int compare(Event event1, Event event2)
-			{
-				return event1.getEventFullDateStart().compareTo(event2.getEventFullDateStart());
-			}
-		});
+		databaseList.sort((event1, event2) -> event1.getEventFullDateStart().compareTo(event2.getEventFullDateStart()));
 	}
 }

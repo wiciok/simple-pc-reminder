@@ -17,13 +17,11 @@ import javafx.scene.control.Alert.*;
  * Stage głównego okna programu
  */
 
-
 public class MainStage extends Application
 {
 	public Stage mainStage;
 	private BorderPane root;
 	private Database database;
-	//ToDo: to public to tak średnio bym powiedział
 	public MainStageController controller;
 
 	@Override
@@ -31,12 +29,10 @@ public class MainStage extends Application
 	{
 		database = Database.getInstance(); //użycie wzorca Singleton
 
-
 		try {database.readFromFile();}
 		catch(IOException e)
 		{
 			//e.printStackTrace();
-
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information");
 			alert.setHeaderText(null);
@@ -44,16 +40,6 @@ public class MainStage extends Application
 
 			alert.showAndWait();
 		}
-
-
-		//todo: usunac potem (jest dla testow narazie):
-		//Event test1 = new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test1", "test1 opis", "kat test", 5, true, 5);
-		//Event test2=new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test2", "test2 opis", "kat test2", 2, true, 10);
-		//Event test3=new Event(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(),"test3", "test3 opis", "kat test3", 2, true, 10);
-
-		//database.add(test3);
-		//database.add(test2);
-		//database.add(test1);
 
 		Scheduler.init();
 
@@ -83,14 +69,12 @@ public class MainStage extends Application
 			alert.showAndWait();
 			primaryStage.close();
 		}
-
 	}
 
 	public static void main(String[] args)
 	{
 		launch(args);
 	}
-
 
 	@Override
 	public void stop()
