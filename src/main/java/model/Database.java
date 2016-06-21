@@ -30,7 +30,6 @@ public class Database
 		return mainObject;
 	}
 
-
 	/**
 	 *add - metoda pozwalajaca do dodawania elementow do listy wydarzen (databaseList)
 	 *wywołuje metodę add składnika ArrayList<Event> databaseList</>
@@ -43,7 +42,6 @@ public class Database
 	{
 		databaseList.add(newEvent);
 	}
-
 
 	/**
 	*size - zwraca ilosc wydarzen
@@ -61,7 +59,6 @@ public class Database
 		return databaseList.get(0);
 	}
 	public Event get(int index) throws IndexOutOfBoundsException {return databaseList.get(index);}
-
 
 	/**
 	*writeToFile - zapis do pliku binarnego
@@ -117,7 +114,6 @@ public class Database
 				throw new IOException(e.getCause());
 			}
 		}
-
 		databaseList.clear();
 		databaseList=tmp;
 		file.close();
