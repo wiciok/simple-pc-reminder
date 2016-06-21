@@ -14,6 +14,7 @@ import java.time.LocalTime;
 abstract class EventAbstract
 {
     public LocalDateTime getEventFullDateStart() { return LocalDateTime.of(getEventDateStart(), getEventTimeStart());}
+    public LocalDateTime getEventFullDateEnd() { return LocalDateTime.of(getEventDateEnd(), getEventTimeEnd());}
 
     public abstract LocalDateTime getEventDateNow();
     public abstract LocalDate getEventDateStart();
@@ -27,7 +28,6 @@ abstract class EventAbstract
     public abstract Boolean getIsActive();
     public abstract Integer getPriority();
 
-
     public Object clone()
     {
         try
@@ -40,5 +40,4 @@ abstract class EventAbstract
             return null;
         }
     }
-
 }
