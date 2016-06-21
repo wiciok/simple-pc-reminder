@@ -21,7 +21,6 @@ public class Scheduler
     public static ObservableList<Event> taskDisplayList = FXCollections.observableArrayList();
     public static int currentPage;
 
-
     public Scheduler(controller.MainStageController controller)
     {
         this.mainStageController=controller;
@@ -56,6 +55,8 @@ public class Scheduler
                 String tmp=Database.getInstance().get(i).getTitle();
                 taskDisplayList.get(k).getTitleProperty().set("__force change of value");
                 taskDisplayList.get(k).getTitleProperty().set(tmp);
+                
+                
 
                 Scheduler.taskDisplayList.get(k).getTitleProperty().removeListener(list);
             }
@@ -64,8 +65,6 @@ public class Scheduler
                 taskDisplayList.add(new EventNull());
             }
         }
-
-
     }
 
     public static void init()
@@ -112,7 +111,4 @@ public class Scheduler
             currentPage=1;
         update();
     }
-
-
-
 }
