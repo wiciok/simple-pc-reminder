@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
@@ -9,22 +10,22 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainStageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainStageController">
    <center>
-      <Accordion BorderPane.alignment="CENTER">
+      <Accordion minHeight="0.0" BorderPane.alignment="CENTER">
         <panes>
-          <TitledPane fx:id="paneEvent1" animated="false" text="untitled 1">
+          <TitledPane fx:id="paneEvent1" animated="false" minHeight="0.0" text="untitled 1">
             <content>
               <AnchorPane fx:id="descriptionField" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label fx:id="labelEvent1Description" alignment="TOP_LEFT" layoutX="13.0" layoutY="200.0" prefHeight="62.0" prefWidth="342.0" text="Label" textOverrun="CLIP" wrapText="true" />
-                        <Line fx:id="descriptionLine" endX="240.0" layoutX="113.0" layoutY="199.0" startX="-100.0" strokeWidth="2.0" />
+                        <Line fx:id="descriptionLine1" endX="240.0" layoutX="113.0" layoutY="199.0" startX="-100.0" strokeWidth="2.0" />
                         <Label fx:id="descriptionLabel1" layoutX="13.0" layoutY="179.0" text="Label" />
                         <Label fx:id="labelEvent1Category" layoutX="13.0" layoutY="114.0" prefHeight="17.0" prefWidth="180.0" text="Label" />
-                        <Line fx:id="categoryLine" endX="80.0" layoutX="113.0" layoutY="111.0" startX="-100.0" strokeWidth="2.0" />
+                        <Line fx:id="categoryLine1" endX="80.0" layoutX="113.0" layoutY="111.0" startX="-100.0" strokeWidth="2.0" />
                         <Label fx:id="categoryLabel1" layoutX="13.0" layoutY="91.0" text="Label" />
                         <Label fx:id="labelEvent1Title" layoutX="13.0" layoutY="49.0" prefHeight="17.0" prefWidth="181.0" text="Label" />
-                        <Line fx:id="titleLine" endX="80.0" layoutX="113.0" layoutY="47.0" startX="-100.0" strokeWidth="2.0" />
+                        <Line fx:id="titleLine1" endX="80.0" layoutX="113.0" layoutY="47.0" startX="-100.0" strokeWidth="2.0" />
                         <Label fx:id="titleLabel1" layoutX="13.0" layoutY="27.0" text="Label" />
                         <Label fx:id="startDateTime1" layoutX="271.0" layoutY="30.0" text="Label" />
                         <Label fx:id="endDateTime1" layoutX="271.0" layoutY="96.0" text="Label" />
@@ -36,22 +37,22 @@
                         <Label fx:id="labelEvent1AlertFrequency" layoutX="438.0" layoutY="113.0" text="Label" />
                         <Label fx:id="isActive1" layoutX="438.0" layoutY="142.0" text="Label" />
                         <Label fx:id="labelEvent1IsActive" layoutX="438.0" layoutY="159.0" text="Label" />
-                        <Button fx:id="buttonRemove" layoutX="514.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="buttonRemove1" layoutX="514.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Button" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane fx:id="paneEvent2" animated="false" text="untitled 2">
+          <TitledPane fx:id="paneEvent2" animated="false" minHeight="0.0" text="untitled 2">
                <content>
                   <AnchorPane fx:id="descriptionField1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label fx:id="labelEvent2Description" alignment="TOP_LEFT" layoutX="13.0" layoutY="201.0" prefHeight="62.0" prefWidth="342.0" text="Label" textOverrun="CLIP" wrapText="true" />
-                        <Line fx:id="descriptionLine" endX="240.0" layoutX="113.0" layoutY="199.0" startX="-100.0" strokeWidth="2.0" />
+                        <Line fx:id="descriptionLine2" endX="240.0" layoutX="113.0" layoutY="199.0" startX="-100.0" strokeWidth="2.0" />
                         <Label fx:id="descriptionLabel2" layoutX="13.0" layoutY="178.0" text="Label" />
                         <Label fx:id="labelEvent2Category" layoutX="13.0" layoutY="113.0" prefHeight="17.0" prefWidth="180.0" text="Label" />
-                        <Line fx:id="categoryLine" endX="80.0" layoutX="113.0" layoutY="111.0" startX="-100.0" strokeWidth="2.0" />
+                        <Line fx:id="categoryLine2" endX="80.0" layoutX="113.0" layoutY="111.0" startX="-100.0" strokeWidth="2.0" />
                         <Label fx:id="categoryLabel2" layoutX="13.0" layoutY="91.0" text="Label" />
                         <Label fx:id="labelEvent2Title" layoutX="13.0" layoutY="49.0" prefHeight="17.0" prefWidth="181.0" text="Label" />
-                        <Line fx:id="titleLine" endX="80.0" layoutX="113.0" layoutY="47.0" startX="-100.0" strokeWidth="2.0" />
+                        <Line fx:id="titleLine2" endX="80.0" layoutX="113.0" layoutY="47.0" startX="-100.0" strokeWidth="2.0" />
                         <Label fx:id="titleLabel2" layoutX="13.0" layoutY="27.0" text="Label" />
                         <Label fx:id="startDateTime2" layoutX="271.0" layoutY="30.0" text="Label" />
                         <Label fx:id="endDateTime2" layoutX="271.0" layoutY="96.0" text="Label" />
@@ -63,23 +64,23 @@
                         <Label fx:id="labelEvent2AlertFrequency" layoutX="438.0" layoutY="113.0" text="Label" />
                         <Label fx:id="isActive2" layoutX="438.0" layoutY="142.0" text="Label" />
                         <Label fx:id="labelEvent2IsActive" layoutX="438.0" layoutY="159.0" text="Label" />
-                        <Button fx:id="buttonRemove" layoutX="514.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="buttonRemove2" layoutX="514.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Button" />
                      </children>
                   </AnchorPane>
                </content>
           </TitledPane>
-          <TitledPane fx:id="paneEvent3" animated="false" text="untitled 3">
+          <TitledPane fx:id="paneEvent3" animated="false" minHeight="0.0" text="untitled 3">
                <content>
                   <AnchorPane fx:id="descriptionField11" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label fx:id="labelEvent3Description" alignment="TOP_LEFT" layoutX="13.0" layoutY="200.0" prefHeight="62.0" prefWidth="342.0" text="Label" textOverrun="CLIP" wrapText="true" />
-                        <Line fx:id="descriptionLine" endX="240.0" layoutX="113.0" layoutY="199.0" startX="-100.0" strokeWidth="2.0" />
+                        <Line fx:id="descriptionLine3" endX="240.0" layoutX="113.0" layoutY="199.0" startX="-100.0" strokeWidth="2.0" />
                         <Label fx:id="descriptionLabel3" layoutX="13.0" layoutY="178.0" text="Label" />
                         <Label fx:id="labelEvent3Category" layoutX="13.0" layoutY="113.0" prefHeight="17.0" prefWidth="180.0" text="Label" />
-                        <Line fx:id="categoryLine" endX="80.0" layoutX="113.0" layoutY="111.0" startX="-100.0" strokeWidth="2.0" />
+                        <Line fx:id="categoryLine3" endX="80.0" layoutX="113.0" layoutY="111.0" startX="-100.0" strokeWidth="2.0" />
                         <Label fx:id="categoryLabel3" layoutX="13.0" layoutY="91.0" text="Label" />
                         <Label fx:id="labelEvent3Title" layoutX="13.0" layoutY="48.0" prefHeight="17.0" prefWidth="181.0" text="Label" />
-                        <Line fx:id="titleLine" endX="80.0" layoutX="113.0" layoutY="47.0" startX="-100.0" strokeWidth="2.0" />
+                        <Line fx:id="titleLine3" endX="80.0" layoutX="113.0" layoutY="47.0" startX="-100.0" strokeWidth="2.0" />
                         <Label fx:id="titleLabel3" layoutX="13.0" layoutY="28.0" text="Label" />
                         <Label fx:id="startDateTime3" layoutX="271.0" layoutY="30.0" text="Label" />
                         <Label fx:id="endDateTime3" layoutX="271.0" layoutY="96.0" text="Label" />
@@ -91,7 +92,7 @@
                         <Label fx:id="labelEvent3AlertFrequency" layoutX="438.0" layoutY="113.0" text="Label" />
                         <Label fx:id="isActive3" layoutX="438.0" layoutY="142.0" text="Label" />
                         <Label fx:id="labelEvent3IsActive" layoutX="438.0" layoutY="159.0" text="Label" />
-                        <Button fx:id="buttonRemove1" layoutX="514.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="buttonRemove3" layoutX="514.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Button" />
                      </children>
                   </AnchorPane>
                </content>
@@ -99,8 +100,11 @@
         </panes>
       </Accordion>
    </center>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
    <bottom>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ButtonBar minWidth="40.0" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
             <Label fx:id="pageLabel" text="Label" />
             <Button fx:id="buttonRefresh" mnemonicParsing="false" text="but_refresh" />
@@ -111,4 +115,11 @@
         </buttons>
       </ButtonBar>
    </bottom>
+   <top>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <buttons>
+            <Button fx:id="buttonResize" mnemonicParsing="false" text="but_res" />
+         </buttons>
+      </ButtonBar>
+   </top>
 </BorderPane>
