@@ -1,12 +1,13 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.Database;
 import model.Scheduler;
 import view.AddEventStage;
 import view.MainStage;
-import view.PropertiesStage;
 import view.Resources;
 
 import java.net.URL;
@@ -22,7 +23,6 @@ public class MainStageController implements Initializable
     private MainStage mainApp;
     public MainStageController(){}
     private AddEventStage addEventStage;
-    private PropertiesStage propertiesStage;
     Scheduler scheduler;
 
     public UpdateAdapter update = new UpdateAdapter();
@@ -45,7 +45,6 @@ public class MainStageController implements Initializable
     @FXML public Button buttonPrevEvents;
     @FXML public Button buttonRefresh;
     @FXML public Button buttonResize;
-    @FXML public Button buttonProperties;
     @FXML public Label pageLabel;
 
     /*LABELE OGOLNE*/
@@ -130,6 +129,8 @@ public class MainStageController implements Initializable
             scheduler.update();
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
+
+        /*rozwijanie i zwijanie okna*/
         buttonResize.setOnAction(event -> {
             if(mainApp.expanded==false)
             {
@@ -142,7 +143,77 @@ public class MainStageController implements Initializable
                 mainApp.expanded=false;
             }
         });
-        buttonProperties.setOnAction(event -> propertiesStage = new PropertiesStage(mainApp));
+
+        /*usuwanie eventów + bezpośrednie odświeżanie głównej sceny*/
+        buttonRemove1.setOnAction(event ->
+        {
+            try
+            {
+                final int j = 0;
+                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
+                for (int i=j;i<3;i++)
+                {
+                    update.updateIndex(i);
+                    scheduler.update();
+                }
+                update.updateIndex(j);
+                scheduler.update();
+            }
+            catch (IndexOutOfBoundsException exception)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Event does not exist!");
+                alert.showAndWait();
+            }
+        });
+        buttonRemove2.setOnAction(event ->
+        {
+            try
+            {
+                final int j = 1;
+                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
+                for (int i=j;i<3;i++)
+                {
+                    update.updateIndex(i);
+                    scheduler.update();
+                }
+                update.updateIndex(j);
+                scheduler.update();
+            }
+            catch (IndexOutOfBoundsException exception)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Event does not exist!");
+                alert.showAndWait();
+            }
+        });
+        buttonRemove3.setOnAction(event ->
+        {
+            try
+            {
+                final int j = 2;
+                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
+                for (int i=j;i<3;i++)
+                {
+                    update.updateIndex(i);
+                    scheduler.update();
+                }
+                update.updateIndex(j);
+                scheduler.update();
+            }
+            catch (IndexOutOfBoundsException exception)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Event does not exist!");
+                alert.showAndWait();
+            }
+        });
     }
 
     public void setMainApp(MainStage mainApp)

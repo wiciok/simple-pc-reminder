@@ -77,8 +77,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="createEventButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Create Event" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Cancel" GridPane.columnIndex="1" />
+            <Button fx:id="createEventButton" defaultButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Create Event" />
+            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Cancel" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>
