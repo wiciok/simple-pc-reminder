@@ -9,6 +9,7 @@ import view.MainStage;
 import view.Resources;
 
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
@@ -153,40 +154,76 @@ public class MainStageController implements Initializable
      */
     public class UpdateAdapter
     {
-        void update1(String s)
+        void update1()
         {
-            paneEvent1.setText(s);
-            System.out.println("controller.update1");
-            System.out.println(s);
+            //paneEvent1.setText(s);
+            paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
+            labelEvent1Description.setText(Scheduler.taskDisplayList.get(0).getDescription());
+            labelEvent1Category.setText(Scheduler.taskDisplayList.get(0).getCategory());
+            labelEvent1Title.setText(Scheduler.taskDisplayList.get(0).getTitle());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            labelEvent1StartDateTime.setText(Scheduler.taskDisplayList.get(0).getEventFullDateStart().format(formatter));
+            labelEvent1EndDateTime.setText(Scheduler.taskDisplayList.get(0).getEventFullDateEnd().format(formatter));
+            labelEvent1AlertFrequency.setText(Scheduler.taskDisplayList.get(0).getAlertFrequency().toString());
+            labelEvent1Priority.setText(Scheduler.taskDisplayList.get(0).getPriority().toString());
+            labelEvent1IsActive.setText(Scheduler.taskDisplayList.get(0).getIsActive().toString());
+
+            //System.out.println("controller.update1");
+            //System.out.println(s);
         }
-        void update2(String s)
+        void update2()
         {
-            paneEvent2.setText(s);
-            System.out.println("controller.update2");
-            System.out.println(s);
+            //paneEvent2.setText(s);
+
+            paneEvent2.setText(Scheduler.taskDisplayList.get(1).getTitle());
+            labelEvent2Description.setText(Scheduler.taskDisplayList.get(1).getDescription());
+            labelEvent2Category.setText(Scheduler.taskDisplayList.get(1).getCategory());
+            labelEvent2Title.setText(Scheduler.taskDisplayList.get(1).getTitle());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            labelEvent2StartDateTime.setText(Scheduler.taskDisplayList.get(1).getEventFullDateStart().format(formatter));
+            labelEvent2EndDateTime.setText(Scheduler.taskDisplayList.get(1).getEventFullDateEnd().format(formatter));
+            labelEvent2AlertFrequency.setText(Scheduler.taskDisplayList.get(1).getAlertFrequency().toString());
+            labelEvent2Priority.setText(Scheduler.taskDisplayList.get(1).getPriority().toString());
+            labelEvent2IsActive.setText(Scheduler.taskDisplayList.get(1).getIsActive().toString());
+            
+            //System.out.println("controller.update2");
+            //System.out.println(s);
         }
-        void update3(String s)
+        void update3()
         {
-            paneEvent3.setText(s);
-            System.out.println("controller.update3");
-            System.out.println(s);
+            //paneEvent3.setText(s);
+
+            paneEvent3.setText(Scheduler.taskDisplayList.get(2).getTitle());
+            labelEvent3Description.setText(Scheduler.taskDisplayList.get(2).getDescription());
+            labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());
+            labelEvent3Title.setText(Scheduler.taskDisplayList.get(2).getTitle());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            labelEvent3StartDateTime.setText(Scheduler.taskDisplayList.get(2).getEventFullDateStart().format(formatter));
+            labelEvent3EndDateTime.setText(Scheduler.taskDisplayList.get(2).getEventFullDateEnd().format(formatter));
+            labelEvent3AlertFrequency.setText(Scheduler.taskDisplayList.get(2).getAlertFrequency().toString());
+            labelEvent3Priority.setText(Scheduler.taskDisplayList.get(2).getPriority().toString());
+            labelEvent3IsActive.setText(Scheduler.taskDisplayList.get(2).getIsActive().toString());
+            
+            
+            //System.out.println("controller.update3");
+            //System.out.println(s);
         }
 
         abstract class Update
         {
-            public abstract void updateIndex(int index, String s);
+            public abstract void updateIndex(int index);
         }
 
         private Update[] updateArr = new UpdateAdapter.Update[]
         {
-            new UpdateAdapter.Update() { public void updateIndex(int index, String s) { update1(s); } },
-            new UpdateAdapter.Update() { public void updateIndex(int index, String s) { update2(s); } },
-            new UpdateAdapter.Update() { public void updateIndex(int index, String s) { update3(s); } }
+            new UpdateAdapter.Update() { public void updateIndex(int index) { update1(); } },
+            new UpdateAdapter.Update() { public void updateIndex(int index) { update2(); } },
+            new UpdateAdapter.Update() { public void updateIndex(int index) { update3(); } }
         };
 
-        public void updateIndex(int index, String s)
+        public void updateIndex(int index)
         {
-            updateArr[index].updateIndex(index, s);
+            updateArr[index].updateIndex(index);
         }
     }
 }

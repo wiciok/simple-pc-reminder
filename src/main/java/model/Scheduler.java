@@ -48,7 +48,7 @@ public class Scheduler
             try
             {
                 final int j = k;
-                final ChangeListener<String> list = (observable, oldValue, newValue) -> mainStageController.update.updateIndex(j, newValue);
+                final ChangeListener<String> list = (observable, oldValue, newValue) -> mainStageController.update.updateIndex(j);
 
                 taskDisplayList.add(Database.getInstance().get(i));
                 Scheduler.taskDisplayList.get(k).getTitleProperty().addListener(list);
