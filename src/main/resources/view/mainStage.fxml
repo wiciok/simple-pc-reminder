@@ -118,6 +118,7 @@
    <top>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <buttons>
+            <Button fx:id="buttonProperties" mnemonicParsing="false" text="but_prop" />
             <Button fx:id="buttonResize" mnemonicParsing="false" text="but_res" />
          </buttons>
       </ButtonBar>
