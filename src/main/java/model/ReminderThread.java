@@ -3,27 +3,32 @@ package model;
 import java.awt.Toolkit;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+
+/**
+ * Created by Paweł on 2016-06-19.
+ *
+ * Klasa zawierająca wątek odpowiedzialny za wyświetlanie przypomnień.
+ * Ustawienia przypomnień konfigurowane są w klasie PropertiesStageController.
+ */
+
+
 public class ReminderThread
 {
 	public static Task<Void> task = new Task<Void>()
-				{
-					protected Void call() throws Exception
-					{
-						System.out.println(Integer.toString(Database.getInstance().size()));
-						check();
-						return null;
-					}
-				};
-				
-	public void taskStop()
 	{
-		task.cancel();
-	}
+		protected Void call() throws Exception
+		{
+			System.out.println(Integer.toString(Database.getInstance().size()));
+			check();
+			return null;
+		}
+	};
+				
+	public void taskStop() {task.cancel();}
 	
 	private static void check()
 	{
@@ -54,7 +59,7 @@ public class ReminderThread
 		                if (runnable != null) 
 		                    runnable.run();
 						alert.setTitle("INFORMATION");
-						alert.setHeaderText("Event remainder alert!");
+						alert.setHeaderText("Event reminder alert!");
 						alert.setContentText("Remember about upcoming event \""+Database.getInstance().get(k).getTitle()+"\"");
 						alert.showAndWait();
 					});

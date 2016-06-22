@@ -43,7 +43,6 @@ public class MainStageController implements Initializable
     @FXML public Button buttonAdd;
     @FXML public Button buttonNextEvents;
     @FXML public Button buttonPrevEvents;
-    @FXML public Button buttonRefresh;
     @FXML public Button buttonResize;
     @FXML public Button buttonProperties;
     @FXML public Label pageLabel;
@@ -125,20 +124,18 @@ public class MainStageController implements Initializable
             scheduler.getPrev();
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
-        buttonRefresh.setOnAction(event -> {
-            scheduler.update();
-            pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
-        });
         buttonResize.setOnAction(event -> {
             if(mainApp.expanded==false)
             {
-                mainApp.mainStage.setHeight(500);
+                mainApp.mainStage.setHeight(550);
                 mainApp.expanded=true;
+                buttonResize.setText(Resources.MainStageRes.buttonResizeTextHide);
             }
             else
             {
-                mainApp.mainStage.setHeight(85);
+                mainApp.mainStage.setHeight(75);
                 mainApp.expanded=false;
+                buttonResize.setText(Resources.MainStageRes.buttonResizeTextShow);
             }
         });
         buttonProperties.setOnAction(event -> propertiesStage = new PropertiesStage(mainApp));
@@ -153,13 +150,11 @@ public class MainStageController implements Initializable
     /**
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
      * Wzorzec projektowy Adapter.
-     * ToDo: println do wywalenia po zakonczniu pracy nad klasą Scheduler
      */
     public class UpdateAdapter
     {
         void update1()
         {
-            //paneEvent1.setText(s);
             paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
             labelEvent1Description.setText(Scheduler.taskDisplayList.get(0).getDescription());
             labelEvent1Category.setText(Scheduler.taskDisplayList.get(0).getCategory());
@@ -170,9 +165,6 @@ public class MainStageController implements Initializable
             labelEvent1AlertFrequency.setText(Scheduler.taskDisplayList.get(0).getAlertFrequency().toString());
             labelEvent1Priority.setText(Scheduler.taskDisplayList.get(0).getPriority().toString());
             labelEvent1IsActive.setText(Scheduler.taskDisplayList.get(0).getIsActive().toString());
-
-            //System.out.println("controller.update1");
-            //System.out.println(s);
         }
         void update2()
         {

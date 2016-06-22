@@ -9,6 +9,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * Created by Paweł on 2016-06-19.
+ *
+ * Klasa zawierająca widok okna konfiguracji przypomnień.
+ */
+
 public class PropertiesStage
 {
 	public MainStage mainApp;

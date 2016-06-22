@@ -33,11 +33,7 @@ public class MainStage extends Application
 	public void start(Stage primaryStage)
 	{
 		BorderPane root;
-
 		database = Database.getInstance(); //użycie wzorca Singleton
-		
-		
-		
 
 		try {database.readFromFile();}
 		catch(IOException e)
@@ -56,9 +52,10 @@ public class MainStage extends Application
 		{
 			this.mainStage=primaryStage;
 			//mainStage.initStyle(StageStyle.UNDECORATED);
-			mainStage.setMinWidth(600);
-			mainStage.setMinHeight(85);
+			mainStage.setMinWidth(550);
+			mainStage.setMinHeight(75);
 			mainStage.setResizable(false);
+			//mainStage.setWidth(600);
 			expanded=true;
 
 			FXMLLoader loader = new FXMLLoader();
@@ -91,8 +88,7 @@ public class MainStage extends Application
 		controller.buttonAdd.setText(Resources.MainStageRes.buttonAddText);
 		controller.buttonPrevEvents.setText(Resources.MainStageRes.buttonPrevEventsText);
 		controller.buttonNextEvents.setText(Resources.MainStageRes.buttonNextEventsText);
-		controller.buttonRefresh.setText(Resources.MainStageRes.buttonRefreshText);
-		controller.buttonResize.setText(Resources.MainStageRes.buttonResizeText);
+		controller.buttonResize.setText(Resources.MainStageRes.buttonResizeTextHide);
 		controller.buttonProperties.setText(Resources.MainStageRes.buttonPropertiesTest);
 		controller.pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
 
