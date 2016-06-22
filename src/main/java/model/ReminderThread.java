@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Toolkit;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -49,6 +50,9 @@ public class ReminderThread
 					Platform.runLater(() ->
 					{
 					    Alert alert = new Alert(AlertType.INFORMATION);
+					    final Runnable runnable = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.default");
+		                if (runnable != null) 
+		                    runnable.run();
 						alert.setTitle("INFORMATION");
 						alert.setHeaderText("Event remainder alert!");
 						alert.setContentText("Remember about upcoming event \""+Database.getInstance().get(k).getTitle()+"\"");
