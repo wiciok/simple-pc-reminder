@@ -11,7 +11,7 @@
       <ComboBox fx:id="howManyHours" layoutX="14.0" layoutY="45.0" prefWidth="150.0" />
       <Button fx:id="saveButton" layoutX="291.0" layoutY="127.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="73.0" text="save_but" />
       <Label fx:id="howManyHoursLabel" layoutX="14.0" layoutY="28.0" text="Label" />
-      <ComboBox fx:id="howManyDays" layoutX="14.0" layoutY="139.0" prefWidth="150.0" />
-      <Label fx:id="howManyDaysLabel" layoutX="14.0" layoutY="122.0" text="Label" />
+      <ComboBox fx:id="isActive" layoutX="14.0" layoutY="139.0" prefWidth="150.0" />
+      <Label fx:id="isActiveLabel" layoutX="14.0" layoutY="122.0" text="Label" />
    </children>
 </AnchorPane>

@@ -108,7 +108,6 @@ public class MainStageController implements Initializable
     @FXML public Button buttonRemove2;
     @FXML public Button buttonRemove3;
 
-
     public void initialize(URL url, ResourceBundle rb)
     {
         //konstruktor Schedulera - ważne! połączenie pomiędzy schedulerem a controllerem

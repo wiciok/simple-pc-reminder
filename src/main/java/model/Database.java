@@ -115,7 +115,7 @@ public class Database
 			}
 		}
 		databaseList.clear();
-		databaseList=tmp;
+		databaseList.addAll(tmp);
 		file.close();
 	}
 

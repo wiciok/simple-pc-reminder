@@ -14,6 +14,7 @@ import java.io.IOException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.*;
 import java.time.format.DateTimeFormatter;
+import model.ReminderThread;
 
 /**
  * podstawowa klasa od GUI
@@ -26,6 +27,7 @@ public class MainStage extends Application
 	private Database database;
 	public MainStageController controller;
 	public boolean expanded;
+	Thread newTask = new Thread(ReminderThread.task);
 
 	@Override
 	public void start(Stage primaryStage)
@@ -33,6 +35,9 @@ public class MainStage extends Application
 		BorderPane root;
 
 		database = Database.getInstance(); //użycie wzorca Singleton
+		
+		
+		
 
 		try {database.readFromFile();}
 		catch(IOException e)
@@ -45,7 +50,8 @@ public class MainStage extends Application
 			alert.showAndWait();
 		}
 		Scheduler.init();
-
+		newTask.setDaemon(true);
+		newTask.start();
 		try
 		{
 			this.mainStage=primaryStage;
@@ -166,7 +172,6 @@ public class MainStage extends Application
 
 	public static void main(String[] args) {launch(args);}
 
-	@Override
 	public void stop()
 	{
 		try

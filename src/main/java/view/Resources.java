@@ -65,7 +65,7 @@ public class Resources
         
         /*LABELE*/
         static String howManyHoursLabelText = "Per how many hours show alert?";
-        static String howManyDaysLabelText = "How many days before Event start showing alerts?";
+        static String isActiveLabelText = "Make all events active?";
     }
 
 }

@@ -22,13 +22,12 @@ public class PropertiesStageController implements Initializable
     {
         this.propertiesStage = PropertiesStage;
     }
-	
 	@FXML public Button exitButton;
 	@FXML public Button saveButton;
 	@FXML public Label howManyHoursLabel;
-	@FXML public Label howManyDaysLabel;
+	@FXML public Label isActiveLabel;
 	@FXML public ComboBox<Integer> howManyHours;
-	@FXML public ComboBox<Integer> howManyDays;
+	@FXML public ComboBox<String> isActive;
 	
 	public void initialize(URL url, ResourceBundle rb)
     {
@@ -37,8 +36,11 @@ public class PropertiesStageController implements Initializable
 		{
 			for(int i = 0; i<Database.getInstance().size(); i++)
 				Database.getInstance().get(i).setAlertFrequency(howManyHours.getSelectionModel().getSelectedItem());
+			
+			for(int i = 0; i<Database.getInstance().size(); i++)
+				Database.getInstance().get(i).setIsActive((Boolean.parseBoolean(isActive.getSelectionModel().getSelectedItem())));
+			
 			propertiesStage.propertiesStage.close();
-
 		});
     }
 }
