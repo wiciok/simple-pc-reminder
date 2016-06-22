@@ -1,7 +1,6 @@
 package view;
 
 import javafx.geometry.Pos;
-import javafx.stage.StageStyle;
 import model.Database;
 import javafx.application.*;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +37,6 @@ public class MainStage extends Application
 		try {database.readFromFile();}
 		catch(IOException e)
 		{
-			//e.printStackTrace();
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information");
 			alert.setHeaderText(null);
@@ -72,19 +70,17 @@ public class MainStage extends Application
 		}
 		catch(Exception e)
 		{
-			//e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Stage Error!");
 			alert.setContentText("Application will be terminated.");
-
 			alert.showAndWait();
 			primaryStage.close();
 		}
 
 		//-----------------konfiguracja kontrolek-------------------------------------------
-
 		controller.buttonClose.setText(Resources.MainStageRes.buttonCloseText);
+		controller.propertiesButton.setText(Resources.MainStageRes.buttonPropertiesText);
 		controller.buttonAdd.setText(Resources.MainStageRes.buttonAddText);
 		controller.buttonPrevEvents.setText(Resources.MainStageRes.buttonPrevEventsText);
 		controller.buttonNextEvents.setText(Resources.MainStageRes.buttonNextEventsText);
@@ -161,7 +157,6 @@ public class MainStage extends Application
 		controller.buttonRemove1.setText(Resources.MainStageRes.buttonRemoveText);
 		controller.buttonRemove2.setText(Resources.MainStageRes.buttonRemoveText);
 		controller.buttonRemove3.setText(Resources.MainStageRes.buttonRemoveText);
-
 		//-----------------------------------------------------------------------------------------------------
 	}
 

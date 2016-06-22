@@ -40,7 +40,7 @@ public class Resources
         static String buttonNextEventsText = "Next";
         static String buttonPrevEventsText = "Previous";
         static String buttonRefreshText = "Refresh";
-        static String buttonPropertiesTest = "Properties";
+        static String buttonPropertiesText = "Properties";
         public static String buttonResizeTextShow = "Show";
         public static String buttonResizeTextHide = "Hide";
         public static String pageLabelText = "Page: ";
@@ -65,10 +65,10 @@ public class Resources
         static String saveButtonText = "Save"; 
         
         /*LABELE*/
-        static String howManyHoursLabelText = "Per how many hours show alert?";
+        static String howManyHoursLabelText = "How often show alerts? (in hours)";
         static String isActiveLabelText = "Make all events active?";
+		static String titleLabelText = "Adjust default events settings";
     }
-
 
     public static class AlertRes
     {

@@ -4,7 +4,6 @@ import model.event.Event;
 import model.event.EventSerializable;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

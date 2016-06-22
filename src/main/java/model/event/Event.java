@@ -27,6 +27,13 @@ public class Event extends EventAbstract implements Cloneable
 	IntegerProperty alertFrequency;
 	BooleanProperty isActive;
 	IntegerProperty priority;
+	
+	/*Default*/
+	public static String defaultTitle = "New Event";
+	public static String defaultCategory = "empty";
+	public static String defaultIsActive = "true";
+	public static Integer defaultPriority = 0;
+	public static Integer defaultAlertFrequency = 1;
 
 	public Event()
 	{		
@@ -35,12 +42,12 @@ public class Event extends EventAbstract implements Cloneable
 		this.eventTimeStart = new SimpleObjectProperty<>(LocalTime.now());
 		this.eventDateEnd = new SimpleObjectProperty<>(LocalDate.now());
 		this.eventTimeEnd = new SimpleObjectProperty<>(LocalTime.now());
-		this.title = new SimpleStringProperty("empty");
+		this.title = new SimpleStringProperty(defaultTitle);
 		this.description = new SimpleStringProperty("empty");
-		this.category = new SimpleStringProperty("empty");
-		this.alertFrequency = new SimpleIntegerProperty(1);
-		this.isActive = new SimpleBooleanProperty(false);
-		this.priority = new SimpleIntegerProperty(1);
+		this.category = new SimpleStringProperty(defaultCategory);
+		this.alertFrequency = new SimpleIntegerProperty(defaultAlertFrequency);
+		this.isActive = new SimpleBooleanProperty(Boolean.parseBoolean(defaultIsActive));
+		this.priority = new SimpleIntegerProperty(defaultPriority);
 	}
 	
 	public Event(LocalDate eventDateStart, LocalTime eventTimeStart, LocalDate eventDateEnd, LocalTime eventTimeEnd,
@@ -89,7 +96,6 @@ public class Event extends EventAbstract implements Cloneable
 		this.priority = new SimpleIntegerProperty(copy.getPriority());
 	}
 
-
 	public LocalDateTime getEventDateNow() {return this.eventDateNow.get();}
 	public LocalDate getEventDateStart() {return this.eventDateStart.get();}
 	public LocalTime getEventTimeStart() {return this.eventTimeStart.get();}
@@ -102,7 +108,6 @@ public class Event extends EventAbstract implements Cloneable
 	public Boolean getIsActive() {return this.isActive.get();}
 	public Integer getPriority() {return this.priority.get();}
 
-
 	public ObjectProperty<LocalDateTime> getEventDateNowProperty() {return this.eventDateNow;}
 	public ObjectProperty<LocalDate> getEventDateStartProperty() {return this.eventDateStart;}
 	public ObjectProperty<LocalTime> getEventTimeStartProperty() {return this.eventTimeStart;}
@@ -114,7 +119,6 @@ public class Event extends EventAbstract implements Cloneable
 	public IntegerProperty getAlertFrequencyProperty() {return this.alertFrequency;}
 	public BooleanProperty getIsActiveProperty() {return this.isActive;}
 	public IntegerProperty getPriorityProperty() {return this.priority;}
-
 
 	public void setEventDateStart(LocalDate eventDateStart) {this.eventDateStart.set(eventDateStart);}
 	public void setEventTimeStart(LocalTime eventTimeStart) {this.eventTimeStart.set(eventTimeStart);}

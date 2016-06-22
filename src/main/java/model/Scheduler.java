@@ -1,7 +1,6 @@
 package model;
 
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.*;
 import model.event.Event;

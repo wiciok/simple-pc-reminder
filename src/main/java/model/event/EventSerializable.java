@@ -1,9 +1,5 @@
 package model.event;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

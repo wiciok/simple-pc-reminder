@@ -49,15 +49,17 @@ public class PropertiesStage
             alert.setTitle("Error");
             alert.setHeaderText("Properties Stage Error!");
             alert.setContentText("Stage will be closed.");
-
             alert.showAndWait();
             propertiesStage.close();
         }
         ObservableList<Integer> howManyHoursOptions = FXCollections.observableArrayList(1,2,3,4,5);
         ObservableList<String> activeOptions = FXCollections.observableArrayList(Resources.AddEventStageRes.strTrue, Resources.AddEventStageRes.strFalse);
+        ObservableList<Integer> priorityOptions = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
         
         controller.howManyHoursLabel.setText(Resources.PropertiesStageRes.howManyHoursLabelText);
         controller.isActiveLabel.setText(Resources.PropertiesStageRes.isActiveLabelText);
+        controller.titleLabel.setText(Resources.PropertiesStageRes.titleLabelText);
+        controller.priorityLabel.setText(Resources.MainStageRes.priorityText);
         
         controller.exitButton.setText(Resources.PropertiesStageRes.exitButtonText);
         controller.saveButton.setText(Resources.PropertiesStageRes.saveButtonText);
@@ -67,5 +69,11 @@ public class PropertiesStage
         
         controller.isActive.setItems(activeOptions);
         controller.isActive.getSelectionModel().selectFirst();
+        
+        controller.priority.setItems(priorityOptions);
+        controller.priority.getSelectionModel().selectFirst();
+        
+        controller.eventNameField.setPromptText(Resources.AddEventStageRes.strEventNameField);
+        controller.eventCategory.setPromptText(Resources.AddEventStageRes.strEventCategory);
     }
 }

@@ -22,7 +22,6 @@ public class ReminderThread
 	{
 		protected Void call() throws Exception
 		{
-			System.out.println(Integer.toString(Database.getInstance().size()));
 			check();
 			return null;
 		}
