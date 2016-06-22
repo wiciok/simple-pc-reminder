@@ -61,6 +61,8 @@ public class Scheduler
             catch(IndexOutOfBoundsException e)
             {
                 taskDisplayList.add(new EventNull());
+
+                mainStageController.update.updateIndex(k);
 /*
                 String tmp=Database.getInstance().get(i).getTitle();
                 taskDisplayList.get(k).getTitleProperty().set("__force change of value");
@@ -103,15 +105,15 @@ public class Scheduler
         System.out.println("getNext");
         currentPage+=1;
 
-        /*Sprawdzenie, czy kolejna strona istnieje*/
-        /*try
+        /*Sprawdzenie, czy kolejna rozpoczęta strona istnieje*/
+        try
         {
-            Database.getInstance().get(currentPage*3);
+            Database.getInstance().get(currentPage*3-3);
         }
         catch (IndexOutOfBoundsException e)
         {
             currentPage-=1;
-        }*/
+        }
         update();
     }
 
