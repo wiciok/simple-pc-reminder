@@ -43,7 +43,6 @@ public class Database
 		databaseList.add(newEvent);
 	}
 
-
 	/**
 	 * remove - usuwa wydarzenie z bazy
 	 * @throws IndexOutOfBoundsException
