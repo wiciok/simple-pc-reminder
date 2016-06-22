@@ -16,17 +16,24 @@ import javafx.beans.property.*;
 
 public class Event extends EventAbstract implements Cloneable
 {
-	private ObjectProperty<LocalDateTime> eventDateNow;
-	private ObjectProperty<LocalDate> eventDateStart;
-	private ObjectProperty<LocalTime> eventTimeStart;
-	private ObjectProperty<LocalDate> eventDateEnd;
-	private ObjectProperty<LocalTime> eventTimeEnd;
-	private StringProperty title;
-	private StringProperty description;
-	private StringProperty category;
-	private IntegerProperty alertFrequency;
-	private BooleanProperty isActive;
-	private IntegerProperty priority;
+	ObjectProperty<LocalDateTime> eventDateNow;
+	ObjectProperty<LocalDate> eventDateStart;
+	ObjectProperty<LocalTime> eventTimeStart;
+	ObjectProperty<LocalDate> eventDateEnd;
+	ObjectProperty<LocalTime> eventTimeEnd;
+	StringProperty title;
+	StringProperty description;
+	StringProperty category;
+	IntegerProperty alertFrequency;
+	BooleanProperty isActive;
+	IntegerProperty priority;
+	
+	/*Default*/
+	public static String defaultTitle = "New Event";
+	public static String defaultCategory = "empty";
+	public static String defaultIsActive = "true";
+	public static Integer defaultPriority = 0;
+	public static Integer defaultAlertFrequency = 1;
 
 	public Event()
 	{		
@@ -35,12 +42,12 @@ public class Event extends EventAbstract implements Cloneable
 		this.eventTimeStart = new SimpleObjectProperty<>(LocalTime.now());
 		this.eventDateEnd = new SimpleObjectProperty<>(LocalDate.now());
 		this.eventTimeEnd = new SimpleObjectProperty<>(LocalTime.now());
-		this.title = new SimpleStringProperty("");
-		this.description = new SimpleStringProperty("");
-		this.category = new SimpleStringProperty("");
-		this.alertFrequency = new SimpleIntegerProperty(1);
-		this.isActive = new SimpleBooleanProperty(false);
-		this.priority = new SimpleIntegerProperty(1);
+		this.title = new SimpleStringProperty(defaultTitle);
+		this.description = new SimpleStringProperty("empty");
+		this.category = new SimpleStringProperty(defaultCategory);
+		this.alertFrequency = new SimpleIntegerProperty(defaultAlertFrequency);
+		this.isActive = new SimpleBooleanProperty(Boolean.parseBoolean(defaultIsActive));
+		this.priority = new SimpleIntegerProperty(defaultPriority);
 	}
 	
 	public Event(LocalDate eventDateStart, LocalTime eventTimeStart, LocalDate eventDateEnd, LocalTime eventTimeEnd,

@@ -20,13 +20,11 @@ import model.Database;
 import view.AddEventStage;
 
 /**
- * Created by Witek on 2016-06-15.
- * ToDo: sensowne wartosci dla prototypu
+ * Klasa kontrolera okna od dodawaia nowego wydarzenia.
  */
 public class AddEventStageController implements Initializable
 {
     private AddEventStage addEventStage;
-    
     public int howManyHours;
 
     /*inicjalizacja kontrolek na scenie - wiązanie z plikiem FXML
@@ -63,7 +61,7 @@ public class AddEventStageController implements Initializable
             /* tworzenie prototypu Eventu - w konstruktorze sa ustawiane domyslne wartosci
              * ktore obowiazuja gdy uzytkownik tu czegos nie wprowadzi*/
 
-            Event prototype = new Event(); //ToDo: ten prototyp powinien miec jakies sensowne wartosci, a nie to co ma konstruktor domyslnie
+            Event prototype = new Event();
             Event newEvent = (Event)prototype.clone();
 
             /*Pobieranie wpisanych przez uzytkownika wartosci*/
@@ -159,9 +157,12 @@ public class AddEventStageController implements Initializable
             }
 
             /* tu zawsze wybrana jest wartosc domyslna w razie jakby nic nie wybrał uzytkownik - widac w GUI*/
-            newEvent.setPriority(eventPriority.getSelectionModel().getSelectedItem());
-            newEvent.setAlertFrequency(alertFrequency.getSelectionModel().getSelectedItem());
-            newEvent.setIsActive(Boolean.parseBoolean(eventIsActive.getSelectionModel().getSelectedItem()));
+            if(eventPriority.getSelectionModel().getSelectedItem()!= null)
+            	newEvent.setPriority(eventPriority.getSelectionModel().getSelectedItem());
+            if(alertFrequency.getSelectionModel().getSelectedItem()!= null)
+            	newEvent.setAlertFrequency(alertFrequency.getSelectionModel().getSelectedItem());
+            if(eventIsActive.getSelectionModel().getSelectedItem()!= null)
+            	newEvent.setIsActive(Boolean.parseBoolean(eventIsActive.getSelectionModel().getSelectedItem()));
 
             /*dodanie eventu do bazy, refresh glownego okna i zamkniecie stage'a*/
             Database.getInstance().add(newEvent);

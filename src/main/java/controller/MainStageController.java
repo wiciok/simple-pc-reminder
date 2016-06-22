@@ -1,8 +1,10 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.Database;
 import model.Scheduler;
 import view.AddEventStage;
 import view.MainStage;
@@ -27,11 +29,11 @@ public class MainStageController implements Initializable
 
     public UpdateAdapter update = new UpdateAdapter();
 
+
     /*jeśli w SceneBuilderze nadaliśmy kontrolce takie samo ID jak nazwa obiektu
     to zostaną one automatycznie połączone - do zmiennej obiektowej zostanie przypisany obiekt
     potrzebna jest do tego oczywiscie adnotacja @FXML
     */
-
     /*inicjalizacja kontrolek na scenie - wiązanie z plikiem FXML
     * możliwe do wykonania jedynie w klasie kontrolera*/
 
@@ -43,9 +45,8 @@ public class MainStageController implements Initializable
     @FXML public Button buttonAdd;
     @FXML public Button buttonNextEvents;
     @FXML public Button buttonPrevEvents;
-    @FXML public Button buttonRefresh;
     @FXML public Button buttonResize;
-    @FXML public Button buttonProperties;
+    @FXML public Button propertiesButton;
     @FXML public Label pageLabel;
 
     /*LABELE OGOLNE*/
@@ -111,13 +112,12 @@ public class MainStageController implements Initializable
 
     public void initialize(URL url, ResourceBundle rb)
     {
-        //konstruktor Schedulera - ważne! połączenie pomiędzy schedulerem a controllerem
+        //konstruktor Schedulera - połączenie pomiędzy schedulerem a controllerem
         scheduler=new Scheduler(this);
 
         buttonClose.setOnAction(event -> mainApp.mainStage.close());
-
         buttonAdd.setOnAction(event -> addEventStage = new AddEventStage(mainApp));
-
+        propertiesButton.setOnAction(event -> propertiesStage = new PropertiesStage(mainApp));
         buttonNextEvents.setOnAction(event -> {
             scheduler.getNext();
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
@@ -126,14 +126,12 @@ public class MainStageController implements Initializable
             scheduler.getPrev();
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
-        buttonRefresh.setOnAction(event -> {
-            scheduler.update();
-            pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
-        });
+
+        /*rozwijanie i zwijanie okna*/
         buttonResize.setOnAction(event -> {
             if(mainApp.expanded==false)
             {
-                mainApp.mainStage.setHeight(500);
+                mainApp.mainStage.setHeight(550);
                 mainApp.expanded=true;
             }
             else
@@ -142,7 +140,77 @@ public class MainStageController implements Initializable
                 mainApp.expanded=false;
             }
         });
-        buttonProperties.setOnAction(event -> propertiesStage = new PropertiesStage(mainApp));
+
+        /*usuwanie eventów + bezpośrednie odświeżanie głównej sceny*/
+        buttonRemove1.setOnAction(event ->
+        {
+            try
+            {
+                final int j = 0;
+                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
+                for (int i=j;i<3;i++)
+                {
+                    update.updateIndex(i);
+                    scheduler.update();
+                }
+                update.updateIndex(j);
+                scheduler.update();
+            }
+            catch (IndexOutOfBoundsException exception)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Event does not exist!");
+                alert.showAndWait();
+            }
+        });
+        buttonRemove2.setOnAction(event ->
+        {
+            try
+            {
+                final int j = 1;
+                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
+                for (int i=j;i<3;i++)
+                {
+                    update.updateIndex(i);
+                    scheduler.update();
+                }
+                update.updateIndex(j);
+                scheduler.update();
+            }
+            catch (IndexOutOfBoundsException exception)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Event does not exist!");
+                alert.showAndWait();
+            }
+        });
+        buttonRemove3.setOnAction(event ->
+        {
+            try
+            {
+                final int j = 2;
+                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
+                for (int i=j;i<3;i++)
+                {
+                    update.updateIndex(i);
+                    scheduler.update();
+                }
+                update.updateIndex(j);
+                scheduler.update();
+            }
+            catch (IndexOutOfBoundsException exception)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Event does not exist!");
+                alert.showAndWait();
+            }
+        });
     }
 
     public void setMainApp(MainStage mainApp)
@@ -154,13 +222,11 @@ public class MainStageController implements Initializable
     /**
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
      * Wzorzec projektowy Adapter.
-     * ToDo: println do wywalenia po zakonczniu pracy nad klasą Scheduler
      */
     public class UpdateAdapter
     {
         void update1()
         {
-            //paneEvent1.setText(s);
             paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
             labelEvent1Description.setText(Scheduler.taskDisplayList.get(0).getDescription());
             labelEvent1Category.setText(Scheduler.taskDisplayList.get(0).getCategory());
@@ -171,14 +237,9 @@ public class MainStageController implements Initializable
             labelEvent1AlertFrequency.setText(Scheduler.taskDisplayList.get(0).getAlertFrequency().toString());
             labelEvent1Priority.setText(Scheduler.taskDisplayList.get(0).getPriority().toString());
             labelEvent1IsActive.setText(Scheduler.taskDisplayList.get(0).getIsActive().toString());
-
-            //System.out.println("controller.update1");
-            //System.out.println(s);
         }
         void update2()
         {
-            //paneEvent2.setText(s);
-
             paneEvent2.setText(Scheduler.taskDisplayList.get(1).getTitle());
             labelEvent2Description.setText(Scheduler.taskDisplayList.get(1).getDescription());
             labelEvent2Category.setText(Scheduler.taskDisplayList.get(1).getCategory());
@@ -189,9 +250,6 @@ public class MainStageController implements Initializable
             labelEvent2AlertFrequency.setText(Scheduler.taskDisplayList.get(1).getAlertFrequency().toString());
             labelEvent2Priority.setText(Scheduler.taskDisplayList.get(1).getPriority().toString());
             labelEvent2IsActive.setText(Scheduler.taskDisplayList.get(1).getIsActive().toString());
-            
-            //System.out.println("controller.update2");
-            //System.out.println(s);
         }
         void update3()
         {
@@ -207,10 +265,6 @@ public class MainStageController implements Initializable
             labelEvent3AlertFrequency.setText(Scheduler.taskDisplayList.get(2).getAlertFrequency().toString());
             labelEvent3Priority.setText(Scheduler.taskDisplayList.get(2).getPriority().toString());
             labelEvent3IsActive.setText(Scheduler.taskDisplayList.get(2).getIsActive().toString());
-            
-            
-            //System.out.println("controller.update3");
-            //System.out.println(s);
         }
 
         abstract class Update
