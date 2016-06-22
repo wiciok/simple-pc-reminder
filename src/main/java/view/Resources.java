@@ -41,7 +41,8 @@ public class Resources
         static String buttonPrevEventsText = "Previous";
         static String buttonRefreshText = "Refresh";
         static String buttonPropertiesTest = "Properties";
-        public static String buttonResizeText = "Resize";
+        public static String buttonResizeTextShow = "Show";
+        public static String buttonResizeTextHide = "Hide";
         public static String pageLabelText = "Page: ";
 
         static String buttonRemoveText = "Remove";
