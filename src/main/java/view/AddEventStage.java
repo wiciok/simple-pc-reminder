@@ -8,7 +8,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import controller.AddEventStageController;
-import javafx.stage.StageStyle;
 
 /**
  * Created by Witek on 2016-06-15.
@@ -85,11 +84,11 @@ public class AddEventStage
         ObservableList<Integer> alertOptions = FXCollections.observableArrayList(1,2,3,4,5);
 
         controller.eventPriority.setItems(options);
-        controller.eventPriority.getSelectionModel().selectFirst();
+        //controller.eventPriority.getSelectionModel().selectFirst();
         controller.alertFrequency.setItems(alertOptions);
-        controller.alertFrequency.getSelectionModel().selectFirst();
+        //controller.alertFrequency.getSelectionModel().selectFirst();
         controller.eventIsActive.setItems(activeOptions);
-        controller.eventIsActive.getSelectionModel().selectFirst();
+        //controller.eventIsActive.getSelectionModel().selectFirst();
 
         //-----------------------------------------------------------------------------------------------------
     }

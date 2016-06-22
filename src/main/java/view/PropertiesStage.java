@@ -9,6 +9,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * Created by Paweł on 2016-06-19.
+ *
+ * Klasa zawierająca widok okna konfiguracji przypomnień.
+ */
+
 public class PropertiesStage
 {
 	public MainStage mainApp;
@@ -48,10 +54,13 @@ public class PropertiesStage
             propertiesStage.close();
         }
         ObservableList<Integer> howManyHoursOptions = FXCollections.observableArrayList(1,2,3,4,5);
-        ObservableList<Integer> howManyDaysOptions = FXCollections.observableArrayList(1,2,3,4,5,6,7);
+        ObservableList<String> activeOptions = FXCollections.observableArrayList(Resources.AddEventStageRes.strTrue, Resources.AddEventStageRes.strFalse);
+        ObservableList<Integer> priorityOptions = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
         
         controller.howManyHoursLabel.setText(Resources.PropertiesStageRes.howManyHoursLabelText);
-        controller.howManyDaysLabel.setText(Resources.PropertiesStageRes.howManyDaysLabelText);
+        controller.isActiveLabel.setText(Resources.PropertiesStageRes.isActiveLabelText);
+        controller.titleLabel.setText(Resources.PropertiesStageRes.titleLabelText);
+        controller.priorityLabel.setText(Resources.MainStageRes.priorityText);
         
         controller.exitButton.setText(Resources.PropertiesStageRes.exitButtonText);
         controller.saveButton.setText(Resources.PropertiesStageRes.saveButtonText);
@@ -59,7 +68,13 @@ public class PropertiesStage
         controller.howManyHours.setItems(howManyHoursOptions);
         controller.howManyHours.getSelectionModel().selectFirst();
         
-        controller.howManyDays.setItems(howManyDaysOptions);
-        controller.howManyDays.getSelectionModel().selectFirst();
+        controller.isActive.setItems(activeOptions);
+        controller.isActive.getSelectionModel().selectFirst();
+        
+        controller.priority.setItems(priorityOptions);
+        controller.priority.getSelectionModel().selectFirst();
+        
+        controller.eventNameField.setPromptText(Resources.AddEventStageRes.strEventNameField);
+        controller.eventCategory.setPromptText(Resources.AddEventStageRes.strEventCategory);
     }
 }

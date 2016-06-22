@@ -43,6 +43,13 @@ public class Database
 		databaseList.add(newEvent);
 	}
 
+
+	/**
+	 * remove - usuwa wydarzenie z bazy
+	 * @throws IndexOutOfBoundsException
+	 * */
+	public void remove(int index) throws IndexOutOfBoundsException {databaseList.remove(index);}
+
 	/**
 	*size - zwraca ilosc wydarzen
 	**/
@@ -53,6 +60,7 @@ public class Database
 
 	/**
 	 * get - zwraca obiekt Event z bazy - pierwszy, lub o podanym indeksie
+	 * @throws IndexOutOfBoundsException
 	 **/
 	public Event get()
 	{
@@ -115,7 +123,7 @@ public class Database
 			}
 		}
 		databaseList.clear();
-		databaseList=tmp;
+		databaseList.addAll(tmp);
 		file.close();
 	}
 
