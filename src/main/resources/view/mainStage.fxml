@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainStageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainStageController">
    <center>
       <Accordion minHeight="0.0" BorderPane.alignment="CENTER">
         <panes>
@@ -104,10 +104,10 @@
       <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
    </padding>
    <bottom>
-      <ButtonBar minWidth="40.0" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ButtonBar prefHeight="40.0" BorderPane.alignment="BOTTOM_CENTER">
         <buttons>
             <Label fx:id="pageLabel" text="Label" />
-            <Button fx:id="buttonRefresh" mnemonicParsing="false" text="but_refresh" />
+            <Button fx:id="buttonProperties" mnemonicParsing="false" text="but_prop" />
           <Button fx:id="buttonPrevEvents" mnemonicParsing="false" text="butt_prev" />
             <Button fx:id="buttonNextEvents" mnemonicParsing="false" text="butt_next" />
             <Button fx:id="buttonAdd" mnemonicParsing="false" text="but_add" />

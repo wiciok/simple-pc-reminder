@@ -14,6 +14,7 @@ import java.io.IOException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.*;
 import java.time.format.DateTimeFormatter;
+import model.ReminderThread;
 
 /**
  * podstawowa klasa od GUI
@@ -26,12 +27,12 @@ public class MainStage extends Application
 	private Database database;
 	public MainStageController controller;
 	public boolean expanded;
+	Thread newTask = new Thread(ReminderThread.task);
 
 	@Override
 	public void start(Stage primaryStage)
 	{
 		BorderPane root;
-
 		database = Database.getInstance(); //użycie wzorca Singleton
 
 		try {database.readFromFile();}
@@ -45,14 +46,16 @@ public class MainStage extends Application
 			alert.showAndWait();
 		}
 		Scheduler.init();
-
+		newTask.setDaemon(true);
+		newTask.start();
 		try
 		{
 			this.mainStage=primaryStage;
 			//mainStage.initStyle(StageStyle.UNDECORATED);
-			mainStage.setMinWidth(600);
-			mainStage.setMinHeight(85);
+			mainStage.setMinWidth(550);
+			mainStage.setMinHeight(75);
 			mainStage.setResizable(false);
+			//mainStage.setWidth(600);
 			expanded=true;
 
 			FXMLLoader loader = new FXMLLoader();
@@ -85,8 +88,8 @@ public class MainStage extends Application
 		controller.buttonAdd.setText(Resources.MainStageRes.buttonAddText);
 		controller.buttonPrevEvents.setText(Resources.MainStageRes.buttonPrevEventsText);
 		controller.buttonNextEvents.setText(Resources.MainStageRes.buttonNextEventsText);
-		controller.buttonRefresh.setText(Resources.MainStageRes.buttonRefreshText);
-		controller.buttonResize.setText(Resources.MainStageRes.buttonResizeText);
+		controller.buttonResize.setText(Resources.MainStageRes.buttonResizeTextHide);
+		controller.buttonProperties.setText(Resources.MainStageRes.buttonPropertiesTest);
 		controller.pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
 
 		controller.paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
@@ -165,7 +168,6 @@ public class MainStage extends Application
 
 	public static void main(String[] args) {launch(args);}
 
-	@Override
 	public void stop()
 	{
 		try
