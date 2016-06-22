@@ -11,9 +11,6 @@ import model.event.EventNull;
  * Created by Witek on 2016-05-22.
  * Klasa zajmująca się przygotowaniem danych do wyświetlenia
  *
- * ToDo: poprawic ze przy przejsciu na kolejna strone jesli nei ma nowych wartosci to stare sie nie odswiezaja - zrobic eventnulle na ich miejsce
- *
- * ToDo: pomyslec nad zastosowaniem singletona
  */
 public class Scheduler
 {
@@ -32,22 +29,23 @@ public class Scheduler
         try
         {
             Database.getInstance().sort();
-            System.out.println("posortowano!");
+            //System.out.println("posortowano!");
         }
         catch (IndexOutOfBoundsException e)
         {
-            //ToDo: jesl bedzie jakis logger, to dac info ze sortowanie nieudane bo pusta baza
-            System.out.println("sortowanie nieudane!");
+            //System.out.println("sortowanie nieudane!");
         }
 
         taskDisplayList.clear();
         for (int i=(currentPage-1)*3, k=0; i<(currentPage)*3; i++, k++)
         {
-            //System.out.print("iter: ");
-            //System.out.println(i);
             try
             {
                 final int j = k;
+
+                /*Zastosowanie wzorca projektowego Obserwator -
+                - użycie Listenera do obserwacji zmian wśród aktualnie wyświetlanych elementów*/
+
                 final ChangeListener<String> list = (observable, oldValue, newValue) -> mainStageController.update.updateIndex(j);
 
                 taskDisplayList.add(Database.getInstance().get(i));
@@ -61,12 +59,7 @@ public class Scheduler
             catch(IndexOutOfBoundsException e)
             {
                 taskDisplayList.add(new EventNull());
-
                 mainStageController.update.updateIndex(k);
-/*
-                String tmp=Database.getInstance().get(i).getTitle();
-                taskDisplayList.get(k).getTitleProperty().set("__force change of value");
-                taskDisplayList.get(k).getTitleProperty().set(tmp);*/
             }
         }
     }
@@ -76,12 +69,11 @@ public class Scheduler
         try
         {
             Database.getInstance().sort();
-            System.out.println("posortowano!");
+            //System.out.println("posortowano!");
         }
         catch (IndexOutOfBoundsException e)
         {
-            //ToDo: jesl bedzie jakis logger, to dac info ze sortowanie nieudane bo pusta baza
-            System.out.println("sortowanie nieudane!");
+            //System.out.println("sortowanie nieudane!");
         }
 
         currentPage=0;
