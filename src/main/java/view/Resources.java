@@ -40,6 +40,7 @@ public class Resources
         static String buttonNextEventsText = "Next";
         static String buttonPrevEventsText = "Previous";
         static String buttonRefreshText = "Refresh";
+        static String buttonPropertiesTest = "Properties";
         public static String buttonResizeText = "Resize";
         public static String pageLabelText = "Page: ";
 
@@ -55,6 +56,16 @@ public class Resources
         static String priorityText = "Priority:";
         static String isActiveText = "Is active?";
         
+    }
+    
+    public static class PropertiesStageRes
+    {
+        static String exitButtonText = "Close"; 
+        static String saveButtonText = "Save"; 
+        
+        /*LABELE*/
+        static String howManyHoursLabelText = "Per how many hours show alert?";
+        static String howManyDaysLabelText = "How many days before Event start showing alerts?";
     }
 
 }

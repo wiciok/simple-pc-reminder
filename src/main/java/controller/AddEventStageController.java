@@ -26,7 +26,8 @@ import view.AddEventStage;
 public class AddEventStageController implements Initializable
 {
     private AddEventStage addEventStage;
-
+    
+    public int howManyHours;
 
     /*inicjalizacja kontrolek na scenie - wiązanie z plikiem FXML
     * możliwe do wykonania jedynie w klasie kontrolera*/

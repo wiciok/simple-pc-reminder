@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import model.Scheduler;
 import view.AddEventStage;
 import view.MainStage;
+import view.PropertiesStage;
 import view.Resources;
 
 import java.net.URL;
@@ -21,6 +22,7 @@ public class MainStageController implements Initializable
     private MainStage mainApp;
     public MainStageController(){}
     private AddEventStage addEventStage;
+    private PropertiesStage propertiesStage;
     Scheduler scheduler;
 
     public UpdateAdapter update = new UpdateAdapter();
@@ -43,6 +45,7 @@ public class MainStageController implements Initializable
     @FXML public Button buttonPrevEvents;
     @FXML public Button buttonRefresh;
     @FXML public Button buttonResize;
+    @FXML public Button buttonProperties;
     @FXML public Label pageLabel;
 
     /*LABELE OGOLNE*/
@@ -139,6 +142,7 @@ public class MainStageController implements Initializable
                 mainApp.expanded=false;
             }
         });
+        buttonProperties.setOnAction(event -> propertiesStage = new PropertiesStage(mainApp));
     }
 
     public void setMainApp(MainStage mainApp)
