@@ -1,6 +1,7 @@
 package view;
 
 import javafx.geometry.Pos;
+import javafx.stage.StageStyle;
 import model.Database;
 import javafx.application.*;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ public class MainStage extends Application
 	public Stage mainStage;
 	private Database database;
 	public MainStageController controller;
+	public boolean expanded;
 
 	@Override
 	public void start(Stage primaryStage)
@@ -47,6 +49,12 @@ public class MainStage extends Application
 		try
 		{
 			this.mainStage=primaryStage;
+			//mainStage.initStyle(StageStyle.UNDECORATED);
+			mainStage.setMinWidth(600);
+			mainStage.setMinHeight(85);
+			mainStage.setResizable(false);
+			expanded=true;
+
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainStage.class.getResource("mainStage.fxml"));
 			root = loader.load();
@@ -78,6 +86,7 @@ public class MainStage extends Application
 		controller.buttonPrevEvents.setText(Resources.MainStageRes.buttonPrevEventsText);
 		controller.buttonNextEvents.setText(Resources.MainStageRes.buttonNextEventsText);
 		controller.buttonRefresh.setText(Resources.MainStageRes.buttonRefreshText);
+		controller.buttonResize.setText(Resources.MainStageRes.buttonResizeText);
 		controller.pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
 
 		controller.paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());

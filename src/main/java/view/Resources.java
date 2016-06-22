@@ -40,6 +40,7 @@ public class Resources
         static String buttonNextEventsText = "Next";
         static String buttonPrevEventsText = "Previous";
         static String buttonRefreshText = "Refresh";
+        public static String buttonResizeText = "Resize";
         public static String pageLabelText = "Page: ";
 
         static String buttonRemoveText = "Remove";

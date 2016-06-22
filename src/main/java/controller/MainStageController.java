@@ -41,6 +41,7 @@ public class MainStageController implements Initializable
     @FXML public Button buttonNextEvents;
     @FXML public Button buttonPrevEvents;
     @FXML public Button buttonRefresh;
+    @FXML public Button buttonResize;
     @FXML public Label pageLabel;
 
     /*LABELE OGOLNE*/
@@ -124,6 +125,18 @@ public class MainStageController implements Initializable
         buttonRefresh.setOnAction(event -> {
             scheduler.update();
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
+        });
+        buttonResize.setOnAction(event -> {
+            if(mainApp.expanded==false)
+            {
+                mainApp.mainStage.setHeight(500);
+                mainApp.expanded=true;
+            }
+            else
+            {
+                mainApp.mainStage.setHeight(85);
+                mainApp.expanded=false;
+            }
         });
     }
 

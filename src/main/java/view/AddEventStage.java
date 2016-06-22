@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import controller.AddEventStageController;
+import javafx.stage.StageStyle;
 
 /**
  * Created by Witek on 2016-06-15.
@@ -28,6 +29,7 @@ public class AddEventStage
         try
         {
             addEventStage=new Stage();
+            addEventStage.setResizable(false);
 
             FXMLLoader addEventLoader = new FXMLLoader();
             addEventLoader.setLocation(AddEventStage.class.getResource("addEventStage.fxml"));
