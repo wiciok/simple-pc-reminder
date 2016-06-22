@@ -89,7 +89,6 @@ public class MainStage extends Application
 		controller.buttonPrevEvents.setText(Resources.MainStageRes.buttonPrevEventsText);
 		controller.buttonNextEvents.setText(Resources.MainStageRes.buttonNextEventsText);
 		controller.buttonResize.setText(Resources.MainStageRes.buttonResizeTextHide);
-		controller.buttonProperties.setText(Resources.MainStageRes.buttonPropertiesTest);
 		controller.pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
 
 		controller.paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());

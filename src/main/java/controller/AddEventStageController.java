@@ -20,8 +20,7 @@ import model.Database;
 import view.AddEventStage;
 
 /**
- * Created by Witek on 2016-06-15.
- * ToDo: sensowne wartosci dla prototypu
+ * Klasa kontrolera okna od dodawaia nowego wydarzenia.
  */
 public class AddEventStageController implements Initializable
 {
