@@ -150,7 +150,7 @@ public class MainStageController implements Initializable
             try
             {
                 final int j = 0;
-                Database.getInstance().remove(j);
+                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
                 for (int i=j;i<3;i++)
                 {
                     update.updateIndex(i);
@@ -173,7 +173,7 @@ public class MainStageController implements Initializable
             try
             {
                 final int j = 1;
-                Database.getInstance().remove(j);
+                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
                 for (int i=j;i<3;i++)
                 {
                     update.updateIndex(i);
@@ -196,7 +196,7 @@ public class MainStageController implements Initializable
             try
             {
                 final int j = 2;
-                Database.getInstance().remove(j);
+                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
                 for (int i=j;i<3;i++)
                 {
                     update.updateIndex(i);
