@@ -218,7 +218,6 @@ public class MainStageController implements Initializable
         this.mainApp = mainApp;
     }
 
-
     /**
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
      * Wzorzec projektowy Adapter.
@@ -253,8 +252,6 @@ public class MainStageController implements Initializable
         }
         void update3()
         {
-            //paneEvent3.setText(s);
-
             paneEvent3.setText(Scheduler.taskDisplayList.get(2).getTitle());
             labelEvent3Description.setText(Scheduler.taskDisplayList.get(2).getDescription());
             labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());

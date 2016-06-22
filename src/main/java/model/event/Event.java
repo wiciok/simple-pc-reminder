@@ -30,8 +30,8 @@ public class Event extends EventAbstract implements Cloneable
 	
 	/*Default*/
 	public static String defaultTitle = "New Event";
-	public static String defaultCategory = "empty";
-	public static String defaultIsActive = "true";
+	public static String defaultCategory = "Empty";
+	public static String defaultIsActive = "True";
 	public static Integer defaultPriority = 0;
 	public static Integer defaultAlertFrequency = 1;
 

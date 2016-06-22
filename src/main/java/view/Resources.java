@@ -44,7 +44,6 @@ public class Resources
         public static String buttonResizeTextShow = "Show";
         public static String buttonResizeTextHide = "Hide";
         public static String pageLabelText = "Page: ";
-
         static String buttonRemoveText = "Remove";
 
          /*STRINGI OD LABELI OGOLNYCH*/

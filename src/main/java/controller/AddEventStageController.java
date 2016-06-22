@@ -56,11 +56,10 @@ public class AddEventStageController implements Initializable
     {
         /*konfiguracja Cancel Button*/
         cancelButton.setOnAction(event -> addEventStage.addEventStage.close());
-
         createEventButton.setOnAction(event -> {
+        	
             /* tworzenie prototypu Eventu - w konstruktorze sa ustawiane domyslne wartosci
              * ktore obowiazuja gdy uzytkownik tu czegos nie wprowadzi*/
-
             Event prototype = new Event();
             Event newEvent = (Event)prototype.clone();
 
@@ -156,7 +155,6 @@ public class AddEventStageController implements Initializable
                 alert.showAndWait();
             }
 
-            /* tu zawsze wybrana jest wartosc domyslna w razie jakby nic nie wybrał uzytkownik - widac w GUI*/
             if(eventPriority.getSelectionModel().getSelectedItem()!= null)
             	newEvent.setPriority(eventPriority.getSelectionModel().getSelectedItem());
             if(alertFrequency.getSelectionModel().getSelectedItem()!= null)

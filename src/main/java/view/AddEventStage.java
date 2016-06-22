@@ -22,7 +22,6 @@ public class AddEventStage
     public AddEventStage(MainStage mainApp)
     {
         AnchorPane root;
-
         this.mainApp=mainApp;
 
         try
@@ -55,7 +54,6 @@ public class AddEventStage
         }
 
         //-----------------------------konfiguracja kontrolek-------------------------------------------
-
         controller.cancelButton.setText(Resources.AddEventStageRes.strCancel);
         controller.l1.setText(Resources.AddEventStageRes.strL1);
         controller.l2.setText(Resources.AddEventStageRes.strL2);
@@ -77,19 +75,14 @@ public class AddEventStage
 
         controller.createEventButton.setText(Resources.AddEventStageRes.strCreateEventButton);
 
-
         /*konfiguracja ComboBox (te rozwijane wybory)*/
         ObservableList<Integer> options = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
         ObservableList<String> activeOptions = FXCollections.observableArrayList(Resources.AddEventStageRes.strTrue, Resources.AddEventStageRes.strFalse);
         ObservableList<Integer> alertOptions = FXCollections.observableArrayList(1,2,3,4,5);
 
         controller.eventPriority.setItems(options);
-        //controller.eventPriority.getSelectionModel().selectFirst();
         controller.alertFrequency.setItems(alertOptions);
-        //controller.alertFrequency.getSelectionModel().selectFirst();
         controller.eventIsActive.setItems(activeOptions);
-        //controller.eventIsActive.getSelectionModel().selectFirst();
-
         //-----------------------------------------------------------------------------------------------------
     }
 }
