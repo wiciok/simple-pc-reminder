@@ -16,17 +16,17 @@ import javafx.beans.property.*;
 
 public class Event extends EventAbstract implements Cloneable
 {
-	private ObjectProperty<LocalDateTime> eventDateNow;
-	private ObjectProperty<LocalDate> eventDateStart;
-	private ObjectProperty<LocalTime> eventTimeStart;
-	private ObjectProperty<LocalDate> eventDateEnd;
-	private ObjectProperty<LocalTime> eventTimeEnd;
-	private StringProperty title;
-	private StringProperty description;
-	private StringProperty category;
-	private IntegerProperty alertFrequency;
-	private BooleanProperty isActive;
-	private IntegerProperty priority;
+	ObjectProperty<LocalDateTime> eventDateNow;
+	ObjectProperty<LocalDate> eventDateStart;
+	ObjectProperty<LocalTime> eventTimeStart;
+	ObjectProperty<LocalDate> eventDateEnd;
+	ObjectProperty<LocalTime> eventTimeEnd;
+	StringProperty title;
+	StringProperty description;
+	StringProperty category;
+	IntegerProperty alertFrequency;
+	BooleanProperty isActive;
+	IntegerProperty priority;
 
 	public Event()
 	{		
@@ -35,9 +35,9 @@ public class Event extends EventAbstract implements Cloneable
 		this.eventTimeStart = new SimpleObjectProperty<>(LocalTime.now());
 		this.eventDateEnd = new SimpleObjectProperty<>(LocalDate.now());
 		this.eventTimeEnd = new SimpleObjectProperty<>(LocalTime.now());
-		this.title = new SimpleStringProperty("");
-		this.description = new SimpleStringProperty("");
-		this.category = new SimpleStringProperty("");
+		this.title = new SimpleStringProperty("empty");
+		this.description = new SimpleStringProperty("empty");
+		this.category = new SimpleStringProperty("empty");
 		this.alertFrequency = new SimpleIntegerProperty(1);
 		this.isActive = new SimpleBooleanProperty(false);
 		this.priority = new SimpleIntegerProperty(1);

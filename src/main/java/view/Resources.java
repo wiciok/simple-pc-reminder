@@ -69,4 +69,10 @@ public class Resources
         static String isActiveLabelText = "Make all events active?";
     }
 
+
+    public static class AlertRes
+    {
+
+    }
+
 }
