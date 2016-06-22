@@ -47,6 +47,7 @@ public class Resources
         static String buttonRemoveText = "Remove";
 
          /*STRINGI OD LABELI OGOLNYCH*/
+        static String mainLabelText = "Events:";
         static String descriptionLabelText = "Description:";
         static String categoryLabelText = "Category:";
         static String titleLabelText = "Title:";
