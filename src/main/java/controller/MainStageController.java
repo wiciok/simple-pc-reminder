@@ -1,8 +1,10 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.Database;
 import model.Scheduler;
 import view.AddEventStage;
 import view.MainStage;
@@ -127,6 +129,8 @@ public class MainStageController implements Initializable
             scheduler.update();
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
+
+        /*rozwijanie i zwijanie okna*/
         buttonResize.setOnAction(event -> {
             if(mainApp.expanded==false)
             {
@@ -137,6 +141,77 @@ public class MainStageController implements Initializable
             {
                 mainApp.mainStage.setHeight(85);
                 mainApp.expanded=false;
+            }
+        });
+
+        /*usuwanie eventów + bezpośrednie odświeżanie głównej sceny*/
+        buttonRemove1.setOnAction(event ->
+        {
+            try
+            {
+                final int j = 0;
+                Database.getInstance().remove(j);
+                for (int i=j;i<3;i++)
+                {
+                    update.updateIndex(i);
+                    scheduler.update();
+                }
+                update.updateIndex(j);
+                scheduler.update();
+            }
+            catch (IndexOutOfBoundsException exception)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Event does not exist!");
+                alert.showAndWait();
+            }
+        });
+        buttonRemove2.setOnAction(event ->
+        {
+            try
+            {
+                final int j = 1;
+                Database.getInstance().remove(j);
+                for (int i=j;i<3;i++)
+                {
+                    update.updateIndex(i);
+                    scheduler.update();
+                }
+                update.updateIndex(j);
+                scheduler.update();
+            }
+            catch (IndexOutOfBoundsException exception)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Event does not exist!");
+                alert.showAndWait();
+            }
+        });
+        buttonRemove3.setOnAction(event ->
+        {
+            try
+            {
+                final int j = 2;
+                Database.getInstance().remove(j);
+                for (int i=j;i<3;i++)
+                {
+                    update.updateIndex(i);
+                    scheduler.update();
+                }
+                update.updateIndex(j);
+                scheduler.update();
+            }
+            catch (IndexOutOfBoundsException exception)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Event does not exist!");
+                alert.showAndWait();
             }
         });
     }
