@@ -48,6 +48,7 @@ public class MainStageController implements Initializable
     @FXML public Button buttonResize;
     @FXML public Button propertiesButton;
     @FXML public Label pageLabel;
+    @FXML public Label mainLabel;
 
     /*LABELE OGOLNE*/
     @FXML public Label descriptionLabel1;
