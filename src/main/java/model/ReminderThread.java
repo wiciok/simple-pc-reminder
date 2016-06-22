@@ -47,7 +47,7 @@ public class ReminderThread
 				timeHoursNow = LocalTime.now().getHour();
 				timeSecondsNow = LocalTime.now().getSecond();
 				if(timeHoursNow % Database.getInstance().get(i).getAlertFrequency() == 0 && 
-						timeMinutesNow == 30 && timeSecondsNow == 0 &&
+						timeMinutesNow == 0 && timeSecondsNow == 0 &&
 						Database.getInstance().get(i).getIsActive() &&
 						Database.getInstance().get(i).getEventFullDateStart().isAfter(LocalDateTime.now()))
 				{
