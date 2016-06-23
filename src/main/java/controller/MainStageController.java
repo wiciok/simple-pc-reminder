@@ -8,6 +8,7 @@ import model.Database;
 import model.Scheduler;
 import view.AddEventStage;
 import view.MainStage;
+import view.PropertiesStage;
 import view.Resources;
 
 import java.net.URL;
@@ -23,6 +24,7 @@ public class MainStageController implements Initializable
     private MainStage mainApp;
     public MainStageController(){}
     private AddEventStage addEventStage;
+    private PropertiesStage propertiesStage;
     Scheduler scheduler;
 
     public UpdateAdapter update = new UpdateAdapter();
@@ -44,7 +46,9 @@ public class MainStageController implements Initializable
     @FXML public Button buttonNextEvents;
     @FXML public Button buttonPrevEvents;
     @FXML public Button buttonResize;
+    @FXML public Button propertiesButton;
     @FXML public Label pageLabel;
+    @FXML public Label mainLabel;
 
     /*LABELE OGOLNE*/
     @FXML public Label descriptionLabel1;
@@ -113,9 +117,8 @@ public class MainStageController implements Initializable
         scheduler=new Scheduler(this);
 
         buttonClose.setOnAction(event -> mainApp.mainStage.close());
-
         buttonAdd.setOnAction(event -> addEventStage = new AddEventStage(mainApp));
-
+        propertiesButton.setOnAction(event -> propertiesStage = new PropertiesStage(mainApp));
         buttonNextEvents.setOnAction(event -> {
             scheduler.getNext();
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
@@ -216,7 +219,6 @@ public class MainStageController implements Initializable
         this.mainApp = mainApp;
     }
 
-
     /**
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
      * Wzorzec projektowy Adapter.
@@ -251,8 +253,6 @@ public class MainStageController implements Initializable
         }
         void update3()
         {
-            //paneEvent3.setText(s);
-
             paneEvent3.setText(Scheduler.taskDisplayList.get(2).getTitle());
             labelEvent3Description.setText(Scheduler.taskDisplayList.get(2).getDescription());
             labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());

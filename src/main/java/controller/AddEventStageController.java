@@ -56,12 +56,11 @@ public class AddEventStageController implements Initializable
     {
         /*konfiguracja Cancel Button*/
         cancelButton.setOnAction(event -> addEventStage.addEventStage.close());
-
         createEventButton.setOnAction(event -> {
+        	
             /* tworzenie prototypu Eventu - w konstruktorze sa ustawiane domyslne wartosci
              * ktore obowiazuja gdy uzytkownik tu czegos nie wprowadzi*/
-
-            Event prototype = new Event(); //ToDo: ten prototyp powinien miec jakies sensowne wartosci, a nie to co ma konstruktor domyslnie
+            Event prototype = new Event();
             Event newEvent = (Event)prototype.clone();
 
             /*Pobieranie wpisanych przez uzytkownika wartosci*/
@@ -156,10 +155,12 @@ public class AddEventStageController implements Initializable
                 alert.showAndWait();
             }
 
-            /* tu zawsze wybrana jest wartosc domyslna w razie jakby nic nie wybrał uzytkownik - widac w GUI*/
-            newEvent.setPriority(eventPriority.getSelectionModel().getSelectedItem());
-            newEvent.setAlertFrequency(alertFrequency.getSelectionModel().getSelectedItem());
-            newEvent.setIsActive(Boolean.parseBoolean(eventIsActive.getSelectionModel().getSelectedItem()));
+            if(eventPriority.getSelectionModel().getSelectedItem()!= null)
+            	newEvent.setPriority(eventPriority.getSelectionModel().getSelectedItem());
+            if(alertFrequency.getSelectionModel().getSelectedItem()!= null)
+            	newEvent.setAlertFrequency(alertFrequency.getSelectionModel().getSelectedItem());
+            if(eventIsActive.getSelectionModel().getSelectedItem()!= null)
+            	newEvent.setIsActive(Boolean.parseBoolean(eventIsActive.getSelectionModel().getSelectedItem()));
 
             /*dodanie eventu do bazy, refresh glownego okna i zamkniecie stage'a*/
             Database.getInstance().add(newEvent);

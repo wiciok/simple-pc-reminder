@@ -27,6 +27,13 @@ public class Event extends EventAbstract implements Cloneable
 	IntegerProperty alertFrequency;
 	BooleanProperty isActive;
 	IntegerProperty priority;
+	
+	/*Default*/
+	public static String defaultTitle = "New Event";
+	public static String defaultCategory = "Empty";
+	public static String defaultIsActive = "True";
+	public static Integer defaultPriority = 0;
+	public static Integer defaultAlertFrequency = 1;
 
 	public Event()
 	{		
@@ -35,12 +42,12 @@ public class Event extends EventAbstract implements Cloneable
 		this.eventTimeStart = new SimpleObjectProperty<>(LocalTime.now());
 		this.eventDateEnd = new SimpleObjectProperty<>(LocalDate.now());
 		this.eventTimeEnd = new SimpleObjectProperty<>(LocalTime.now());
-		this.title = new SimpleStringProperty("empty");
+		this.title = new SimpleStringProperty(defaultTitle);
 		this.description = new SimpleStringProperty("empty");
-		this.category = new SimpleStringProperty("empty");
-		this.alertFrequency = new SimpleIntegerProperty(1);
-		this.isActive = new SimpleBooleanProperty(false);
-		this.priority = new SimpleIntegerProperty(1);
+		this.category = new SimpleStringProperty(defaultCategory);
+		this.alertFrequency = new SimpleIntegerProperty(defaultAlertFrequency);
+		this.isActive = new SimpleBooleanProperty(Boolean.parseBoolean(defaultIsActive));
+		this.priority = new SimpleIntegerProperty(defaultPriority);
 	}
 	
 	public Event(LocalDate eventDateStart, LocalTime eventTimeStart, LocalDate eventDateEnd, LocalTime eventTimeEnd,

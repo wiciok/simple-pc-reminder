@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.event.Event;
 
 /**
  * Created by Paweł on 2016-06-19.
@@ -49,23 +50,31 @@ public class PropertiesStage
             alert.setTitle("Error");
             alert.setHeaderText("Properties Stage Error!");
             alert.setContentText("Stage will be closed.");
-
             alert.showAndWait();
             propertiesStage.close();
         }
         ObservableList<Integer> howManyHoursOptions = FXCollections.observableArrayList(1,2,3,4,5);
         ObservableList<String> activeOptions = FXCollections.observableArrayList(Resources.AddEventStageRes.strTrue, Resources.AddEventStageRes.strFalse);
+        ObservableList<Integer> priorityOptions = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);
         
         controller.howManyHoursLabel.setText(Resources.PropertiesStageRes.howManyHoursLabelText);
         controller.isActiveLabel.setText(Resources.PropertiesStageRes.isActiveLabelText);
+        controller.titleLabel.setText(Resources.PropertiesStageRes.titleLabelText);
+        controller.priorityLabel.setText(Resources.MainStageRes.priorityText);
         
         controller.exitButton.setText(Resources.PropertiesStageRes.exitButtonText);
         controller.saveButton.setText(Resources.PropertiesStageRes.saveButtonText);
         
         controller.howManyHours.setItems(howManyHoursOptions);
-        controller.howManyHours.getSelectionModel().selectFirst();
+        controller.howManyHours.getSelectionModel().select(Event.defaultAlertFrequency);;
         
         controller.isActive.setItems(activeOptions);
-        controller.isActive.getSelectionModel().selectFirst();
+        controller.isActive.getSelectionModel().select(Event.defaultIsActive);
+        
+        controller.priority.setItems(priorityOptions);
+        controller.priority.getSelectionModel().select(Event.defaultPriority);;
+        
+        controller.eventNameField.setText(Event.defaultTitle);
+        controller.eventCategory.setText(Event.defaultCategory);
     }
 }
