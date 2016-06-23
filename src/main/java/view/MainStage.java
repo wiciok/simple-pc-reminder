@@ -38,7 +38,6 @@ public class MainStage extends Application
 		try {database.readFromFile();}
 		catch(IOException e)
 		{
-			//e.printStackTrace();
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information");
 			alert.setHeaderText(null);
@@ -72,24 +71,23 @@ public class MainStage extends Application
 		}
 		catch(Exception e)
 		{
-			//e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Stage Error!");
 			alert.setContentText("Application will be terminated.");
-
 			alert.showAndWait();
 			primaryStage.close();
 		}
 
 		//-----------------konfiguracja kontrolek-------------------------------------------
-
 		controller.buttonClose.setText(Resources.MainStageRes.buttonCloseText);
+		controller.propertiesButton.setText(Resources.MainStageRes.buttonPropertiesText);
 		controller.buttonAdd.setText(Resources.MainStageRes.buttonAddText);
 		controller.buttonPrevEvents.setText(Resources.MainStageRes.buttonPrevEventsText);
 		controller.buttonNextEvents.setText(Resources.MainStageRes.buttonNextEventsText);
 		controller.buttonResize.setText(Resources.MainStageRes.buttonResizeTextHide);
 		controller.pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
+		controller.mainLabel.setText(Resources.MainStageRes.mainLabelText);
 
 		controller.paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
 		controller.paneEvent2.setText(Scheduler.taskDisplayList.get(1).getTitle());
@@ -161,7 +159,6 @@ public class MainStage extends Application
 		controller.buttonRemove1.setText(Resources.MainStageRes.buttonRemoveText);
 		controller.buttonRemove2.setText(Resources.MainStageRes.buttonRemoveText);
 		controller.buttonRemove3.setText(Resources.MainStageRes.buttonRemoveText);
-
 		//-----------------------------------------------------------------------------------------------------
 	}
 

@@ -8,7 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import model.Database;
+import model.event.Event;
 import view.PropertiesStage;
 
 /**
@@ -27,22 +29,26 @@ public class PropertiesStageController implements Initializable
     }
 	@FXML public Button exitButton;
 	@FXML public Button saveButton;
+	@FXML public Label titleLabel;
+	@FXML public Label priorityLabel;
 	@FXML public Label howManyHoursLabel;
 	@FXML public Label isActiveLabel;
 	@FXML public ComboBox<Integer> howManyHours;
 	@FXML public ComboBox<String> isActive;
+	@FXML public ComboBox<Integer> priority;
+	@FXML public TextField eventCategory;
+	@FXML public TextField eventNameField;
 	
 	public void initialize(URL url, ResourceBundle rb)
     {
 		exitButton.setOnAction(event -> propertiesStage.propertiesStage.close());
 		saveButton.setOnAction(event -> 
 		{
-			for(int i = 0; i<Database.getInstance().size(); i++)
-				Database.getInstance().get(i).setAlertFrequency(howManyHours.getSelectionModel().getSelectedItem());
-			
-			for(int i = 0; i<Database.getInstance().size(); i++)
-				Database.getInstance().get(i).setIsActive((Boolean.parseBoolean(isActive.getSelectionModel().getSelectedItem())));
-			
+				Event.defaultAlertFrequency = howManyHours.getSelectionModel().getSelectedItem();
+				Event.defaultIsActive = isActive.getSelectionModel().getSelectedItem();
+				Event.defaultPriority = priority.getSelectionModel().getSelectedItem();
+				Event.defaultTitle = eventNameField.getText();
+				Event.defaultCategory = eventCategory.getText();
 			propertiesStage.propertiesStage.close();
 		});
     }
