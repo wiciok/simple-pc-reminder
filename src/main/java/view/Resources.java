@@ -44,10 +44,10 @@ public class Resources
         public static String buttonResizeTextShow = "Show";
         public static String buttonResizeTextHide = "Hide";
         public static String pageLabelText = "Page: ";
-
         static String buttonRemoveText = "Remove";
 
          /*STRINGI OD LABELI OGOLNYCH*/
+        static String mainLabelText = "Events:";
         static String descriptionLabelText = "Description:";
         static String categoryLabelText = "Category:";
         static String titleLabelText = "Title:";
@@ -65,9 +65,9 @@ public class Resources
         static String saveButtonText = "Save"; 
         
         /*LABELE*/
-        static String howManyHoursLabelText = "How often show alerts? (in hours)";
+        static String howManyHoursLabelText = "Per how many hours show alert?";
         static String isActiveLabelText = "Make all events active?";
-		static String titleLabelText = "Adjust default events settings";
+		static String titleLabelText = "Adjust default events";
     }
 
     public static class AlertRes

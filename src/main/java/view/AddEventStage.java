@@ -48,13 +48,13 @@ public class AddEventStage
             alert.setTitle("Error");
             alert.setHeaderText("Stage Error!");
             alert.setContentText("Stage will be closed.");
+
             alert.showAndWait();
             addEventStage.close();
         }
 
         //-----------------------------konfiguracja kontrolek-------------------------------------------
         controller.cancelButton.setText(Resources.AddEventStageRes.strCancel);
-        controller.createEventButton.setText(Resources.AddEventStageRes.strCreateEventButton);
         controller.l1.setText(Resources.AddEventStageRes.strL1);
         controller.l2.setText(Resources.AddEventStageRes.strL2);
         controller.l3.setText(Resources.AddEventStageRes.strL3);
@@ -72,6 +72,8 @@ public class AddEventStage
         controller.eventDescriptionField.setPromptText(Resources.AddEventStageRes.strEventDescriptionField);
         controller.eventNameField.setPromptText(Resources.AddEventStageRes.strEventNameField);
         controller.eventCategory.setPromptText(Resources.AddEventStageRes.strEventCategory);
+
+        controller.createEventButton.setText(Resources.AddEventStageRes.strCreateEventButton);
 
         /*konfiguracja ComboBox (te rozwijane wybory)*/
         ObservableList<Integer> options = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);

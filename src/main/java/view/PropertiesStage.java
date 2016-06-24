@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.event.Event;
 
 /**
  * Created by Paweł on 2016-06-19.
@@ -65,15 +66,15 @@ public class PropertiesStage
         controller.saveButton.setText(Resources.PropertiesStageRes.saveButtonText);
         
         controller.howManyHours.setItems(howManyHoursOptions);
-        controller.howManyHours.getSelectionModel().selectFirst();
+        controller.howManyHours.getSelectionModel().select(Event.defaultAlertFrequency);;
         
         controller.isActive.setItems(activeOptions);
-        controller.isActive.getSelectionModel().selectFirst();
+        controller.isActive.getSelectionModel().select(Event.defaultIsActive);
         
         controller.priority.setItems(priorityOptions);
-        controller.priority.getSelectionModel().selectFirst();
+        controller.priority.getSelectionModel().select(Event.defaultPriority);;
         
-        controller.eventNameField.setPromptText(Resources.AddEventStageRes.strEventNameField);
-        controller.eventCategory.setPromptText(Resources.AddEventStageRes.strEventCategory);
+        controller.eventNameField.setText(Event.defaultTitle);
+        controller.eventCategory.setText(Event.defaultCategory);
     }
 }

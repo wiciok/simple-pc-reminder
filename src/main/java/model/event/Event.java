@@ -30,8 +30,8 @@ public class Event extends EventAbstract implements Cloneable
 	
 	/*Default*/
 	public static String defaultTitle = "New Event";
-	public static String defaultCategory = "empty";
-	public static String defaultIsActive = "true";
+	public static String defaultCategory = "Empty";
+	public static String defaultIsActive = "True";
 	public static Integer defaultPriority = 0;
 	public static Integer defaultAlertFrequency = 1;
 
@@ -96,6 +96,7 @@ public class Event extends EventAbstract implements Cloneable
 		this.priority = new SimpleIntegerProperty(copy.getPriority());
 	}
 
+
 	public LocalDateTime getEventDateNow() {return this.eventDateNow.get();}
 	public LocalDate getEventDateStart() {return this.eventDateStart.get();}
 	public LocalTime getEventTimeStart() {return this.eventTimeStart.get();}
@@ -108,6 +109,7 @@ public class Event extends EventAbstract implements Cloneable
 	public Boolean getIsActive() {return this.isActive.get();}
 	public Integer getPriority() {return this.priority.get();}
 
+
 	public ObjectProperty<LocalDateTime> getEventDateNowProperty() {return this.eventDateNow;}
 	public ObjectProperty<LocalDate> getEventDateStartProperty() {return this.eventDateStart;}
 	public ObjectProperty<LocalTime> getEventTimeStartProperty() {return this.eventTimeStart;}
@@ -119,6 +121,7 @@ public class Event extends EventAbstract implements Cloneable
 	public IntegerProperty getAlertFrequencyProperty() {return this.alertFrequency;}
 	public BooleanProperty getIsActiveProperty() {return this.isActive;}
 	public IntegerProperty getPriorityProperty() {return this.priority;}
+
 
 	public void setEventDateStart(LocalDate eventDateStart) {this.eventDateStart.set(eventDateStart);}
 	public void setEventTimeStart(LocalTime eventTimeStart) {this.eventTimeStart.set(eventTimeStart);}

@@ -7,22 +7,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PropertiesStageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="358.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PropertiesStageController">
    <children>
-      <Button fx:id="exitButton" layoutX="398.0" layoutY="240.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="73.0" text="cancel_but" />
-      <ComboBox fx:id="howManyHours" layoutX="28.0" layoutY="158.0" prefWidth="150.0" />
-      <Button fx:id="saveButton" layoutX="316.0" layoutY="240.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="73.0" text="save_but" />
-      <Label fx:id="howManyHoursLabel" layoutX="28.0" layoutY="137.0" text="Label" />
-      <ComboBox fx:id="isActive" layoutX="28.0" layoutY="215.0" prefWidth="150.0" />
-      <Label fx:id="isActiveLabel" layoutX="28.0" layoutY="198.0" text="Label" />
-      <ComboBox fx:id="priority" layoutX="263.0" layoutY="158.0" prefWidth="150.0" />
-      <Label fx:id="priorityLabel" layoutX="263.0" layoutY="137.0" text="Label" />
-      <TextField fx:id="eventNameField" layoutX="29.0" layoutY="97.0" />
-      <TextField fx:id="eventCategory" layoutX="264.0" layoutY="97.0" />
-      <Label fx:id="titleLabel" layoutX="28.0" layoutY="38.0" text="Label">
+      <Button fx:id="exitButton" layoutX="470.0" layoutY="307.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="73.0" text="cancel_but" />
+      <ComboBox fx:id="howManyHours" layoutX="21.0" layoutY="167.0" prefWidth="150.0" />
+      <Button fx:id="saveButton" layoutX="379.0" layoutY="307.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="73.0" text="save_but" />
+      <Label fx:id="howManyHoursLabel" layoutX="21.0" layoutY="150.0" text="Label" />
+      <ComboBox fx:id="isActive" layoutX="21.0" layoutY="244.0" prefWidth="150.0" />
+      <Label fx:id="isActiveLabel" layoutX="21.0" layoutY="225.0" text="Label" />
+      <ComboBox fx:id="priority" layoutX="245.0" layoutY="244.0" prefWidth="150.0" />
+      <Label fx:id="priorityLabel" layoutX="245.0" layoutY="225.0" text="Label" />
+      <Label fx:id="titleLabel" layoutX="21.0" layoutY="31.0" text="Label">
          <font>
             <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
+         </font></Label>
+      <TextField fx:id="eventNameField" layoutX="22.0" layoutY="95.0" />
+      <TextField fx:id="eventCategory" layoutX="246.0" layoutY="95.0" />
    </children>
 </AnchorPane>

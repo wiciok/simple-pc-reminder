@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -47,6 +48,7 @@ public class MainStageController implements Initializable
     @FXML public Button buttonResize;
     @FXML public Button propertiesButton;
     @FXML public Label pageLabel;
+    @FXML public Label mainLabel;
 
     /*LABELE OGOLNE*/
     @FXML public Label descriptionLabel1;
@@ -217,7 +219,6 @@ public class MainStageController implements Initializable
         this.mainApp = mainApp;
     }
 
-
     /**
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
      * Wzorzec projektowy Adapter.
@@ -252,8 +253,6 @@ public class MainStageController implements Initializable
         }
         void update3()
         {
-            //paneEvent3.setText(s);
-
             paneEvent3.setText(Scheduler.taskDisplayList.get(2).getTitle());
             labelEvent3Description.setText(Scheduler.taskDisplayList.get(2).getDescription());
             labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());
