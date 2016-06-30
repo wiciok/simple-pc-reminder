@@ -10,8 +10,19 @@ import javax.annotation.Resource;
 @Resource
 public class Resources
 {
+    public static class EventRes
+    {
+        /*Default values*/
+        public static String defaultTitleText = "New Event";
+        public static String defaultDescriptionText = "Empty";
+        public static String defaultCategoryText = "Empty";
+        public static String defaultIsActiveText = "True";
+    }
+
     static class AddEventStageRes
     {
+        static String stageTitle = "Add New Event";
+
         static String strTrue = "True";
         static String strFalse= "False";
         static String strCancel= "Cancel";
@@ -31,6 +42,13 @@ public class Resources
         static String strEventCategory="Input Event Category";
 
         static String strCreateEventButton = "Create Event";
+    }
+
+    static public class AddEventStageControllerRes
+    {
+        public static String evStartDateWar = "Event start date warning!";
+        public static String noTimeOrWrongTimeFormat = "\"No time set or wrong format (HH:MM / HH:MM:SS)\\ne.g. 09:50, 17:30:22.\\n\\nCurrent time is set.\"";
+        public static String noDateOrWrongDateFormat="No date set or the date is inproper.\n\nCurrent date will be set.";
     }
 
     public static class MainStageRes
@@ -56,7 +74,6 @@ public class Resources
         static String alertFrequencyText = "Alert frequency:";
         static String priorityText = "Priority:";
         static String isActiveText = "Is active?";
-        
     }
     
     public static class PropertiesStageRes
@@ -74,7 +91,15 @@ public class Resources
 
     public static class AlertRes
     {
+        public static String dbNotReadText ="Database File hasn't been read.";
+        public static String stgError ="Stage Error!";
+        public static String appTerminate="Application will be terminated.";
+        public static String fileNotWritten="File has not been written on disc!";
+        public static String stageClose="Stage will be closed.";
+        public static String evDontExist="Event does not exist!";
 
+        public static String remAlert="Event reminder alert!";
+        public static String remText="Remember about upcoming event";
     }
 
 }

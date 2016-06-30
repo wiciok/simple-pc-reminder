@@ -19,11 +19,11 @@ import java.util.ResourceBundle;
 import model.Database;
 import view.AddEventStage;
 import view.ExceptionAlert;
+import view.Resources;
 
 /**
  * @author Paweł Kapuśniak
  * Klasa kontrolera okna od dodawaia nowego wydarzenia.
- * ToDo: dekompozycja
  */
 public class AddEventStageController implements Initializable
 {
@@ -80,8 +80,8 @@ public class AddEventStageController implements Initializable
             }
             catch(Exception e)
             {
-                new ExceptionAlert(Alert.AlertType.WARNING,"Event start date warning!",
-                    "No date set or the date is inproper.\n\nCurrent date will be set.");
+                new ExceptionAlert(Alert.AlertType.WARNING, Resources.AddEventStageControllerRes.evStartDateWar,
+                        Resources.AddEventStageControllerRes.noTimeOrWrongTimeFormat);
             }
 
             /* walidacja czasu - najpierw jest sprawdzane czy w ogole cos zostalo wprowadzone
@@ -101,8 +101,8 @@ public class AddEventStageController implements Initializable
             }
             catch(Exception e)
             {
-                new ExceptionAlert(Alert.AlertType.WARNING,"Event start time warning!",
-                        "No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
+                new ExceptionAlert(Alert.AlertType.WARNING, Resources.AddEventStageControllerRes.evStartDateWar,
+                        Resources.AddEventStageControllerRes.noTimeOrWrongTimeFormat);
             }
 
             /*data zakonczenia - sprawdzane czy cos jest wybrane i czy data zakonczenia jest pozniejsza od obecnej daty i daty rozpoczecia
@@ -118,8 +118,8 @@ public class AddEventStageController implements Initializable
             }
             catch(Exception e)
             {
-                new ExceptionAlert(Alert.AlertType.WARNING,"Event start time warning!",
-                        "No date set or the date is inproper.\n\nCurrent date will be set.");
+                new ExceptionAlert(Alert.AlertType.WARNING,Resources.AddEventStageControllerRes.evStartDateWar,
+                        Resources.AddEventStageControllerRes.noTimeOrWrongTimeFormat);
             }
 
             /*znow walidacja czasu tym razem zakonczenia*/
@@ -137,8 +137,8 @@ public class AddEventStageController implements Initializable
             }
             catch(Exception e)
             {
-                new ExceptionAlert(Alert.AlertType.WARNING,"Event start time warning!",
-                        "No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
+                new ExceptionAlert(Alert.AlertType.WARNING,Resources.AddEventStageControllerRes.evStartDateWar,
+                        Resources.AddEventStageControllerRes.noTimeOrWrongTimeFormat);
             }
 
             if(eventPriority.getSelectionModel().getSelectedItem()!= null)

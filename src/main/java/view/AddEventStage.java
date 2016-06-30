@@ -12,7 +12,6 @@ import controller.AddEventStageController;
 /**
  * @author Witold Karaś on 2016-06-15.
  * Klasa dodatkowego okna od dodawania nowego wydarzenia.
- * ToDo: dekompozycja
  */
 public class AddEventStage
 {
@@ -36,7 +35,7 @@ public class AddEventStage
 
             Scene scene = new Scene(root);
             addEventStage.setScene(scene);
-            addEventStage.setTitle("Add New Event");
+            addEventStage.setTitle(Resources.AddEventStageRes.stageTitle);
             addEventStage.show();
 
             controller = addEventLoader.getController();
@@ -44,7 +43,7 @@ public class AddEventStage
         }
         catch(Exception e)
         {
-            new ExceptionAlert(Alert.AlertType.ERROR,"Stage Error!","Stage will be closed.");
+            new ExceptionAlert(Alert.AlertType.ERROR,Resources.AlertRes.stgError,Resources.AlertRes.stageClose);
             addEventStage.close();
         }
 

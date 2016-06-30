@@ -5,15 +5,15 @@ import java.time.LocalTime;
 import java.time.LocalDateTime;
 
 import javafx.beans.property.*;
+import view.Resources;
 
 /**
- * @author Witold Karaś on 2016-06-20.
+ * Created by Witek on 2016-06-20.
  *
  * Klasa wydarzenia zawierająca elementy Property, konieczne do dynamicznego odświeżania się widoku.
  * Implementuje interfejs Cloneable na potrzeby wykorzystania wzorca prototyp.
+ *
  */
-
-//Todo: dekompozycja
 
 public class Event extends EventAbstract implements Cloneable
 {
@@ -28,11 +28,12 @@ public class Event extends EventAbstract implements Cloneable
 	IntegerProperty alertFrequency;
 	BooleanProperty isActive;
 	IntegerProperty priority;
-	
+
 	/*Default*/
-	public static String defaultTitle = "New Event";
-	public static String defaultCategory = "Empty";
-	public static String defaultIsActive = "True";
+	public static String defaultTitle = Resources.EventRes.defaultTitleText;
+	public static String defaultDescription = Resources.EventRes.defaultDescriptionText;
+	public static String defaultCategory = Resources.EventRes.defaultCategoryText;
+	public static String defaultIsActive = Resources.EventRes.defaultIsActiveText;
 	public static Integer defaultPriority = 0;
 	public static Integer defaultAlertFrequency = 1;
 
@@ -44,7 +45,7 @@ public class Event extends EventAbstract implements Cloneable
 		this.eventDateEnd = new SimpleObjectProperty<>(LocalDate.now());
 		this.eventTimeEnd = new SimpleObjectProperty<>(LocalTime.now());
 		this.title = new SimpleStringProperty(defaultTitle);
-		this.description = new SimpleStringProperty("empty");
+		this.description = new SimpleStringProperty(defaultDescription);
 		this.category = new SimpleStringProperty(defaultCategory);
 		this.alertFrequency = new SimpleIntegerProperty(defaultAlertFrequency);
 		this.isActive = new SimpleBooleanProperty(Boolean.parseBoolean(defaultIsActive));

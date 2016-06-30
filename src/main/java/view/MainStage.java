@@ -1,7 +1,6 @@
 package view;
 
 import javafx.geometry.Pos;
-import javafx.stage.StageStyle;
 import model.Database;
 import javafx.application.*;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +10,7 @@ import model.Scheduler;
 import javafx.scene.layout.*;
 import controller.MainStageController;
 import java.io.IOException;
-import javafx.scene.control.Alert;
+
 import javafx.scene.control.Alert.*;
 import java.time.format.DateTimeFormatter;
 import model.ReminderThread;
@@ -20,7 +19,6 @@ import model.ReminderThread;
  * @author Witold Karaś
  * @author Paweł Kapuśniak
  * Podstawowa klasa od GUI - stage głównego okna programu
- * todo dekompozycja
  */
 
 public class MainStage extends Application
@@ -40,7 +38,7 @@ public class MainStage extends Application
 		BorderPane root;
 
 		try {database.readFromFile();}
-		catch(IOException e) {new ExceptionAlert(AlertType.INFORMATION,"Database File hasn't been read.");}
+		catch(IOException e) {new ExceptionAlert(AlertType.INFORMATION,Resources.AlertRes.dbNotReadText);}
 
 		Scheduler.init();
 		newTask.setDaemon(true);
@@ -67,7 +65,7 @@ public class MainStage extends Application
 		}
 		catch(Exception e)
 		{
-			new ExceptionAlert(AlertType.ERROR,"Stage Error!","Application will be terminated.");
+			new ExceptionAlert(AlertType.ERROR,Resources.AlertRes.stgError,Resources.AlertRes.appTerminate);
 			primaryStage.close();
 		}
 
@@ -158,7 +156,7 @@ public class MainStage extends Application
 	public void stop()
 	{
 		try {Database.getInstance().writeToFile();}
-		catch (IOException e) {new ExceptionAlert(AlertType.WARNING,"File has not been written on disc!");}
+		catch (IOException e) {new ExceptionAlert(AlertType.WARNING,Resources.AlertRes.fileNotWritten);}
 	}
 }
 

@@ -15,7 +15,6 @@ import java.util.ResourceBundle;
  * @author Witold Karaś
  * @author Paweł Kapuśniak
  * Klasa kontrolera głównej sceny (okna)
- * todo: refaktoryzacja
  */
 
 public class MainStageController implements Initializable
@@ -156,10 +155,11 @@ public class MainStageController implements Initializable
             update.updateIndex(slotNumber);
             scheduler.update();
         }
-        catch (IndexOutOfBoundsException exception) {new ExceptionAlert(Alert.AlertType.WARNING,"Event does not exist!");}
+        catch (IndexOutOfBoundsException exception) {new ExceptionAlert(Alert.AlertType.WARNING,Resources.AlertRes.evDontExist);}
     }
 
     public void setMainApp(MainStage mainApp) {this.mainApp = mainApp;}
+
 
     
     /**
@@ -169,32 +169,55 @@ public class MainStageController implements Initializable
      */
     public class UpdateAdapter
     {
-        private void update(int slotNumber)
+        void update1()
         {
-            paneEvent1.setText(Scheduler.taskDisplayList.get(slotNumber).getTitle());
-            labelEvent1Description.setText(Scheduler.taskDisplayList.get(slotNumber).getDescription());
-            labelEvent1Category.setText(Scheduler.taskDisplayList.get(slotNumber).getCategory());
-            labelEvent1Title.setText(Scheduler.taskDisplayList.get(slotNumber).getTitle());
+            paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
+            labelEvent1Description.setText(Scheduler.taskDisplayList.get(0).getDescription());
+            labelEvent1Category.setText(Scheduler.taskDisplayList.get(0).getCategory());
+            labelEvent1Title.setText(Scheduler.taskDisplayList.get(0).getTitle());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            labelEvent1StartDateTime.setText(Scheduler.taskDisplayList.get(slotNumber).getEventFullDateStart().format(formatter));
-            labelEvent1EndDateTime.setText(Scheduler.taskDisplayList.get(slotNumber).getEventFullDateEnd().format(formatter));
-            labelEvent1AlertFrequency.setText(Scheduler.taskDisplayList.get(slotNumber).getAlertFrequency().toString());
-            labelEvent1Priority.setText(Scheduler.taskDisplayList.get(slotNumber).getPriority().toString());
-            labelEvent1IsActive.setText(Scheduler.taskDisplayList.get(slotNumber).getIsActive().toString());
+            labelEvent1StartDateTime.setText(Scheduler.taskDisplayList.get(0).getEventFullDateStart().format(formatter));
+            labelEvent1EndDateTime.setText(Scheduler.taskDisplayList.get(0).getEventFullDateEnd().format(formatter));
+            labelEvent1AlertFrequency.setText(Scheduler.taskDisplayList.get(0).getAlertFrequency().toString());
+            labelEvent1Priority.setText(Scheduler.taskDisplayList.get(0).getPriority().toString());
+            labelEvent1IsActive.setText(Scheduler.taskDisplayList.get(0).getIsActive().toString());
+        }
+        void update2()
+        {
+            paneEvent2.setText(Scheduler.taskDisplayList.get(1).getTitle());
+            labelEvent2Description.setText(Scheduler.taskDisplayList.get(1).getDescription());
+            labelEvent2Category.setText(Scheduler.taskDisplayList.get(1).getCategory());
+            labelEvent2Title.setText(Scheduler.taskDisplayList.get(1).getTitle());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            labelEvent2StartDateTime.setText(Scheduler.taskDisplayList.get(1).getEventFullDateStart().format(formatter));
+            labelEvent2EndDateTime.setText(Scheduler.taskDisplayList.get(1).getEventFullDateEnd().format(formatter));
+            labelEvent2AlertFrequency.setText(Scheduler.taskDisplayList.get(1).getAlertFrequency().toString());
+            labelEvent2Priority.setText(Scheduler.taskDisplayList.get(1).getPriority().toString());
+            labelEvent2IsActive.setText(Scheduler.taskDisplayList.get(1).getIsActive().toString());
+        }
+        void update3()
+        {
+            paneEvent3.setText(Scheduler.taskDisplayList.get(2).getTitle());
+            labelEvent3Description.setText(Scheduler.taskDisplayList.get(2).getDescription());
+            labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());
+            labelEvent3Title.setText(Scheduler.taskDisplayList.get(2).getTitle());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            labelEvent3StartDateTime.setText(Scheduler.taskDisplayList.get(2).getEventFullDateStart().format(formatter));
+            labelEvent3EndDateTime.setText(Scheduler.taskDisplayList.get(2).getEventFullDateEnd().format(formatter));
+            labelEvent3AlertFrequency.setText(Scheduler.taskDisplayList.get(2).getAlertFrequency().toString());
+            labelEvent3Priority.setText(Scheduler.taskDisplayList.get(2).getPriority().toString());
+            labelEvent3IsActive.setText(Scheduler.taskDisplayList.get(2).getIsActive().toString());
         }
 
         abstract class Update {public abstract void updateIndex(int index);}
 
         private Update[] updateArr = new UpdateAdapter.Update[]
         {
-            new UpdateAdapter.Update() { public void updateIndex(int index) { update(0); } },
-            new UpdateAdapter.Update() { public void updateIndex(int index) { update(1); } },
-            new UpdateAdapter.Update() { public void updateIndex(int index) { update(2); } }
+            new UpdateAdapter.Update() { public void updateIndex(int index) { update1(); } },
+            new UpdateAdapter.Update() { public void updateIndex(int index) { update2(); } },
+            new UpdateAdapter.Update() { public void updateIndex(int index) { update3(); } }
         };
 
-        public void updateIndex(int index)
-        {
-            updateArr[index].updateIndex(index);
-        }
+        public void updateIndex(int index) {updateArr[index].updateIndex(index);}
     }
 }

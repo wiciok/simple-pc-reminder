@@ -14,8 +14,6 @@ import model.event.Event;
  * @author Paweł Kapuśniak on 2016-06-19.
  *
  * Klasa zawierająca widok okna konfiguracji przypomnień.
- *
- * todo: dekompozycja
  */
 
 public class PropertiesStage
@@ -47,7 +45,7 @@ public class PropertiesStage
         }
         catch(Exception e)
         {
-            new ExceptionAlert(Alert.AlertType.ERROR,"Properties Stage Error!","Stage will be closed.");
+            new ExceptionAlert(Alert.AlertType.ERROR,Resources.AlertRes.stgError,Resources.AlertRes.stageClose);
             propertiesStage.close();
         }
 
