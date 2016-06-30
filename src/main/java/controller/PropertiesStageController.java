@@ -27,6 +27,8 @@ public class PropertiesStageController implements Initializable
 	@FXML public Label priorityLabel;
 	@FXML public Label howManyHoursLabel;
 	@FXML public Label isActiveLabel;
+	@FXML public Label defaultName;
+	@FXML public Label defaultCategory;
 	@FXML public ComboBox<Integer> howManyHours;
 	@FXML public ComboBox<String> isActive;
 	@FXML public ComboBox<Integer> priority;

@@ -59,6 +59,8 @@ public class PropertiesStage
         controller.isActiveLabel.setText(Resources.PropertiesStageRes.isActiveLabelText);
         controller.titleLabel.setText(Resources.PropertiesStageRes.titleLabelText);
         controller.priorityLabel.setText(Resources.MainStageRes.priorityText);
+        controller.defaultName.setText(Resources.PropertiesStageRes.defaultNameText);
+        controller.defaultCategory.setText(Resources.PropertiesStageRes.defaultCategoryText);
         
         controller.exitButton.setText(Resources.PropertiesStageRes.exitButtonText);
         controller.saveButton.setText(Resources.PropertiesStageRes.saveButtonText);
