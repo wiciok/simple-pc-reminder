@@ -1,37 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import model.event.Event;
+import org.junit.Test;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import model.event.Event;
-import model.event.EventSerializable;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
+import static org.junit.Assert.assertEquals;
 
 /**
- *
- * @author mati
+ * @author Mateusz Najbor
+ * klasa testująca działanie klasy Database
  */
 public class DatabaseTest 
 {
-    
-    public DatabaseTest() 
-    {
-    }
-    
+    public DatabaseTest() {}
 
     /**
      * Test of readFromFile method, of class Database.
@@ -66,8 +49,7 @@ public class DatabaseTest
         try{databaseSort.sort();}
         catch(IndexOutOfBoundsException e)
         {
-            System.out.printf("wszystko w porz�dku\n");//ten wyj�tek jest oczekiwany
+            System.out.printf("wszystko w porządku\n");//ten wyjątek jest oczekiwany
         }
     }
-  
 }
