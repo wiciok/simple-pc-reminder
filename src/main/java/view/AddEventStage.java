@@ -10,8 +10,9 @@ import javafx.stage.Stage;
 import controller.AddEventStageController;
 
 /**
- * Created by Witek on 2016-06-15.
+ * @author Witold Karaś on 2016-06-15.
  * Klasa dodatkowego okna od dodawania nowego wydarzenia.
+ * ToDo: dekompozycja
  */
 public class AddEventStage
 {
@@ -43,13 +44,7 @@ public class AddEventStage
         }
         catch(Exception e)
         {
-            //e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Stage Error!");
-            alert.setContentText("Stage will be closed.");
-
-            alert.showAndWait();
+            new ExceptionAlert(Alert.AlertType.ERROR,"Stage Error!","Stage will be closed.");
             addEventStage.close();
         }
 

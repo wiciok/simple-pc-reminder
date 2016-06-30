@@ -5,10 +5,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
- * Created by Witek on 2016-06-20.
+ * @author Witold Karaś on 2016-06-20.
  *
  * Klasa abstrakcyjna będąca nadrzędną dla pozostałych klas Event.
- * Zawiera wspólne dla nich metody.
  */
 
 abstract class EventAbstract

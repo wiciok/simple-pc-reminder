@@ -10,12 +10,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
- * Created by Witek on 2016-06-08.
- * klasa jest używana, gdy jest potrzeba wyświetlić obiekt klasy Event, a jednocześnie powinien on być pusty
- * dziedziczy strukturę klasy Event, a jednocześnie zwraca puste stringi
- * przy okazji jest również wykorzystywany polimorfizm
- *
- *
+ * @author Witold Karaś on 2016-06-08.
+ * Klasa używana (z wykorzystaniem polimorfizmu), gdy jest potrzeba wyświetlić obiekt klasy Event, a jednocześnie powinien on być pusty
  */
 public class EventNull extends Event
 {
@@ -33,13 +29,4 @@ public class EventNull extends Event
         this.isActive = new SimpleBooleanProperty(false);
         this.priority = new SimpleIntegerProperty(0);
     }
-
-    public String getEventDateStartString() {return new String("");}
-    public String getEventTimeStartString() {return new String("");}
-    public String getEventDateEndString() {return new String("");}
-    public String getEventTimeEndString() {return new String("");}
-    public String getAlertFrequencyString() {return new String("");}
-    public String getIsActiveString() {return new String("");}
-    public String getPriorityString() {return new String("");}
-
 }

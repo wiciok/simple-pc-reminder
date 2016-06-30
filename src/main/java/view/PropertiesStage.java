@@ -11,9 +11,11 @@ import javafx.stage.Stage;
 import model.event.Event;
 
 /**
- * Created by Paweł on 2016-06-19.
+ * @author Paweł Kapuśniak on 2016-06-19.
  *
  * Klasa zawierająca widok okna konfiguracji przypomnień.
+ *
+ * todo: dekompozycja
  */
 
 public class PropertiesStage
@@ -45,14 +47,10 @@ public class PropertiesStage
         }
         catch(Exception e)
         {
-            //e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Properties Stage Error!");
-            alert.setContentText("Stage will be closed.");
-            alert.showAndWait();
+            new ExceptionAlert(Alert.AlertType.ERROR,"Properties Stage Error!","Stage will be closed.");
             propertiesStage.close();
         }
+
         ObservableList<Integer> howManyHoursOptions = FXCollections.observableArrayList(1,2,3,4,5);
         ObservableList<String> activeOptions = FXCollections.observableArrayList(Resources.AddEventStageRes.strTrue, Resources.AddEventStageRes.strFalse);
         ObservableList<Integer> priorityOptions = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10);

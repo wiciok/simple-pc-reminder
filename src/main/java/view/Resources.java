@@ -3,8 +3,8 @@ package view;
 import javax.annotation.Resource;
 
 /**
- * Created by Witek on 2016-06-21.
- * Zdekomponowanie zasobów wykorzystywanych w klasach controller
+ * @author Witold Karaś on 2016-06-21.
+ * Zdekomponowane zasoby wykorzystywanych w klasach controller
  */
 
 @Resource

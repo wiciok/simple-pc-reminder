@@ -1,26 +1,15 @@
 package model.event;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
- *  Created by Witek on 2016-05-22.
+ *  @author Witold Karaś on 2016-05-22.
+ *  @author Mateusz Maciejak
+ *
  *  Klasa wykorzystywana do zapisu na dysk, z racji niemożności zapisu obiektów klasy Event
- *
- * 	LocalDate.parse("2015-12-23")/LocalTime.parse("17:15") - przykładowe nadanie daty do zmiennych ze stringa (później raczej to nie będzie już wykorzystywane)
- *
- *  Przykład klonowania:
- *  Event prototype = new Event();
- * 	Event wydarzenia = (Event)prototype.clone() -
- *
- *
- * 	Mateusz Maciejak.
  */
 
 public class EventSerializable extends EventAbstract implements Serializable, Cloneable

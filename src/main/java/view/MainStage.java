@@ -17,8 +17,10 @@ import java.time.format.DateTimeFormatter;
 import model.ReminderThread;
 
 /**
- * podstawowa klasa od GUI
- * Stage głównego okna programu
+ * @author Witold Karaś
+ * @author Paweł Kapuśniak
+ * Podstawowa klasa od GUI - stage głównego okna programu
+ * todo dekompozycja
  */
 
 public class MainStage extends Application
@@ -32,29 +34,23 @@ public class MainStage extends Application
 	@Override
 	public void start(Stage primaryStage)
 	{
+		/*użycie wzorca projektowego Singleton:*/
+		database = Database.getInstance();
+
 		BorderPane root;
-		database = Database.getInstance(); //użycie wzorca Singleton
 
 		try {database.readFromFile();}
-		catch(IOException e)
-		{
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information");
-			alert.setHeaderText(null);
-			alert.setContentText("Database File hasn't been read.");
-			alert.showAndWait();
-		}
+		catch(IOException e) {new ExceptionAlert(AlertType.INFORMATION,"Database File hasn't been read.");}
+
 		Scheduler.init();
 		newTask.setDaemon(true);
 		newTask.start();
 		try
 		{
 			this.mainStage=primaryStage;
-			//mainStage.initStyle(StageStyle.UNDECORATED);
 			mainStage.setMinWidth(550);
 			mainStage.setMinHeight(75);
 			mainStage.setResizable(false);
-			//mainStage.setWidth(600);
 			expanded=true;
 
 			FXMLLoader loader = new FXMLLoader();
@@ -71,11 +67,7 @@ public class MainStage extends Application
 		}
 		catch(Exception e)
 		{
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText("Stage Error!");
-			alert.setContentText("Application will be terminated.");
-			alert.showAndWait();
+			new ExceptionAlert(AlertType.ERROR,"Stage Error!","Application will be terminated.");
 			primaryStage.close();
 		}
 
@@ -163,22 +155,10 @@ public class MainStage extends Application
 	}
 
 	public static void main(String[] args) {launch(args);}
-
 	public void stop()
 	{
-		try
-		{
-			Database.getInstance().writeToFile();
-		}
-		catch (IOException e)
-		{
-			//e.printStackTrace();
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Warning");
-			alert.setHeaderText(null);
-			alert.setContentText("File has not been written on disc!");
-			alert.showAndWait();
-		}
+		try {Database.getInstance().writeToFile();}
+		catch (IOException e) {new ExceptionAlert(AlertType.WARNING,"File has not been written on disc!");}
 	}
 }
 

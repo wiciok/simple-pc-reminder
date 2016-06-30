@@ -9,24 +9,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model.Database;
 import model.event.Event;
 import view.PropertiesStage;
 
 /**
- * Created by Paweł on 2016-06-19.
- *
+ * @author Paweł Kapuśniak on 2016-06-19.
  * Klasa zawierająca kontroler okna konfiguracji przypomnień.
  */
 
 public class PropertiesStageController implements Initializable
 {
 	private PropertiesStage propertiesStage;
-	
-	public void setMainApp(PropertiesStage PropertiesStage)
-    {
-        this.propertiesStage = PropertiesStage;
-    }
+
 	@FXML public Button exitButton;
 	@FXML public Button saveButton;
 	@FXML public Label titleLabel;
@@ -38,7 +32,8 @@ public class PropertiesStageController implements Initializable
 	@FXML public ComboBox<Integer> priority;
 	@FXML public TextField eventCategory;
 	@FXML public TextField eventNameField;
-	
+
+	public void setMainApp(PropertiesStage PropertiesStage) {this.propertiesStage = PropertiesStage;}
 	public void initialize(URL url, ResourceBundle rb)
     {
 		exitButton.setOnAction(event -> propertiesStage.propertiesStage.close());
