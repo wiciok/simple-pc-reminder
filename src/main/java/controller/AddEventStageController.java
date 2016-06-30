@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 
 import model.Database;
 import view.AddEventStage;
+import view.ExceptionAlert;
 
 /**
  * @author Paweł Kapuśniak
@@ -79,11 +80,8 @@ public class AddEventStageController implements Initializable
             }
             catch(Exception e)
             {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("Event start date warning!");
-                alert.setContentText("No date set or the date is inproper.\n\nCurrent date will be set.");
-                alert.showAndWait();
+                new ExceptionAlert(Alert.AlertType.WARNING,"Event start date warning!",
+                    "No date set or the date is inproper.\n\nCurrent date will be set.");
             }
 
             /* walidacja czasu - najpierw jest sprawdzane czy w ogole cos zostalo wprowadzone
@@ -98,15 +96,13 @@ public class AddEventStageController implements Initializable
                     else
                         throw new Exception();
                 }
-                else throw new Exception();
+                else
+                    throw new Exception();
             }
             catch(Exception e)
             {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("Event start time warning!");
-                alert.setContentText("No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
-                alert.showAndWait();
+                new ExceptionAlert(Alert.AlertType.WARNING,"Event start time warning!",
+                        "No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
             }
 
             /*data zakonczenia - sprawdzane czy cos jest wybrane i czy data zakonczenia jest pozniejsza od obecnej daty i daty rozpoczecia
@@ -122,11 +118,8 @@ public class AddEventStageController implements Initializable
             }
             catch(Exception e)
             {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("Event end date warning!");
-                alert.setContentText("No date set or the date is inproper.\n\nCurrent date will be set.");
-                alert.showAndWait();
+                new ExceptionAlert(Alert.AlertType.WARNING,"Event start time warning!",
+                        "No date set or the date is inproper.\n\nCurrent date will be set.");
             }
 
             /*znow walidacja czasu tym razem zakonczenia*/
@@ -136,17 +129,16 @@ public class AddEventStageController implements Initializable
                 {
                     if(eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d):([0-5]?\\d)") || eventEndTime.getText().matches("([0-1]?\\d|2[0-3]):([0-5]?\\d)"))
                         newEvent.setEventTimeEnd(LocalTime.parse(eventEndTime.getText()));
-                    else throw new Exception();
+                    else
+                        throw new Exception();
                 }
-                else throw new Exception();
+                else
+                    throw new Exception();
             }
             catch(Exception e)
             {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("Event end time warning!");
-                alert.setContentText("No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
-                alert.showAndWait();
+                new ExceptionAlert(Alert.AlertType.WARNING,"Event start time warning!",
+                        "No time set or wrong format (HH:MM / HH:MM:SS)\ne.g. 09:50, 17:30:22.\n\nCurrent time is set.");
             }
 
             if(eventPriority.getSelectionModel().getSelectedItem()!= null)

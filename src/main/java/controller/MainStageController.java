@@ -5,10 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.Database;
 import model.Scheduler;
-import view.AddEventStage;
-import view.MainStage;
-import view.PropertiesStage;
-import view.Resources;
+import view.*;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
@@ -108,7 +105,6 @@ public class MainStageController implements Initializable
     @FXML public Button buttonRemove2;
     @FXML public Button buttonRemove3;
 
-
     public void initialize(URL url, ResourceBundle rb)
     {
         //konstruktor Schedulera - połączenie pomiędzy schedulerem a controllerem
@@ -126,95 +122,46 @@ public class MainStageController implements Initializable
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
 
-
         /*rozwijanie i zwijanie okna*/
         buttonResize.setOnAction(event -> {
             if(!mainApp.expanded)
             {
                 mainApp.mainStage.setHeight(550);
                 mainApp.expanded=true;
+                buttonResize.setText(Resources.MainStageRes.buttonResizeTextHide);
             }
             else
             {
                 mainApp.mainStage.setHeight(85);
                 mainApp.expanded=false;
+                buttonResize.setText(Resources.MainStageRes.buttonResizeTextShow);
             }
         });
 
         /*usuwanie eventów + bezpośrednie odświeżanie głównej sceny*/
-        buttonRemove1.setOnAction(event ->
-        {
-            try
-            {
-                final int j = 0;
-                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
-                for (int i=j;i<3;i++)
-                {
-                    update.updateIndex(i);
-                    scheduler.update();
-                }
-                update.updateIndex(j);
-                scheduler.update();
-            }
-            catch (IndexOutOfBoundsException exception)
-            {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText(null);
-                alert.setContentText("Event does not exist!");
-                alert.showAndWait();
-            }
-        });
-        buttonRemove2.setOnAction(event ->
-        {
-            try
-            {
-                final int j = 1;
-                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
-                for (int i=j;i<3;i++)
-                {
-                    update.updateIndex(i);
-                    scheduler.update();
-                }
-                update.updateIndex(j);
-                scheduler.update();
-            }
-            catch (IndexOutOfBoundsException exception)
-            {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText(null);
-                alert.setContentText("Event does not exist!");
-                alert.showAndWait();
-            }
-        });
-        buttonRemove3.setOnAction(event ->
-        {
-            try
-            {
-                final int j = 2;
-                Database.getInstance().remove(3*(Scheduler.currentPage-1)+j);
-                for (int i=j;i<3;i++)
-                {
-                    update.updateIndex(i);
-                    scheduler.update();
-                }
-                update.updateIndex(j);
-                scheduler.update();
-            }
-            catch (IndexOutOfBoundsException exception)
-            {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText(null);
-                alert.setContentText("Event does not exist!");
-                alert.showAndWait();
-            }
-        });
+        buttonRemove1.setOnAction(event -> removeEventAndUpdateMainStage(0));
+        buttonRemove2.setOnAction(event -> removeEventAndUpdateMainStage(1));
+        buttonRemove3.setOnAction(event -> removeEventAndUpdateMainStage(2));
     }
+    private void removeEventAndUpdateMainStage(final int slotNumber)
+    {
+        try
+        {
+            Database.getInstance().remove(3*(Scheduler.currentPage-1)+slotNumber);
+            for (int i=slotNumber;i<3;i++)
+            {
+                update.updateIndex(i);
+                scheduler.update();
+            }
+            update.updateIndex(slotNumber);
+            scheduler.update();
+        }
+        catch (IndexOutOfBoundsException exception) {new ExceptionAlert(Alert.AlertType.WARNING,"Event does not exist!");}
+    }
+
     public void setMainApp(MainStage mainApp) {this.mainApp = mainApp;}
 
-
+    
     /**
      * @author Witold Karaś
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
@@ -222,53 +169,27 @@ public class MainStageController implements Initializable
      */
     public class UpdateAdapter
     {
-        void update1()
+        private void update(int slotNumber)
         {
-            paneEvent1.setText(Scheduler.taskDisplayList.get(0).getTitle());
-            labelEvent1Description.setText(Scheduler.taskDisplayList.get(0).getDescription());
-            labelEvent1Category.setText(Scheduler.taskDisplayList.get(0).getCategory());
-            labelEvent1Title.setText(Scheduler.taskDisplayList.get(0).getTitle());
+            paneEvent1.setText(Scheduler.taskDisplayList.get(slotNumber).getTitle());
+            labelEvent1Description.setText(Scheduler.taskDisplayList.get(slotNumber).getDescription());
+            labelEvent1Category.setText(Scheduler.taskDisplayList.get(slotNumber).getCategory());
+            labelEvent1Title.setText(Scheduler.taskDisplayList.get(slotNumber).getTitle());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            labelEvent1StartDateTime.setText(Scheduler.taskDisplayList.get(0).getEventFullDateStart().format(formatter));
-            labelEvent1EndDateTime.setText(Scheduler.taskDisplayList.get(0).getEventFullDateEnd().format(formatter));
-            labelEvent1AlertFrequency.setText(Scheduler.taskDisplayList.get(0).getAlertFrequency().toString());
-            labelEvent1Priority.setText(Scheduler.taskDisplayList.get(0).getPriority().toString());
-            labelEvent1IsActive.setText(Scheduler.taskDisplayList.get(0).getIsActive().toString());
-        }
-        void update2()
-        {
-            paneEvent2.setText(Scheduler.taskDisplayList.get(1).getTitle());
-            labelEvent2Description.setText(Scheduler.taskDisplayList.get(1).getDescription());
-            labelEvent2Category.setText(Scheduler.taskDisplayList.get(1).getCategory());
-            labelEvent2Title.setText(Scheduler.taskDisplayList.get(1).getTitle());
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            labelEvent2StartDateTime.setText(Scheduler.taskDisplayList.get(1).getEventFullDateStart().format(formatter));
-            labelEvent2EndDateTime.setText(Scheduler.taskDisplayList.get(1).getEventFullDateEnd().format(formatter));
-            labelEvent2AlertFrequency.setText(Scheduler.taskDisplayList.get(1).getAlertFrequency().toString());
-            labelEvent2Priority.setText(Scheduler.taskDisplayList.get(1).getPriority().toString());
-            labelEvent2IsActive.setText(Scheduler.taskDisplayList.get(1).getIsActive().toString());
-        }
-        void update3()
-        {
-            paneEvent3.setText(Scheduler.taskDisplayList.get(2).getTitle());
-            labelEvent3Description.setText(Scheduler.taskDisplayList.get(2).getDescription());
-            labelEvent3Category.setText(Scheduler.taskDisplayList.get(2).getCategory());
-            labelEvent3Title.setText(Scheduler.taskDisplayList.get(2).getTitle());
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            labelEvent3StartDateTime.setText(Scheduler.taskDisplayList.get(2).getEventFullDateStart().format(formatter));
-            labelEvent3EndDateTime.setText(Scheduler.taskDisplayList.get(2).getEventFullDateEnd().format(formatter));
-            labelEvent3AlertFrequency.setText(Scheduler.taskDisplayList.get(2).getAlertFrequency().toString());
-            labelEvent3Priority.setText(Scheduler.taskDisplayList.get(2).getPriority().toString());
-            labelEvent3IsActive.setText(Scheduler.taskDisplayList.get(2).getIsActive().toString());
+            labelEvent1StartDateTime.setText(Scheduler.taskDisplayList.get(slotNumber).getEventFullDateStart().format(formatter));
+            labelEvent1EndDateTime.setText(Scheduler.taskDisplayList.get(slotNumber).getEventFullDateEnd().format(formatter));
+            labelEvent1AlertFrequency.setText(Scheduler.taskDisplayList.get(slotNumber).getAlertFrequency().toString());
+            labelEvent1Priority.setText(Scheduler.taskDisplayList.get(slotNumber).getPriority().toString());
+            labelEvent1IsActive.setText(Scheduler.taskDisplayList.get(slotNumber).getIsActive().toString());
         }
 
         abstract class Update {public abstract void updateIndex(int index);}
 
         private Update[] updateArr = new UpdateAdapter.Update[]
         {
-            new UpdateAdapter.Update() { public void updateIndex(int index) { update1(); } },
-            new UpdateAdapter.Update() { public void updateIndex(int index) { update2(); } },
-            new UpdateAdapter.Update() { public void updateIndex(int index) { update3(); } }
+            new UpdateAdapter.Update() { public void updateIndex(int index) { update(0); } },
+            new UpdateAdapter.Update() { public void updateIndex(int index) { update(1); } },
+            new UpdateAdapter.Update() { public void updateIndex(int index) { update(2); } }
         };
 
         public void updateIndex(int index)
