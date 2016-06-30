@@ -23,5 +23,7 @@
          </font></Label>
       <TextField fx:id="eventNameField" layoutX="22.0" layoutY="95.0" />
       <TextField fx:id="eventCategory" layoutX="246.0" layoutY="95.0" />
+      <Label fx:id="defaultName" layoutX="21.0" layoutY="78.0" text="Label" />
+      <Label fx:id="defaultCategory" layoutX="245.0" layoutY="78.0" text="Label" />
    </children>
 </AnchorPane>

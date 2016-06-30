@@ -68,6 +68,8 @@ public class Resources
         static String howManyHoursLabelText = "Per how many hours show alert?";
         static String isActiveLabelText = "Make all events active?";
 		static String titleLabelText = "Adjust default events";
+		static String defaultNameText = "Default event name:";
+		static String defaultCategoryText = "Default category:";
     }
 
     public static class AlertRes
