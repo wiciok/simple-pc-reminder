@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -16,9 +15,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
- * @author Witek
+ * @author Witold Karaś
+ * @author Paweł Kapuśniak
  * Klasa kontrolera głównej sceny (okna)
+ * todo: refaktoryzacja
  */
+
 public class MainStageController implements Initializable
 {
     private MainStage mainApp;
@@ -30,10 +32,6 @@ public class MainStageController implements Initializable
     public UpdateAdapter update = new UpdateAdapter();
 
 
-    /*jeśli w SceneBuilderze nadaliśmy kontrolce takie samo ID jak nazwa obiektu
-    to zostaną one automatycznie połączone - do zmiennej obiektowej zostanie przypisany obiekt
-    potrzebna jest do tego oczywiscie adnotacja @FXML
-    */
     /*inicjalizacja kontrolek na scenie - wiązanie z plikiem FXML
     * możliwe do wykonania jedynie w klasie kontrolera*/
 
@@ -120,17 +118,18 @@ public class MainStageController implements Initializable
         buttonAdd.setOnAction(event -> addEventStage = new AddEventStage(mainApp));
         propertiesButton.setOnAction(event -> propertiesStage = new PropertiesStage(mainApp));
         buttonNextEvents.setOnAction(event -> {
-            scheduler.getNext();
+            scheduler.getNextPage();
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
         buttonPrevEvents.setOnAction(event -> {
-            scheduler.getPrev();
+            scheduler.getPrevPage();
             pageLabel.setText(Resources.MainStageRes.pageLabelText+Integer.toString(Scheduler.currentPage));
         });
 
+
         /*rozwijanie i zwijanie okna*/
         buttonResize.setOnAction(event -> {
-            if(mainApp.expanded==false)
+            if(!mainApp.expanded)
             {
                 mainApp.mainStage.setHeight(550);
                 mainApp.expanded=true;
@@ -213,15 +212,13 @@ public class MainStageController implements Initializable
             }
         });
     }
+    public void setMainApp(MainStage mainApp) {this.mainApp = mainApp;}
 
-    public void setMainApp(MainStage mainApp)
-    {
-        this.mainApp = mainApp;
-    }
 
     /**
+     * @author Witold Karaś
      * Klasa wewętrzna stanowiąca adapter do wywoływania metod
-     * Wzorzec projektowy Adapter.
+     * Implementacja wzorca projektowego Adapter.
      */
     public class UpdateAdapter
     {
@@ -265,10 +262,7 @@ public class MainStageController implements Initializable
             labelEvent3IsActive.setText(Scheduler.taskDisplayList.get(2).getIsActive().toString());
         }
 
-        abstract class Update
-        {
-            public abstract void updateIndex(int index);
-        }
+        abstract class Update {public abstract void updateIndex(int index);}
 
         private Update[] updateArr = new UpdateAdapter.Update[]
         {

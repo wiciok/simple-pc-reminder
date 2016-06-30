@@ -7,12 +7,13 @@ import java.time.LocalDateTime;
 import javafx.beans.property.*;
 
 /**
- * Created by Witek on 2016-06-20.
+ * @author Witold Karaś on 2016-06-20.
  *
  * Klasa wydarzenia zawierająca elementy Property, konieczne do dynamicznego odświeżania się widoku.
  * Implementuje interfejs Cloneable na potrzeby wykorzystania wzorca prototyp.
- *
  */
+
+//Todo: dekompozycja
 
 public class Event extends EventAbstract implements Cloneable
 {

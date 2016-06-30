@@ -7,14 +7,15 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import view.ExceptionAlert;
 
 /**
- * Created by Paweł on 2016-06-19.
+ * @author Paweł Kapuśniak on 2016-06-19.
  *
  * Klasa zawierająca wątek odpowiedzialny za wyświetlanie przypomnień.
  * Ustawienia przypomnień konfigurowane są w klasie PropertiesStageController.
  */
-
+//Todo: dekompozycja
 
 public class ReminderThread
 {
@@ -57,21 +58,14 @@ public class ReminderThread
 					    final Runnable runnable = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.default");
 		                if (runnable != null) 
 		                    runnable.run();
-						alert.setTitle("INFORMATION");
-						alert.setHeaderText("Event reminder alert!");
-						alert.setContentText("Remember about upcoming event \""+Database.getInstance().get(k).getTitle()+"\"");
-						alert.showAndWait();
+
+						new ExceptionAlert(AlertType.INFORMATION,"Event reminder alert!",
+								"Remember about upcoming event \""+Database.getInstance().get(k).getTitle()+"\"");
 					});
 				}
 			}
-			try
-			{
-				Thread.sleep(1000);
-			} 
-			catch (InterruptedException e)
-			{
-				break;
-			}
+			try {Thread.sleep(1000);}
+			catch (InterruptedException e) {break;}
 		}
 	}
 }

@@ -20,16 +20,16 @@ import model.Database;
 import view.AddEventStage;
 
 /**
+ * @author Paweł Kapuśniak
  * Klasa kontrolera okna od dodawaia nowego wydarzenia.
+ * ToDo: dekompozycja
  */
 public class AddEventStageController implements Initializable
 {
     private AddEventStage addEventStage;
-    public int howManyHours;
 
     /*inicjalizacja kontrolek na scenie - wiązanie z plikiem FXML
     * możliwe do wykonania jedynie w klasie kontrolera*/
-
     @FXML public Button cancelButton;
     @FXML public Button createEventButton;
     @FXML public DatePicker pickStartDate;
@@ -47,19 +47,15 @@ public class AddEventStageController implements Initializable
     @FXML public Label l3;
     @FXML public Label l4;
 
-    public void setMainApp(AddEventStage AddEventStage)
-    {
-        this.addEventStage = AddEventStage;
-    }
-
+    public void setMainApp(AddEventStage AddEventStage) {this.addEventStage = AddEventStage;}
     public void initialize(URL url, ResourceBundle rb)
     {
-        /*konfiguracja Cancel Button*/
         cancelButton.setOnAction(event -> addEventStage.addEventStage.close());
         createEventButton.setOnAction(event -> {
-        	
-            /* tworzenie prototypu Eventu - w konstruktorze sa ustawiane domyslne wartosci
-             * ktore obowiazuja gdy uzytkownik tu czegos nie wprowadzi*/
+
+            /* Wykorzystanie wzorca Prototyp:
+            tworzenie prototypu Eventu - w konstruktorze sa ustawiane domyslne wartosci
+            ktore obowiazuja gdy uzytkownik tu czegos nie wprowadzi */
             Event prototype = new Event();
             Event newEvent = (Event)prototype.clone();
 
@@ -67,15 +63,13 @@ public class AddEventStageController implements Initializable
             /*nazwa, opis, kategoria - sprawdzane czy po prostu cos zostalo wpisane*/
             if(eventNameField.getText() != null && !(eventNameField.getText().trim().isEmpty()))
                 newEvent.setTitle(eventNameField.getText());
-
             if(eventDescriptionField.getText() != null && !(eventNameField.getText().trim().isEmpty()))
                 newEvent.setDescription(eventDescriptionField.getText());
-
             if(eventCategory.getText() != null && !(eventCategory.getText().trim().isEmpty()))
                 newEvent.setCategory(eventCategory.getText());
 
             /*data rozpoczenia - sprawdzane czy cos jest wybrane i czy data rozpoczecia jest pozniejsza od obecnej daty
-             * (bo bez sensu dawac event w przeszlosci)*/
+            (bo bez sensu dawac event w przeszlosci)*/
             try
             {
                    if(pickStartDate.getValue() != null && !pickStartDate.getValue().isBefore(LocalDate.now()))
@@ -92,7 +86,7 @@ public class AddEventStageController implements Initializable
                 alert.showAndWait();
             }
 
-            /*walidacja tego czasu - najpierw jest sprawdzane czy w ogole cos zostalo wprowadzone
+            /* walidacja czasu - najpierw jest sprawdzane czy w ogole cos zostalo wprowadzone
              * i potem dopiero czy to wprowadzone ma jakis sens - formaty HH:MM:SS lub HH:MM
              * i potem konwertowane do czasu*/
             try

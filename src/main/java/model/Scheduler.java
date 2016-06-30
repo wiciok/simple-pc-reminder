@@ -8,9 +8,8 @@ import model.event.Event;
 import model.event.EventNull;
 
 /**
- * Created by Witek on 2016-05-22.
+ * @author Witold Karaś on 2016-05-22.
  * Klasa zajmująca się przygotowaniem danych do wyświetlenia
- *
  */
 public class Scheduler
 {
@@ -26,15 +25,8 @@ public class Scheduler
 
     public void update()
     {
-        try
-        {
-            Database.getInstance().sort();
-            //System.out.println("posortowano!");
-        }
-        catch (IndexOutOfBoundsException e)
-        {
-            //System.out.println("sortowanie nieudane!");
-        }
+        try {Database.getInstance().sort();}
+        catch (IndexOutOfBoundsException e) {}
 
         taskDisplayList.clear();
         for (int i=(currentPage-1)*3, k=0; i<(currentPage)*3; i++, k++)
@@ -45,12 +37,13 @@ public class Scheduler
 
                 /*Zastosowanie wzorca projektowego Obserwator -
                 - użycie Listenera do obserwacji zmian wśród aktualnie wyświetlanych elementów*/
-
                 final ChangeListener<String> list = (observable, oldValue, newValue) -> mainStageController.update.updateIndex(j);
 
                 taskDisplayList.add(Database.getInstance().get(i));
                 Scheduler.taskDisplayList.get(k).getTitleProperty().addListener(list);
                 String tmp=Database.getInstance().get(i).getTitle();
+
+                //wymuszenie zmiany wartości (konieczne aby listener "załapał")
                 taskDisplayList.get(k).getTitleProperty().set("__force change of value");
                 taskDisplayList.get(k).getTitleProperty().set(tmp);
 
@@ -58,7 +51,9 @@ public class Scheduler
             }
             catch(IndexOutOfBoundsException e)
             {
+                /*wykorzystanie polimorfizmu*/
                 taskDisplayList.add(new EventNull());
+
                 mainStageController.update.updateIndex(k);
             }
         }
@@ -66,52 +61,31 @@ public class Scheduler
 
     public static void init()
     {
-        try
-        {
-            Database.getInstance().sort();
-            //System.out.println("posortowano!");
-        }
-        catch (IndexOutOfBoundsException e)
-        {
-            //System.out.println("sortowanie nieudane!");
-        }
+        try {Database.getInstance().sort();}
+        catch (IndexOutOfBoundsException e) {}
 
         currentPage=0;
 
         taskDisplayList.clear();
         for (int i=0;i<3;i++)
         {
-            try
-            {
-                taskDisplayList.add(Database.getInstance().get(i));
-            }
-            catch(IndexOutOfBoundsException e)
-            {
-                taskDisplayList.add(new EventNull());
-            }
+            try {taskDisplayList.add(Database.getInstance().get(i));}
+            catch(IndexOutOfBoundsException e) {taskDisplayList.add(new EventNull());}
         }
     }
 
-    public void getNext()
+    public void getNextPage()
     {
-        System.out.println("getNext");
         currentPage+=1;
 
-        /*Sprawdzenie, czy kolejna rozpoczęta strona istnieje*/
-        try
-        {
-            Database.getInstance().get(currentPage*3-3);
-        }
-        catch (IndexOutOfBoundsException e)
-        {
-            currentPage-=1;
-        }
+        //Sprawdzenie, czy kolejna rozpoczęta strona istnieje
+        try {Database.getInstance().get(currentPage*3-3);}
+        catch (IndexOutOfBoundsException e) {currentPage-=1;}
         update();
     }
 
-    public void getPrev()
+    public void getPrevPage()
     {
-        System.out.println("getPrev");
         currentPage-=1;
         if (currentPage<1)
             currentPage=1;
