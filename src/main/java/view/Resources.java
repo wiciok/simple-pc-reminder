@@ -47,6 +47,7 @@ public class Resources
     static public class AddEventStageControllerRes
     {
         public static String evStartDateWar = "Event start date warning!";
+        public static String evStartTimeWar = "Event start time warning!";
         public static String noTimeOrWrongTimeFormat = "\"No time set or wrong format (HH:MM / HH:MM:SS)\\ne.g. 09:50, 17:30:22.\\n\\nCurrent time is set.\"";
         public static String noDateOrWrongDateFormat="No date set or the date is inproper.\n\nCurrent date will be set.";
     }

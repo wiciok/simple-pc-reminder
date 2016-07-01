@@ -81,7 +81,7 @@ public class AddEventStageController implements Initializable
             catch(Exception e)
             {
                 new ExceptionAlert(Alert.AlertType.WARNING, Resources.AddEventStageControllerRes.evStartDateWar,
-                        Resources.AddEventStageControllerRes.noTimeOrWrongTimeFormat);
+                        Resources.AddEventStageControllerRes.noDateOrWrongDateFormat);
             }
 
             /* walidacja czasu - najpierw jest sprawdzane czy w ogole cos zostalo wprowadzone
@@ -101,7 +101,7 @@ public class AddEventStageController implements Initializable
             }
             catch(Exception e)
             {
-                new ExceptionAlert(Alert.AlertType.WARNING, Resources.AddEventStageControllerRes.evStartDateWar,
+                new ExceptionAlert(Alert.AlertType.WARNING, Resources.AddEventStageControllerRes.evStartTimeWar,
                         Resources.AddEventStageControllerRes.noTimeOrWrongTimeFormat);
             }
 
@@ -119,7 +119,7 @@ public class AddEventStageController implements Initializable
             catch(Exception e)
             {
                 new ExceptionAlert(Alert.AlertType.WARNING,Resources.AddEventStageControllerRes.evStartDateWar,
-                        Resources.AddEventStageControllerRes.noTimeOrWrongTimeFormat);
+                        Resources.AddEventStageControllerRes.noDateOrWrongDateFormat);
             }
 
             /*znow walidacja czasu tym razem zakonczenia*/
@@ -137,7 +137,7 @@ public class AddEventStageController implements Initializable
             }
             catch(Exception e)
             {
-                new ExceptionAlert(Alert.AlertType.WARNING,Resources.AddEventStageControllerRes.evStartDateWar,
+                new ExceptionAlert(Alert.AlertType.WARNING,Resources.AddEventStageControllerRes.evStartTimeWar,
                         Resources.AddEventStageControllerRes.noTimeOrWrongTimeFormat);
             }
 

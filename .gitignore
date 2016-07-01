@@ -6,11 +6,12 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
-.mvn/timing.properties
-binaryFile.dat
-metadata/
-..settings/
+.settings/
 
 target/
 .idea/
 .settings/
+.classpath
+.project
+.metadata/
+simple-pc-reminder.iml
